@@ -5,7 +5,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//DB Code
+var mongoose = require('./models/db');
+
+//Passport
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var crypto = require('./custom_modules/crypto_methods');
+
+
+//Routes
 var routes = require('./routes/index');
+var marchsadness = require('./routes/marchsadness');
+var admin = require('./routes/admin');
 var users = require('./routes/users');
 
 var app = express();
@@ -15,7 +27,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,6 +35,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/marchsadness', marchsadness);
+app.use('/admin', admin);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
