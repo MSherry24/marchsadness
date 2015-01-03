@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+
 var usermodel = [];
 
 var userSchema = new mongoose.Schema({
@@ -13,6 +14,8 @@ var userSchema = new mongoose.Schema({
     }
 });
 var Users = mongoose.model('Users', userSchema);
+
+usermodel.users = Users;
 
 usermodel.createUserSchema = function () {
     console.log('Initializing Users');

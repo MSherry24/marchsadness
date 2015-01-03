@@ -1,0 +1,27 @@
+extends ../layout
+block content
+   div(class="jumbotron")
+      div(class="container")
+         div(class="row")
+            div(class="col-xs-12")
+               h1.text-center= title
+               p.text-center Login Below!
+   div.container
+      form(name="newUser",method="post",action="/users/login")
+         div(class="row")
+            div.col-xs-2
+               label.label.label-default(for="userName") User Name
+            div.col-xs-4
+               input.form-control#userName(type="text", required="true", name="username")
+            div.col-xs-6
+         div(class="row")
+            div.col-xs-2
+               label.label.label-default(for="password") Password
+            div.col-xs-4
+               input.form-control#password(type="password", required="true", name="password")
+            div.col-xs-6
+         p.row
+            div.col-xs-5
+            div.col-xs-2
+               button#submitbutton.btn.btn-primary.btn-lg.text-center(type="submit") Submit
+            div.col-xs-5
