@@ -6,4 +6,14 @@ router.get('/', function(req, res) {
     res.render('admin/index', { title: 'Admin Index' });
 });
 
+router.get('/viewusers', function(req, res) {
+    "use strict";
+    var userModel, users;
+    userModel = require('../models/usermodel');
+    console.log('userModel.allUsers = ' + userModel.allUsers);
+    res.render('admin/viewUsers', {
+        "users" : userModel.allUsers
+    });
+});
+
 module.exports = router;

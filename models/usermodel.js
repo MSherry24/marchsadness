@@ -38,7 +38,7 @@ usermodel.createUserSchema = function () {
     });
 }
 
-usermodel.createNewUser = function(username, password, salt, firstName, lastName, admin) {
+usermodel.createNewUser = function(username, password, salt, firstName, lastName) {
     console.log('creating user: ' + username);
     var newUser = new Users ({
         username: username,
@@ -48,7 +48,30 @@ usermodel.createNewUser = function(username, password, salt, firstName, lastName
         name: { first: firstName, last: lastName },
         admin: false
     });
-    newUser.save(function (err) {if (err) console.log ('Error on save!')});
+    newUser.save(function (err) {
+        if (err) {
+            console.log ('Error on save!');
+            console.log ('err = ' + err);
+            return false;
+        } else {
+            // If it works, set the header so the address bar doesn't still say /addpost
+            console.log('returning true');
+            return true;
+        }
+    });
+    return true;
 }
+
+usermodel.getAllUsers = function () {
+    console.log('Getting All Users');
+    Users.find({}).exec(function(err, result) {
+        if (!err) {
+            usermodel.allUsers = result;
+        } else {
+            // error handling
+            console.log('error querying users');
+        };
+    });
+}();
 
 module.exports = usermodel;

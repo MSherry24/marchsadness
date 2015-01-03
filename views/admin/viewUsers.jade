@@ -1,0 +1,18 @@
+//
+   Created by mikesherry24 on 1/2/15.
+extends ../layout
+block content
+   div(class="container")
+      div(class="row")
+         div(class="col-xs-12")
+            h1.text-center= title
+            p.text-center Welcome to the Admin Users Page!
+      div(class="row")
+         div.col-xs-4.text-center ID
+         div.col-xs-4.text-center Username
+         div.col-xs-4.text-center Is Admin
+      each user, i in users
+         div(class="row")
+            div.col-xs-4.text-center= user.id
+            div.col-xs-4.text-center= user.username
+            div.col-xs-4.text-center= user.admin

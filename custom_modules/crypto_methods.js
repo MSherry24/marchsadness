@@ -15,3 +15,4 @@ exports.getPassword = function (password, salt) {
     "use strict";
     return crypto.pbkdf2Sync(password, salt, 10000, 512);
 };
+
