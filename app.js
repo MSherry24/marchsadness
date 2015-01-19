@@ -8,7 +8,7 @@ var session = require('express-session');
 var http = require('http');
 
 //DB Code
-// mongo start code - mongod.exe --config d:\mongodb\mongo.config
+// mongo start code - mongod.exe --config e:\mongodb\mongo.config
 var mongoose = require('./models/db');
 var userModel = require('./models/usermodel');
 

@@ -1,42 +1,77 @@
 extends layout
 
 block content
-  div(class="jumbotron")
-    div(class="container")
-      div(class="row")
-        div(class="col-xs-12")
-
-          h1.text-center= title
-          p.text-center Welcome to Failure League! We're working on bringing you a new way to play fantasy football. Check back for updates.
-      div(class="row")
-        div.col-xs-2
-        div.col-xs-8
-          <!-- Begin MailChimp Signup Form -->
-          div#mc_embed_signup
-            form#mc-embedded-subscribe-form(action="//failureleague.us9.list-manage.com/subscribe/post?u=2a0f180183262caf7f29adba8&amp;id=a4d47eae71", method="post", name="mc-embedded-subscribe-form", class="validate", target="_blank", novalidate)
-              div#mc_embed_signup_scroll
-                h2 Sign up for updates
-                p If you're interested in running your own failure league, sign up here and we'll email you with details when they're available.
-                div.indicates-required
-                span.asterisk * indicates required
-              div.mc-field-group
-                label(for="mce-EMAIL") Email Address
-                span.asterisk *
-                input(type="email", value="", name="EMAIL", class="required email form-control", id="mce-EMAIL")
-              div.mc-field-group
-                label(for="mce-FNAME") First Name
-                input(type="text", value="", name="FNAME", class="form-control", id="mce-FNAME")
-              div.mc-field-group
-                label(for="mce-LNAME") Last Name
-                input(type="text", value="", name="LNAME", class="form-control", id="mce-LNAME")
-              div#mce-responses.clear
-              div#mce-error-response.response(style="display:none")
-              div#mce-success-response.response(style="display:none")
-              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-              div(style="position: absolute; left: -5000px;")
-                input(type="text" name="b_2a0f180183262caf7f29adba8_a4d47eae71" tabindex="-1" value="")
-              br
-              div.clear
-                button(class="btn btn-primary", type="submit", name="subscribe", id="mc-embedded-subscribe") Subscribe
-              <!--End mc_embed_signup-->
-        div.col-xs-2
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center= title
+                    p.text-center Welcome to Failure League! We're working on bringing you a new way to play fantasy football. Check back for updates.
+    div.container
+        div.row
+            h2.text-center Let us know who you are so we can email you when more details are available.
+        br
+        br
+        div(class="row")
+            div.col-xs-6
+                <!-- Begin MailChimp Signup Form -->
+                div#mc_embed_signup
+                    form#mc-embedded-subscribe-form(action="//failureleague.us9.list-manage.com/subscribe/post?u=2a0f180183262caf7f29adba8&amp;id=495b596045", method="post", name="mc-embedded-subscribe-form", class="validate", target="_blank", novalidate)
+                        div#mc_embed_signup_scroll
+                            h2.text-center Commisioners
+                            p.text-center
+                                span If you're interested in
+                                span.bg-info  running your own
+                                span  Failure League™ league, sign up here.
+                        div.mc-field-group
+                            label(for="mce-EMAIL") Email Address
+                            span.asterisk *
+                            input(type="email", value="", name="EMAIL", class="required email form-control", id="mce-EMAIL")
+                        div.mc-field-group
+                            label(for="mce-FNAME") First Name
+                            input(type="text", value="", name="FNAME", class="form-control", id="mce-FNAME")
+                        div.mc-field-group
+                            label(for="mce-LNAME") Last Name
+                            input(type="text", value="", name="LNAME", class="form-control", id="mce-LNAME")
+                        div#mce-responses.clear
+                        div#mce-error-response.response(style="display:none")
+                        div#mce-success-response.response(style="display:none")
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        div(style="position: absolute; left: -5000px;")
+                            input(type="text", name="b_2a0f180183262caf7f29adba8_495b596045", tabindex="-1", value="")
+                        br
+                        div.clear
+                            button(class="btn btn-primary", type="submit", name="subscribe", id="mc-embedded-subscribe") Subscribe
+                        <!--End mc_embed_signup-->
+            div.col-xs-6
+                <!-- Begin MailChimp Signup Form -->
+                div#mc_embed_signup2
+                    form#mc-embedded-subscribe-form2(action="//failureleague.us9.list-manage.com/subscribe/post?u=2a0f180183262caf7f29adba8&amp;id=a4d47eae71", method="post", name="mc-embedded-subscribe-form2")
+                        div#mc_embed_signup_scroll2
+                            h2.text-center League Members
+                            p.text-center
+                                span If you're interested in
+                                span.bg-info  participating in a
+                                span  Failure League™ league, sign up here.
+                        div.mc-field-group
+                            label(for="mce-EMAIL") Email Address
+                            span.asterisk *
+                            input(type="email", value="", name="EMAIL", class="required email form-control", id="mce-EMAIL")
+                        div.mc-field-group
+                            label(for="mce-FNAME") First Name
+                            input(type="text", value="", name="FNAME", class="form-control", id="mce-FNAME")
+                        div.mc-field-group
+                            label(for="mce-LNAME") Last Name
+                            input(type="text", value="", name="LNAME", class="form-control", id="mce-LNAME")
+                        div#mce-responses2.clear
+                        div#mce-error-response2.response(style="display:none")
+                        div#mce-success-response2.response(style="display:none")
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        div(style="position: absolute; left: -5000px;")
+                            input(type="text", name="b_2a0f180183262caf7f29adba8_a4d47eae71", tabindex="-1", value="")
+                        br
+                        div.clear
+                            button(class="btn btn-primary", type="submit", name="subscribe", id="mc-embedded-subscribe2") Subscribe
+                        <!--End mc_embed_signup-->
+        hr
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
