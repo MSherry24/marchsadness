@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+var userModel = {};
+var userSchema, Users;
 
-var usermodel = [];
-
-var userSchema = new mongoose.Schema({
+userSchema = new mongoose.Schema({
     username: String,
     password: String,
     salt: String,
@@ -13,11 +13,12 @@ var userSchema = new mongoose.Schema({
         last: { type: String, trim: true }
     }
 });
-var Users = mongoose.model('Users', userSchema);
 
-usermodel.users = Users;
+Users = mongoose.model('Users', userSchema);
 
-usermodel.createUserSchema = function () {
+userModel.users = Users;
+
+userModel.createUserSchema = function () {
     console.log('Initializing Users');
     Users.find({}).exec(function(err, result) {
         if (!err) {
@@ -37,11 +38,11 @@ usermodel.createUserSchema = function () {
         } else {
             // error handling
             console.log('error querying admins');
-        };
+        }
     });
-}
+};
 
-usermodel.createNewUser = function(username, password, salt, firstName, lastName) {
+userModel.createNewUser = function(username, password, salt, firstName, lastName) {
     console.log('creating user: ' + username);
     var newUser = new Users ({
         username: username,
@@ -63,18 +64,18 @@ usermodel.createNewUser = function(username, password, salt, firstName, lastName
         }
     });
     return true;
-}
+};
 
-usermodel.getAllUsers = function () {
+userModel.getAllUsers = function () {
     console.log('Getting All Users');
     Users.find({}).exec(function(err, result) {
         if (!err) {
-            usermodel.allUsers = result;
+            userModel.allUsers = result;
         } else {
             // error handling
             console.log('error querying users');
-        };
+        }
     });
 }();
 
-module.exports = usermodel;
+module.exports = userModel;

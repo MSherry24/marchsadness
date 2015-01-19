@@ -85,7 +85,6 @@ function loginPost(req, res, next) {
         });
     })(req, res, next);
 }
-
 router.post('/login', loginPost);
 
 
