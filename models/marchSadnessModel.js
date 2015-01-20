@@ -128,7 +128,7 @@ var createMasterBracket = function () {
                         if (!err) {
                             masterBracket[region] = result;
                         }
-                        3else {
+                        else {
                             console.log('Error finding team');
                         }
                     }
@@ -289,10 +289,4 @@ function createDummyTeams() {
             console.log('Saved : ', data);
         }
     });
-
-});
-
-
-
-
 }

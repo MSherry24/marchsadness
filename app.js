@@ -9,6 +9,7 @@ var http = require('http');
 
 //DB Code
 // mongo start code - mongod.exe --config e:\mongodb\mongo.config
+// mongo start code - mongod.exe --config C:\Users\msherry\Documents\mongodb\mongo.config
 var mongoose = require('./models/db');
 var userModel = require('./models/usermodel');
 
