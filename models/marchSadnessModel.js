@@ -238,3 +238,61 @@ msModel.populateMasterBracket = function () {
 };
 
 module.exports = msModel;
+
+function createDummyTeams() {
+    "use strict";
+    var sixteenArray, regionsArray, teamMap, regionMap, masterBracketMap;
+    teamMap = {};
+    sixteenArray = [1, 2, 3, 4,
+        5, 6, 7, 8,
+        9, 10, 11, 12,
+        13, 14, 15, 16]
+        .map(function (x) {
+            return x.toString();
+        });
+    regionsArray = ['North', 'South', 'East', 'West'];
+    sixteenArray.map(function (e) {
+        regionsArray.map(function (region) {
+            var team = new NcaaBBTeam({
+                teamName: 'team' + region + e,
+                scores: {
+                    round1: 0,
+                    round2: 0,
+                    round3: 0,
+                    round4: 0,
+                    round5: 0,
+                    round6: 0
+                },
+                totalScore: 0
+            });
+            teamMap['team' + region + e] = team;
+        });
+    });
+    regionsArray.map(function (region) {
+        var region = new NcaaBBRegion({
+            name: region
+        });
+        sixteenArray.map(function (e) {
+            region['seed' + e] = teamMap['team' + region + e];
+        })
+    });
+    var masterBracket = new masterBracket({
+        northRegion: regionMap['North'],
+        southRegion: regionMap['South'],
+        eastRegion: regionMap['East'],
+        westRegion: regionMap['West']
+    });
+    masterBracket.save(function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Saved : ', data);
+        }
+    });
+
+});
+
+
+
+
+}
