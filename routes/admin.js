@@ -10,7 +10,6 @@ router.get('/viewusers', function(req, res) {
     "use strict";
     var userModel, users;
     userModel = require('../models/usermodel');
-    console.log('userModel.allUsers = ' + userModel.allUsers);
     res.render('admin/viewUsers', {
         "users" : userModel.allUsers
     });

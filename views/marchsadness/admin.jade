@@ -1,0 +1,19 @@
+extends marchsadnesslayout
+block content
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center= title
+                    p.text-center Welcome to Failure League's March Sadness!
+    div.container
+        div.row
+            div.col-xs-6.text-center North
+            div.col-xs-6.text-center South
+        div.row
+            div.col-xs-6
+                each seed, i in masterBracket.northRegion
+                    input.row= seed.teamName
+            div.col-xs-6
+                each seed, i in masterBracket.southRegion
+                    input.row= seed.teamName
