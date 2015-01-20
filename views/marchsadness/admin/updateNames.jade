@@ -1,0 +1,83 @@
+extends ../marchsadnesslayout
+block content
+    script(src="/javascripts/marchSadness/updateNames.js")
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center= title
+                    p.text-center Welcome to Failure League's March Sadness!
+    div.container
+        div.row
+            div.col-xs-5
+            div.col-xs-2
+                button#UpdateNames.btn.btn-primary Update Names
+            div.col-xs-5
+        div.row
+            div.col-xs-6.text-center
+                h3 North
+                div.row
+                    div.row
+                        div.col-xs-4
+                            div Seed
+                        div.col-xs-4
+                            div Team Name
+                        div.col-xs-4
+                    each val, index in north
+                        div.row
+                            div.col-xs-4.text-align-right
+                                label= index + 1
+                            div.col-xs-4
+                                input(value=val.teamName, id='northSeed' + (index + 1))
+                            div.col-xs-4
+            div.col-xs-6.text-center
+                h3 South
+                div.row
+                    div.row
+                        div.col-xs-4
+                            div Seed
+                        div.col-xs-4
+                            div Team Name
+                        div.col-xs-4
+                    each val, index in south
+                        div.row
+                            div.col-xs-4.text-align-right
+                                label= index + 1
+                            div.col-xs-4
+                                input(value=val.teamName, id='southSeed' + (index + 1))
+                            div.col-xs-4
+            div.col-xs-6.text-center
+                h3 East
+                div.row
+                    div.row
+                        div.col-xs-4
+                            div Seed
+                        div.col-xs-4
+                            div Team Name
+                        div.col-xs-4
+                    each val, index in east
+                        div.row
+                            div.col-xs-4.text-align-right
+                                label= index + 1
+                            div.col-xs-4
+                                input(value=val.teamName, id='eastSeed' + (index + 1))
+                            div.col-xs-4
+            div.col-xs-6.text-center
+                h3 West
+                div.row
+                    div.row
+                        div.col-xs-4
+                            div Seed
+                        div.col-xs-4
+                            div Team Name
+                        div.col-xs-4
+                    each val, index in west
+                        div.row
+                            div.col-xs-4.text-align-right
+                                label= index + 1
+                            div.col-xs-4
+                                input(value=val.teamName, id='westSeed' + (index + 1))
+                            div.col-xs-4
+        hr
+
+

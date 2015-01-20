@@ -2,19 +2,6 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 var msModel = {};
 
-var ncaaTeamSchema = new mongoose.Schema({
-    teamName: String,
-    scores: {
-        round1: Number,
-        round2: Number,
-        round3: Number,
-        round4: Number,
-        round5: Number,
-        round6: Number
-    },
-    totalScore: Number
-});
-
 var userTeamSchema = new mongoose.Schema({
     totalScore: Number,
     round1: {
@@ -58,191 +45,136 @@ var userTeamSchema = new mongoose.Schema({
     }
 });
 
-var regionSchema = new mongoose.Schema({
-    name: String,
-    seed1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed3: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed4: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed5: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed6: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed7: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed8: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed9: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed10: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed11: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed12: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed13: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed14: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed15: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-    seed16: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
-});
+var roundScoresObject = {
+    missed3: Number,
+    missed2: Number,
+    missedFT: Number,
+    score: Number
+};
+
+var teamSchemaObject = {
+        teamName: String,
+        apiName: String,
+        scores: {
+            round1: roundScoresObject,
+            round2: roundScoresObject,
+            round3: roundScoresObject,
+            round4: roundScoresObject,
+            round5: roundScoresObject,
+            round6: roundScoresObject
+        },
+        totalScore: Number
+    };
 
 var masterBracketSchema = new mongoose.Schema({
-    northRegion: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Region'},
-    southRegion: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Region'},
-    eastRegion: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Region'},
-    westRegion: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Region'}
+    northRegion: {
+        seed1: teamSchemaObject,
+        seed2: teamSchemaObject,
+        seed3: teamSchemaObject,
+        seed4: teamSchemaObject,
+        seed5: teamSchemaObject,
+        seed6: teamSchemaObject,
+        seed7: teamSchemaObject,
+        seed8: teamSchemaObject,
+        seed9: teamSchemaObject,
+        seed10: teamSchemaObject,
+        seed11: teamSchemaObject,
+        seed12: teamSchemaObject,
+        seed13: teamSchemaObject,
+        seed14: teamSchemaObject,
+        seed15: teamSchemaObject,
+        seed16: teamSchemaObject
+    },
+    southRegion: {
+        seed1: teamSchemaObject,
+        seed2: teamSchemaObject,
+        seed3: teamSchemaObject,
+        seed4: teamSchemaObject,
+        seed5: teamSchemaObject,
+        seed6: teamSchemaObject,
+        seed7: teamSchemaObject,
+        seed8: teamSchemaObject,
+        seed9: teamSchemaObject,
+        seed10: teamSchemaObject,
+        seed11: teamSchemaObject,
+        seed12: teamSchemaObject,
+        seed13: teamSchemaObject,
+        seed14: teamSchemaObject,
+        seed15: teamSchemaObject,
+        seed16: teamSchemaObject
+    },
+    eastRegion: {
+        seed1: teamSchemaObject,
+        seed2: teamSchemaObject,
+        seed3: teamSchemaObject,
+        seed4: teamSchemaObject,
+        seed5: teamSchemaObject,
+        seed6: teamSchemaObject,
+        seed7: teamSchemaObject,
+        seed8: teamSchemaObject,
+        seed9: teamSchemaObject,
+        seed10: teamSchemaObject,
+        seed11: teamSchemaObject,
+        seed12: teamSchemaObject,
+        seed13: teamSchemaObject,
+        seed14: teamSchemaObject,
+        seed15: teamSchemaObject,
+        seed16: teamSchemaObject
+    },
+    westRegion: {
+        seed1: teamSchemaObject,
+        seed2: teamSchemaObject,
+        seed3: teamSchemaObject,
+        seed4: teamSchemaObject,
+        seed5: teamSchemaObject,
+        seed6: teamSchemaObject,
+        seed7: teamSchemaObject,
+        seed8: teamSchemaObject,
+        seed9: teamSchemaObject,
+        seed10: teamSchemaObject,
+        seed11: teamSchemaObject,
+        seed12: teamSchemaObject,
+        seed13: teamSchemaObject,
+        seed14: teamSchemaObject,
+        seed15: teamSchemaObject,
+        seed16: teamSchemaObject
+    }
 });
 
-var NcaaBBTeam = mongoose.model('NCAA_Basketball_Team', ncaaTeamSchema);
-var NcaaBBRegion = mongoose.model('NCAA_Basketball_Region', regionSchema);
 var MasterBracket = mongoose.model('NCAA_Master_Bracket', masterBracketSchema);
 var userTeam = mongoose.model('User_MarchSadness_Team', userTeamSchema);
 
-msModel.getAllTourneyTeams = function () {
-    console.log('Get all Tourney Teams');
-    NcaaBBTeam.find({}).exec(function (err, result) {
+msModel.getMasterBracket = function() {
+    MasterBracket.findOne({}).exec(function (err, result) {
         if (!err) {
-            return result;
+            msModel.masterBracket = result;
         } else {
             // error handling
             console.log('error querying tourney teams: ' + err);
-        }
-    });
-};
-
-msModel.getMasterBracket = function () {
-    console.log('Get Master Bracket');
-    MasterBracket.find({}).exec(function (err, result) {
-        if (!err) {
-            return result;
-        } else {
-            // error handling
-            console.log('error querying tourney teams: ' + err);
-        }
-    });
-};
-
-var createMasterBracket = function () {
-    "use strict";
-    var masterBracket, regions;
-    MasterBracket.count({}, function (err, c) {
-        console.log('Master Bracket count = ' + c);
-        if (!err && c === 0) {
-            regions = ['North', 'South', 'East', 'West'];
-            masterBracket = new MasterBracket();
-            regions.map(function (region) {
-                NcaaBBRegion.find({name: region}).exec(
-                    function (err, result) {
-                        if (!err) {
-                            masterBracket[region] = result;
-                        }
-                        else {
-                            console.log('Error finding team');
-                        }
-                    }
-                );
-            });
-            masterBracket.save(function (err, data) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('Saved Master Bracket: ', data);
-                }
-            });
-        }
-    });
-};
-
-var createDummyRegions = function () {
-    "use strict";
-    var regionsArray, sixteenArray;
-    NcaaBBRegion.count({}, function (err, c) {
-        console.log('region count = ' + c);
-        if (!err && c === 0) {
-            regionsArray = ['North', 'South', 'East', 'West'];
-            sixteenArray = [1, 2, 3, 4,
-                5, 6, 7, 8,
-                9, 10, 11, 12,
-                13, 14, 15, 16]
-                .map(function (x) { return x.toString(); });
-            regionsArray.map(function (region) {
-                var newRegion;
-                newRegion = new NcaaBBRegion({ name: region });
-                sixteenArray.map(function (e) {
-                    NcaaBBTeam.find({name: 'Team' + region + e}).exec(
-                        function (err, result) {
-                            console.log('team name = ' + result.teamName + ' id = ' + result._id);
-                            if (!err) {
-                                newRegion['seed' + e] = result._id;
-                            } else {
-                                console.log('Error finding team');
-                            }
-                        }
-                    );
-                });
-                newRegion.save(function (err, data) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('Saved : ', data);
-                    }
-                });
-            });
-        }
-    });
-};
-
-function createDummyTeams() {
-    "use strict";
-    var sixteenArray, regionsArray;
-    NcaaBBTeam.count({}, function (err, c) {
-        console.log('count = ' + c);
-        if (!err && c === 0) {
-            sixteenArray = [1, 2, 3, 4,
-                5, 6, 7, 8,
-                9, 10, 11, 12,
-                13, 14, 15, 16]
-                .map(function (x) {
-                    return x.toString();
-                });
-            regionsArray = ['North', 'South', 'East', 'West'];
-            sixteenArray.map(function (e) {
-                regionsArray.map(function (region) {
-                    var team = new NcaaBBTeam({
-                        teamName: 'team' + region + e,
-                        scores: {
-                            round1: 0,
-                            round2: 0,
-                            round3: 0,
-                            round4: 0,
-                            round5: 0,
-                            round6: 0
-                        },
-                        totalScore: 0
-                    });
-                    team.save(function (err, data) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log('Saved : ', data);
-                        }
-                    });
-                });
-            });
-        } else {
-            console.log('Error finding team');
         }
     });
 }
 
-msModel.populateMasterBracket = function () {
-    "use strict";
-    if (msModel.getMasterBracket() === undefined) {
-        // If master bracket doesn't exist, populate fields with dummy values.
-        createDummyTeams();
-        createDummyRegions();
-        createMasterBracket();
-    }
+msModel.initializeMasterBracket = function () {
+    console.log('Get Master Bracket');
+    MasterBracket.find({}).exec(function(err, result) {
+        if (!err) {
+            if (result.length === 0) {
+                createMasterBracket();
+            } else {
+                msModel.masterBracket = result[0];
+            }
+        } else {
+            console.log('Error creating dummy Master Bracket');
+        }
+    })
 };
 
-module.exports = msModel;
-
-function createDummyTeams() {
+var createMasterBracket = function () {
     "use strict";
-    var sixteenArray, regionsArray, teamMap, regionMap, masterBracketMap;
+    var sixteenArray, regionsArray, teamMap, regionMap;
     teamMap = {};
+    regionMap = {};
     sixteenArray = [1, 2, 3, 4,
         5, 6, 7, 8,
         9, 10, 11, 12,
@@ -253,40 +185,49 @@ function createDummyTeams() {
     regionsArray = ['North', 'South', 'East', 'West'];
     sixteenArray.map(function (e) {
         regionsArray.map(function (region) {
-            var team = new NcaaBBTeam({
+            var roundScores = {
+                missed3: 0,
+                missed2: 0,
+                missedFT: 0,
+                score: 0
+            };
+            var team = {
                 teamName: 'team' + region + e,
+                apiName: 'team' + region + e,
                 scores: {
-                    round1: 0,
-                    round2: 0,
-                    round3: 0,
-                    round4: 0,
-                    round5: 0,
-                    round6: 0
+                    round1: roundScores,
+                    round2: roundScores,
+                    round3: roundScores,
+                    round4: roundScores,
+                    round5: roundScores,
+                    round6: roundScores
                 },
                 totalScore: 0
-            });
+            };
             teamMap['team' + region + e] = team;
         });
     });
     regionsArray.map(function (region) {
-        var region = new NcaaBBRegion({
-            name: region
-        });
+        regionMap[region] = {};
         sixteenArray.map(function (e) {
-            region['seed' + e] = teamMap['team' + region + e];
+            regionMap[region]['seed' + e] = teamMap['team' + region + e];
         })
     });
-    var masterBracket = new masterBracket({
+    var masterBracket = new MasterBracket({
         northRegion: regionMap['North'],
         southRegion: regionMap['South'],
         eastRegion: regionMap['East'],
         westRegion: regionMap['West']
     });
+    console.log('saving masterBracket');
     masterBracket.save(function (err, data) {
         if (err) {
             console.log(err);
         } else {
             console.log('Saved : ', data);
+            msModel.masterBracket = data;
         }
     });
-}
+};
+
+module.exports = msModel;

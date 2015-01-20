@@ -23,8 +23,8 @@ block content
         each team, i in teams
             div(class="row")
                 div.col-xs-2.text-center= team.name
-                div.col-xs-2.text-center= team.region
-                div.col-xs-2.text-center= team.seed
+                div.col-xs-2.text-center team.region
+                div.col-xs-2.text-center team.seed
                 div.col-xs-4.text-center
                     div(class="row")
                         div.col-xs-2.text-center= team.scores.round1

@@ -4,7 +4,9 @@ db.on('error', console.error);
 db.once('open', function() {
     /* Schemas */
     var users = require('./usermodel');
+    var msModel = require('./marchSadnessModel');
     users.createUserSchema();
+    msModel.initializeMasterBracket();
 });
 
 // Here we find an appropriate database to connect to, defaulting to

@@ -1,0 +1,37 @@
+extends ../marchsadnesslayout
+block content
+    script(src="/javascripts/marchSadness/updateSingleTeam.js")
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center= title
+                    p.text-center Welcome to Failure League's March Sadness!
+    div.container
+        div.row
+            div.col-xs-12.text-center
+                div.row
+                    div.col-xs-4
+                        span.h3(style='text-transform:capitalize')= teamInfo.teamName
+                    div.col-xs-4
+                        span.h3(style='text-transform:capitalize')= region + ' region'
+                    div.col-xs-4
+                        span.h3(style='text-transform:capitalize')= '#' + seed + ' seed'
+                div.row
+                    table.table
+                        tr
+                            td Round
+                            td Missed 3's
+                            td Missed 2's
+                            td Missed FT's
+                        each num in [1,2,3,4,5,6]
+                            tr
+                                td
+                                    h4= num
+                                td
+                                    input.row(id='R' + num + '-3p', value=teamInfo.scores['round'+num].missed3)
+                                td
+                                    input.row(id='R' + num + '-2p', value=teamInfo.scores['round'+num].missed2)
+                                td
+                                    input.row(id='R' + num + '-ft', value=teamInfo.scores['round'+num].missedFT)
+hr
