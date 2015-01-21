@@ -1,6 +1,6 @@
 extends ../marchsadnesslayout
 block content
-    script(src="/javascripts/marchSadness/updateSingleTeam.js")
+    script(src="/javascripts/marchSadness/admin/updateSingleTeam.js")
     div(class="jumbotron")
         div(class="container")
             div(class="row")
@@ -17,6 +17,15 @@ block content
                         span.h3(style='text-transform:capitalize')= region + ' region'
                     div.col-xs-4
                         span.h3(style='text-transform:capitalize')= '#' + seed + ' seed'
+                br
+                br
+                div.row
+                    div.col-xs-5
+                    div.col-xs-2
+                        button#UpdateTeam.btn.btn-primary(value= region + '/' + seed) Update Team
+                    div.col-xs-5
+                br
+                br
                 div.row
                     table.table
                         tr
@@ -29,9 +38,9 @@ block content
                                 td
                                     h4= num
                                 td
-                                    input.row(id='R' + num + '-3p', value=teamInfo.scores['round'+num].missed3)
+                                    input.row(id='R' + num + '-3', value=teamInfo.scores['round'+num].missed3)
                                 td
-                                    input.row(id='R' + num + '-2p', value=teamInfo.scores['round'+num].missed2)
+                                    input.row(id='R' + num + '-2', value=teamInfo.scores['round'+num].missed2)
                                 td
-                                    input.row(id='R' + num + '-ft', value=teamInfo.scores['round'+num].missedFT)
+                                    input.row(id='R' + num + '-FT', value=teamInfo.scores['round'+num].missedFT)
 hr
