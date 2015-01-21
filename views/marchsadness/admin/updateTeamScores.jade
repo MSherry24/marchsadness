@@ -1,6 +1,6 @@
 extends ../marchsadnesslayout
 block content
-    script(src="/javascripts/marchSadness/updateTeamScores.js")
+    script(src="/javascripts/marchSadness/admin/updateTeamScores.js")
     div(class="jumbotron")
         div(class="container")
             div(class="row")
@@ -9,16 +9,16 @@ block content
                     p.text-center Welcome to Failure League's March Sadness!
     div.container
         div.row
-            div.col-xs-6.text-center
-                h3 North
+            div.col-xs-6.text-center(style='background: rgba(0,68,204,0.2);')
+                h2 North
                 div.row
                     div.row
                         div.col-xs-1
-                            div Seed
+                            div.h4 Seed
                         div.col-xs-2
-                            div Team
+                            div.h4 Team
                         div.col-xs-9
-                            div Scores
+                            div.h4 Scores
                             div.row
                                 div.col-xs-4
                                 div.h4.col-xs-1 1
@@ -51,5 +51,133 @@ block content
                                             div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
                                     div.col-xs-1#total= val.totalScore
                                     div.col-xs-1
-
+                        br
+            div.col-xs-6.text-center
+                h2 South
+                div.row
+                    div.row
+                        div.col-xs-1
+                            div.h4 Seed
+                        div.col-xs-2
+                            div.h4 Team
+                        div.col-xs-9
+                            div.h4 Scores
+                            div.row
+                                div.col-xs-4
+                                div.h4.col-xs-1 1
+                                div.h4.col-xs-1 2
+                                div.h4.col-xs-1 3
+                                div.h4.col-xs-1 4
+                                div.h4.col-xs-1 5
+                                div.h4.col-xs-1 6
+                                div.h4.col-xs-1 T
+                                div.col-xs-1
+                    each val, index in south
+                        div.row
+                            div.col-xs-1.text-align-right
+                                label= index + 1
+                            div.col-xs-2
+                                div= val.teamName
+                                button.UpdateTeam.btn.btn-primary.btn-xs(value='N'+(index+1)) Update
+                            div.col-xs-9
+                                div.row
+                                    div.col-xs-4
+                                        div.row Missed 3's
+                                        div.row Missed 2's
+                                        div.row Missed FT's
+                                        div.row Round Total
+                                    each num in [1,2,3,4,5,6]
+                                        div.col-xs-1(id='TeamN' + (index + 1) + 'R' + num + 'scores')
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
+                                    div.col-xs-1#total= val.totalScore
+                                    div.col-xs-1
+                        br
+            div.col-xs-6.text-center
+                h2 East
+                div.row
+                    div.row
+                        div.col-xs-1
+                            div.h4 Seed
+                        div.col-xs-2
+                            div.h4 Team
+                        div.col-xs-9
+                            div.h4 Scores
+                            div.row
+                                div.col-xs-4
+                                div.h4.col-xs-1 1
+                                div.h4.col-xs-1 2
+                                div.h4.col-xs-1 3
+                                div.h4.col-xs-1 4
+                                div.h4.col-xs-1 5
+                                div.h4.col-xs-1 6
+                                div.h4.col-xs-1 T
+                                div.col-xs-1
+                    each val, index in east
+                        div.row
+                            div.col-xs-1.text-align-right
+                                label= index + 1
+                            div.col-xs-2
+                                div= val.teamName
+                                button.UpdateTeam.btn.btn-primary.btn-xs(value='N'+(index+1)) Update
+                            div.col-xs-9
+                                div.row
+                                    div.col-xs-4
+                                        div.row Missed 3's
+                                        div.row Missed 2's
+                                        div.row Missed FT's
+                                        div.row Round Total
+                                    each num in [1,2,3,4,5,6]
+                                        div.col-xs-1(id='TeamN' + (index + 1) + 'R' + num + 'scores')
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
+                                    div.col-xs-1#total= val.totalScore
+                                    div.col-xs-1
+                        br
+            div.col-xs-6.text-center(style='background: rgba(0,68,204,0.2);')
+                h2 West
+                div.row
+                    div.row
+                        div.col-xs-1
+                            div.h4 Seed
+                        div.col-xs-2
+                            div.h4 Team
+                        div.col-xs-9
+                            div.h4 Scores
+                            div.row
+                                div.col-xs-4
+                                div.h4.col-xs-1 1
+                                div.h4.col-xs-1 2
+                                div.h4.col-xs-1 3
+                                div.h4.col-xs-1 4
+                                div.h4.col-xs-1 5
+                                div.h4.col-xs-1 6
+                                div.h4.col-xs-1 T
+                                div.col-xs-1
+                    each val, index in west
+                        div.row
+                            div.col-xs-1.text-align-right
+                                label= index + 1
+                            div.col-xs-2
+                                div= val.teamName
+                                button.UpdateTeam.btn.btn-primary.btn-xs(value='N'+(index+1)) Update
+                            div.col-xs-9
+                                div.row
+                                    div.col-xs-4
+                                        div.row Missed 3's
+                                        div.row Missed 2's
+                                        div.row Missed FT's
+                                        div.row Round Total
+                                    each num in [1,2,3,4,5,6]
+                                        div.col-xs-1(id='TeamN' + (index + 1) + 'R' + num + 'scores')
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
+                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
+                                    div.col-xs-1#total= val.totalScore
+                                    div.col-xs-1
                         br
