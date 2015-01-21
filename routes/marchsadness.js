@@ -125,23 +125,23 @@ router.get('/admin/updateSingleTeam', function (req, res) {
 });
 
 router.post('/admin/updateSingleTeam', function (req, res) {
-    var scores, region, seed, mb, rounds;
+    var scores, region, seed, mb;
     scores = req.body.scores;
     region = req.body.region + 'Region';
     seed = 'seed' + req.body.seed;
-    rounds = ['1','2','3','4','5','6'];
     msModel.getMasterBracket();
     mb = msModel.masterBracket;
     mb[region][seed].scores = scores;
-    rounds.map(function (round) {
-        mb[region][seed].scores['round' + round].total =
-            mb[region][seed].scores['round' + round].missed3 +
-            mb[region][seed].scores['round' + round].missed2 * 2 +
-            mb[region][seed].scores['round' + round].missedFT * 3;
-    });
+
     console.log('saving master bracket');
-    mb.save();
-    res.json({message: 'success'});
+    mb.save(function (err) {
+        if (err) {
+            console.log('err:' + err);
+        } else {
+            msModel.updateMasterBracket();
+            res.json({message: 'success'});
+        }
+    })
 });
 
 module.exports = router;

@@ -170,6 +170,36 @@ msModel.initializeMasterBracket = function () {
     })
 };
 
+msModel.updateMasterBracket = function() {
+    var rounds, seedArray, regionsArray;
+    seedArray = [1, 2, 3, 4,
+        5, 6, 7, 8,
+        9, 10, 11, 12,
+        13, 14, 15, 16]
+        .map(function (x) {
+            return 'seed' + x.toString();
+        });
+    regionsArray = ['northRegion', 'southRegion', 'eastRegion', 'westRegion'];
+    rounds = ['1','2','3','4','5','6'].map(function (e) {
+        return 'round' + e.toString();
+    });
+    regionsArray.map(function (region) {
+        seedArray.map(function (seed) {
+            msModel.masterBracket[region][seed].totalScore = 0;
+            rounds.map(function (round) {
+                var roundScore;
+                roundScore =
+                    msModel.masterBracket[region][seed].scores[round].missed3 +
+                    msModel.masterBracket[region][seed].scores[round].missed2 * 2 +
+                    msModel.masterBracket[region][seed].scores[round].missedFT * 3;
+                msModel.masterBracket[region][seed].scores[round].score = roundScore;
+                msModel.masterBracket[region][seed].totalScore += roundScore;
+            });
+        });
+    });
+    msModel.masterBracket.save();
+};
+
 var createMasterBracket = function () {
     "use strict";
     var sixteenArray, regionsArray, teamMap, regionMap;
