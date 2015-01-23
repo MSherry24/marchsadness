@@ -1,0 +1,15 @@
+extends marchsadnesslayout
+block content
+    script(src="../../../public/javascripts/createNewTeam.js")
+    div(class="jumbotron")
+        div(class="container")
+            div.col-sm-8.col-sm-offset-2
+                h1
+                    span.fa.fa-sign-in Create a New Team
+                <!-- NEW TEAM FORM -->
+                form(action="/marchsadness/createnewteam", method="post")
+                    div.form-group
+                        label Team Name
+                        input(type="text", class="form-control", name="teamname")
+                    button( type="submit", class="btn btn-warning btn-lg") Submit
+                hr

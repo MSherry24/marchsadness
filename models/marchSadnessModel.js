@@ -4,44 +4,45 @@ var msModel = {};
 
 var userTeamSchema = new mongoose.Schema({
     owner: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
+    name: String,
     totalScore: Number,
     round1: {
         score: Number,
-        team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team3: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team4: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team5: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team6: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
+        team1: String,
+        team2: String,
+        team3: String,
+        team4: String,
+        team5: String,
+        team6: String
     },
     round2: {
         score: Number,
-        team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team3: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team4: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team5: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team6: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
+        team1: String,
+        team2: String,
+        team3: String,
+        team4: String,
+        team5: String,
+        team6: String
     },
     round3: {
         score: Number,
-        team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team3: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
+        team1: String,
+        team2: String,
+        team3: String
     },
     round4: {
         score: Number,
-        team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team3: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
+        team1: String,
+        team2: String,
+        team3: String
     },
     round5: {
         score: Number,
-        team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
+        team1: String
     },
     round6: {
         score: Number,
-        team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
+        team1: String
     }
 });
 
@@ -63,7 +64,15 @@ var teamSchemaObject = {
             round5: roundScoresObject,
             round6: roundScoresObject
         },
-        totalScore: Number
+        totalScore: Number,
+        wonRound: {
+            round1: Boolean,
+            round2: Boolean,
+            round3: Boolean,
+            round4: Boolean,
+            round5: Boolean,
+            round6: Boolean
+        }
     };
 
 var masterBracketSchema = new mongoose.Schema({
@@ -142,7 +151,8 @@ var masterBracketSchema = new mongoose.Schema({
 });
 
 var MasterBracket = mongoose.model('NCAA_Master_Bracket', masterBracketSchema);
-var userTeam = mongoose.model('User_MarchSadness_Team', userTeamSchema);
+var UserTeam = mongoose.model('User_MarchSadness_Team', userTeamSchema);
+msModel.UserTeam = UserTeam;
 
 msModel.getMasterBracket = function() {
     MasterBracket.findOne({}).exec(function (err, result) {
@@ -153,7 +163,7 @@ msModel.getMasterBracket = function() {
             console.log('error querying tourney teams: ' + err);
         }
     });
-}
+};
 
 msModel.initializeMasterBracket = function () {
     console.log('Get Master Bracket');
@@ -167,7 +177,7 @@ msModel.initializeMasterBracket = function () {
         } else {
             console.log('Error creating dummy Master Bracket');
         }
-    })
+    });
 };
 
 msModel.updateMasterBracket = function() {
@@ -231,6 +241,14 @@ var createMasterBracket = function () {
                     round4: roundScores,
                     round5: roundScores,
                     round6: roundScores
+                },
+                wonRound: {
+                    round1: false,
+                    round2: false,
+                    round3: false,
+                    round4: false,
+                    round5: false,
+                    round6: false
                 },
                 totalScore: 0
             };

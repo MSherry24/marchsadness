@@ -39,14 +39,14 @@ router.get('/login', function (req, res) {
 
 // process the signup form
 router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/users/profile', // redirect to the secure profile section
+    successRedirect : '/marchsadness', // redirect to the march sadness home
     failureRedirect : '/users/signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));
 
 // process the login form
 router.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/users/profile', // redirect to the secure profile section
+    successRedirect : '/marchsadness', // redirect to the secure profile section
     failureRedirect : '/users/login', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));

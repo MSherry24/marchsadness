@@ -3,10 +3,21 @@ block content
     div(class="container")
         div.jumbotron.text-center
             br
-            h1
-                span.fa.fa-lock Login or Signup
-            p Login or Register with:
-            a(href="/users/login", class="btn btn-default")
-                span.fa.fa-user Local Login
-            a(href="/users/signup", class="btn btn-default")
-                span(class="fa fa-user") Local Signup
+            if (!user)
+                h1
+                    span.fa.fa-lock Login or Signup
+                p Login or Register with:
+                a(href="/users/login", class="btn btn-default")
+                    span.fa.fa-user Local Login
+                a(href="/users/signup", class="btn btn-default")
+                    span(class="fa fa-user") Local Signup
+            if (user)
+                h1
+                    span.fa.fa-lock Welcome to March Sadness
+                p From here you can:
+                a(href="/marchsadness/viewmyteams", class="btn btn-default")
+                    span.fa.fa-user View My Teams
+                a(href="/marchsadness/createnewteam", class="btn btn-default")
+                    span(class="fa fa-user") Create a Team
+                a(href="/marchsadness/createnewleague", class="btn btn-default")
+                    span(class="fa fa-user") Create a League

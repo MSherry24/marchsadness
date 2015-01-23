@@ -4,13 +4,18 @@
 var express = require('express');
 var router = express.Router();
 var msModel = require('../models/marchSadnessModel');
-var msController = require('../controllers/marchSadness/admin/msAdmin');
+var msAdminControl = require('../controllers/marchSadness/msAdmin');
+var msUserControl = require('../controllers/marchSadness/msUserControl');
 var authMain = require('../controllers/auth/authMain');
 
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('marchsadness/marchsadnesshome', { title: 'March Sadness' });
+    res.render('marchsadness/marchsadnesshome',
+        {
+            title: 'March Sadness',
+            user : req.user
+        });
 });
 
 router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
@@ -49,7 +54,7 @@ router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
 
 router.post('/admin/updateNames', function(req, res) {
     "use strict";
-    msController.updateNames(req, res);
+    msAdminControl.updateNames(req, res);
 });
 
 var getUpdateTeamScores = function (req, res) {
@@ -101,7 +106,30 @@ router.get('/admin/updateSingleTeam', function (req, res) {
 });
 
 router.post('/admin/updateSingleTeam', function(req, res) {
-    msController.updateSingleTeam(req, res);
+    msAdminControl.updateSingleTeam(req, res);
+});
+
+/*=================================
+ * View All User's Teams
+ *=================================*/
+router.get('/viewmyteams', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getSingleUserTeams(req, res);
+});
+
+/*=================================
+ * Create a New March Sadness Team
+ *=================================*/
+router.get('/createnewteam', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    res.render('marchsadness/createNewTeam', {
+        user: req.user
+    });
+});
+
+router.post('/createnewteam', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.createNewTeam(req, res);
 });
 
 module.exports = router;

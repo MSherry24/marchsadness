@@ -1,7 +1,7 @@
 /**
  * Created by Mike on 1/22/2015.
  */
-msModel = require('../../../models/marchSadnessModel');
+msModel = require('../../models/marchSadnessModel');
 
 exports.updateSingleTeam = function (req, res) {
     var scores, region, seed, mb;
@@ -40,7 +40,7 @@ exports.updateNames = function (req, res) {
     regionsArray.map(function (region) {
         sixteenArray.map(function (e) {
             mb[region + 'Region']['seed' + e].teamName = allTeams[region + e];
-        })
+        });
     });
     console.log('saving master bracket');
     mb.save();
