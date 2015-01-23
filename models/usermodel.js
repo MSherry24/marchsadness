@@ -1,81 +1,27 @@
 var mongoose = require('mongoose');
-var db = mongoose.connection;
-var userModel = {};
-var userSchema, Users;
+var bcrypt   = require('bcrypt-nodejs');
+//var db = mongoose.connection;
+//var userModel = {};
+//var userSchema, Users;
 
-userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
-    salt: String,
-    admin: Boolean,
-    name: {
-        first: String,
-        last: { type: String, trim: true }
-    }
+var userSchema = mongoose.Schema({
+    local: {
+        email: String,
+        password: String
+    },
+    isAdmin: Boolean
 });
 
-Users = mongoose.model('Users', userSchema);
-
-userModel.users = Users;
-
-userModel.createUserSchema = function () {
-    console.log('Initializing Users');
-    Users.find({}).exec(function(err, result) {
-        if (!err) {
-            if (result.length === 0) {
-                console.log('creating johndoe admin');
-                var johndoe = new Users ({
-                    username: 'JohnDoe',
-                    password: '12345',
-                    salt: '',
-                    admin: true,
-                    name: { first: 'John', last: '  Doe   ' }
-                });
-                // Saving it to the database.
-                johndoe.save(function (err) {if (err) console.log ('Error on save!')});
-            }
-            // handle result
-        } else {
-            // error handling
-            console.log('error querying admins');
-        }
-    });
+// methods ======================
+// generating a hash
+userSchema.methods.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-userModel.createNewUser = function(username, password, salt, firstName, lastName) {
-    console.log('creating user: ' + username);
-    var newUser = new Users ({
-        username: username,
-        password: password,
-        salt: salt,
-        admin: true,
-        name: { first: firstName, last: lastName },
-        admin: false
-    });
-    newUser.save(function (err) {
-        if (err) {
-            console.log ('Error on save!');
-            console.log ('err = ' + err);
-            return false;
-        } else {
-            // If it works, set the header so the address bar doesn't still say /addpost
-            console.log('returning true');
-            return true;
-        }
-    });
-    return true;
+// checking if password is valid
+userSchema.methods.validPassword = function (password) {
+    return bcrypt.compareSync(password, this.local.password);
 };
 
-userModel.getAllUsers = function () {
-    console.log('Getting All Users');
-    Users.find({}).exec(function(err, result) {
-        if (!err) {
-            userModel.allUsers = result;
-        } else {
-            // error handling
-            console.log('error querying users');
-        }
-    });
-}();
-
-module.exports = userModel;
+// create the model for users and expose it to our app
+module.exports = mongoose.model('User', userSchema);

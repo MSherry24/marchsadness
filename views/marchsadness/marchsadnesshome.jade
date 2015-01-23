@@ -1,12 +1,12 @@
 extends marchsadnesslayout
 block content
-  div(class="jumbotron")
     div(class="container")
-      div(class="row")
-        div(class="col-xs-12")
-          h1.text-center= title
-          p.text-center Welcome to Failure League's March Sadness!
-      div(class="row")
-        div.col-xs-2
-        div.col-xs-8
-        div.col-xs-2
+        div.jumbotron.text-center
+            br
+            h1
+                span.fa.fa-lock Login or Signup
+            p Login or Register with:
+            a(href="/users/login", class="btn btn-default")
+                span.fa.fa-user Local Login
+            a(href="/users/signup", class="btn btn-default")
+                span(class="fa fa-user") Local Signup

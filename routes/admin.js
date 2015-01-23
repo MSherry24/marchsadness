@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 
 router.get('/viewusers', function(req, res) {
     "use strict";
-    var userModel, users;
+    var userModel;
     userModel = require('../models/usermodel');
     res.render('admin/viewUsers', {
         "users" : userModel.allUsers

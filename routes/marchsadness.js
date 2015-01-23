@@ -4,6 +4,8 @@
 var express = require('express');
 var router = express.Router();
 var msModel = require('../models/marchSadnessModel');
+var msController = require('../controllers/marchSadness/admin/msAdmin');
+var authMain = require('../controllers/auth/authMain');
 
 
 /* GET home page. */
@@ -11,14 +13,7 @@ router.get('/', function(req, res) {
     res.render('marchsadness/marchSadnessHome', { title: 'March Sadness' });
 });
 
-router.get('/tourneyTeams', function(req, res) {
-    res.render('marchsadness/tourneyTeams', {
-        teams : msModel.getAllTourneyTeams,
-        title : 'Tourney Teams'
-    });
-});
-
-router.get('/admin/updateNames', function (req, res) {
+router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
     "use strict";
     var masterBracket, sixteenArray, north, south, east, west;
     msModel.getMasterBracket();
@@ -52,31 +47,12 @@ router.get('/admin/updateNames', function (req, res) {
     });
 });
 
-router.post('/admin/updateNames', function (req, res) {
+router.post('/admin/updateNames', function(req, res) {
     "use strict";
-    var allTeams, sixteenArray, regionsArray, mb;
-    allTeams = JSON.parse(req.body.allTeams);
-    sixteenArray = [1, 2, 3, 4,
-        5, 6, 7, 8,
-        9, 10, 11, 12,
-        13, 14, 15, 16]
-        .map(function (x) {
-            return x.toString();
-        });
-    regionsArray = ['north', 'south', 'east', 'west'];
-    msModel.getMasterBracket();
-    mb = msModel.masterBracket;
-    regionsArray.map(function (region) {
-        sixteenArray.map(function (e) {
-            mb[region + 'Region']['seed' + e].teamName = allTeams[region + e];
-        })
-    });
-    console.log('saving master bracket');
-    mb.save();
-    res.json({message: 'success'});
+    msController.updateNames(req, res);
 });
 
-var updateTeamScores = function (req, res) {
+var getUpdateTeamScores = function (req, res) {
     var masterBracket, sixteenArray, north, south, east, west;
     msModel.getMasterBracket();
     masterBracket = msModel.masterBracket;
@@ -108,7 +84,7 @@ var updateTeamScores = function (req, res) {
         title : 'Admin - Update Team Scores'
     });
 };
-router.get('/admin/updateTeamScores', updateTeamScores);
+router.get('/admin/updateTeamScores', getUpdateTeamScores);
 
 router.get('/admin/updateSingleTeam', function (req, res) {
     var masterBracket, request, teamInfo;
@@ -124,24 +100,8 @@ router.get('/admin/updateSingleTeam', function (req, res) {
     });
 });
 
-router.post('/admin/updateSingleTeam', function (req, res) {
-    var scores, region, seed, mb;
-    scores = req.body.scores;
-    region = req.body.region + 'Region';
-    seed = 'seed' + req.body.seed;
-    msModel.getMasterBracket();
-    mb = msModel.masterBracket;
-    mb[region][seed].scores = scores;
-
-    console.log('saving master bracket');
-    mb.save(function (err) {
-        if (err) {
-            console.log('err:' + err);
-        } else {
-            msModel.updateMasterBracket();
-            res.json({message: 'success'});
-        }
-    })
+router.post('/admin/updateSingleTeam', function(req, res) {
+    msController.updateSingleTeam(req, res);
 });
 
 module.exports = router;

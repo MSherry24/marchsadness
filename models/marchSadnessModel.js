@@ -3,6 +3,7 @@ var db = mongoose.connection;
 var msModel = {};
 
 var userTeamSchema = new mongoose.Schema({
+    owner: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
     totalScore: Number,
     round1: {
         score: Number,
@@ -19,14 +20,14 @@ var userTeamSchema = new mongoose.Schema({
         team2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
         team3: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
         team4: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team5: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
+        team5: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
+        team6: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
     },
     round3: {
         score: Number,
         team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
         team2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
         team3: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team4: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
     },
     round4: {
         score: Number,
@@ -37,7 +38,6 @@ var userTeamSchema = new mongoose.Schema({
     round5: {
         score: Number,
         team1: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'},
-        team2: {type: mongoose.Schema.Types.ObjectId, ref: 'NCAA_Basketball_Team'}
     },
     round6: {
         score: Number,

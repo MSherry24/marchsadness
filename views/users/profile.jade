@@ -1,0 +1,24 @@
+//
+   Created by Mike on 1/22/2015.
+extends ../layout
+block content
+    div.container
+            div.page-header.text-center
+                h1
+                    span.fa.fa-anchor Profile Page
+                a.btn.btn-default.btn-sm(href="/users/logout") Logout
+            div.row
+                <!-- LOCAL INFORMATION -->
+                div.col-sm-6
+                    div.well
+                        h3
+                            span.fa.fa-user Local
+                            p
+                                span id:
+                                span= user._id
+                                br
+                                span email:
+                                span= user.local.email
+                                br
+                                span password:
+                                span= user.local.password

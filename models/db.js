@@ -3,9 +3,9 @@ var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function() {
     /* Schemas */
-    var users = require('./usermodel');
+    //var users = require('./usermodel');
     var msModel = require('./marchSadnessModel');
-    users.createUserSchema();
+    //users.createUserSchema();
     msModel.initializeMasterBracket();
 });
 

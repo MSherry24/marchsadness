@@ -6,22 +6,22 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var http = require('http');
+var flash = require('connect-flash');
 
 //DB Code
 // mongo start code - mongod.exe --config e:\mongodb\mongo.config
 // mongo start code - mongod.exe --config C:\Users\msherry\Documents\mongodb\mongo.config
 var mongoose = require('./models/db');
-var userModel = require('./models/usermodel');
+//var userModel = require('./models/usermodel');
 
 //Passport
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var crypto = require('./custom_modules/crypto_methods');
-var authMethods = require('./custom_modules/authorization_methods');
-
-passport.use(authMethods.getLocalStrategy(passport, LocalStrategy));
-passport.serializeUser(authMethods.serialize_user);
-passport.deserializeUser(authMethods.deserialize_user);
+var authMethods = require('./custom_modules/authorization_methods')(passport);
+//passport.use(authMethods.getLocalStrategy(passport, LocalStrategy));
+//passport.serializeUser(authMethods.serialize_user);
+//passport.deserializeUser(authMethods.deserialize_user);
 
 //Routes
 var routes = require('./routes/index');
@@ -44,14 +44,16 @@ app.use(cookieParser('2478442F-889A-F90F-66A3BCC1D3DC'));
 app.use(session({secret: 'EE42A4BD-58C6-513D-7A4BD2F6FE53'}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res, next) {
-    "use strict";
-    req.db = mongoose;
-    req.userModel = userModel;
-    next();
-});
+
+//app.use(function (req, res, next) {
+//    "use strict";
+//    req.db = mongoose;
+//    req.userModel = userModel;
+//    next();
+//});
 app.use(function (req, res, next) {
     "use strict";
     req.passport = passport;
@@ -99,10 +101,10 @@ var boot = function() {
     server.listen(app.get('port'), function() {
         console.info('Express server listening on port ' + app.get('port'));
     });
-}
+};
 var shutdown = function() {
     server.close();
-}
+};
 
 if (require.main === module) {
     boot();
