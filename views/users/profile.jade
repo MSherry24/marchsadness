@@ -13,12 +13,15 @@ block content
                     div.well
                         h3
                             span.fa.fa-user Local
-                            p
-                                span id:
-                                span= user._id
-                                br
-                                span email:
-                                span= user.local.email
-                                br
-                                span password:
-                                span= user.local.password
+                        p
+                            span id:
+                            span= user._id
+                            br
+                            span email:
+                            span= user.local.email
+                            br
+                            span password:
+                            span= user.local.password
+                            br
+                            span isAdmin:
+                            span= user.isAdmin
