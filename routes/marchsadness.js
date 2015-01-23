@@ -10,7 +10,7 @@ var authMain = require('../controllers/auth/authMain');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('marchsadness/marchSadnessHome', { title: 'March Sadness' });
+    res.render('marchsadness/marchsadnesshome', { title: 'March Sadness' });
 });
 
 router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
