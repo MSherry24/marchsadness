@@ -48,12 +48,11 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//app.use(function (req, res, next) {
-//    "use strict";
-//    req.db = mongoose;
-//    req.userModel = userModel;
-//    next();
-//});
+app.use(function (req, res, next) {
+    "use strict";
+    req.db = mongoose.connections[0];
+    next();
+});
 app.use(function (req, res, next) {
     "use strict";
     req.passport = passport;

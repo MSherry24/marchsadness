@@ -5,6 +5,10 @@ $(document).ready(function () {
     $('#UpdateTeam').on('click', UpdateTeam);
 });
 
+var redirect = function () {
+    window.location.href = "/marchsadness/admin/updateTeamScores";
+};
+
 var UpdateTeam = function() {
     var targetValue, seed, region, scores, req, rounds, shotTypes;
     targetValue = event.target.value;
@@ -21,11 +25,10 @@ var UpdateTeam = function() {
         shotTypes.map(function (shotType) {
             var pageIndex = '#R' + round + '-' + shotType;
             scores['round' + round]['missed' + shotType] = $(pageIndex).val();
-        })
+        });
     });
     req.scores = scores;
-    $.post("/marchsadness/admin/updateSingleTeam", req,
-        function () {
-            setTimeout(function() { window.location.href = "/marchsadness/admin/updateTeamScores"; }, 1000);
-        });
+    $.post("/marchsadness/admin/updateSingleTeam", req, redirect());
+
 };
+

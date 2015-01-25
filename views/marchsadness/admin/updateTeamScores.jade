@@ -78,7 +78,7 @@ block content
                                 label= index + 1
                             div.col-xs-2
                                 div= val.teamName
-                                button.UpdateTeam.btn.btn-primary.btn-xs(value='N'+(index+1)) Update
+                                button.UpdateTeam.btn.btn-primary.btn-xs(value='S'+(index+1)) Update
                             div.col-xs-9
                                 div.row
                                     div.col-xs-4
@@ -87,11 +87,11 @@ block content
                                         div.row Missed FT's
                                         div.row Round Total
                                     each num in [1,2,3,4,5,6]
-                                        div.col-xs-1(id='TeamN' + (index + 1) + 'R' + num + 'scores')
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
+                                        div.col-xs-1(id='TeamS' + (index + 1) + 'R' + num + 'scores')
+                                            div.row(id='TeamS' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
+                                            div.row(id='TeamS' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
+                                            div.row(id='TeamS' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
+                                            div.row(id='TeamS' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
                                     div.col-xs-1#total= val.totalScore
                                     div.col-xs-1
                         br
@@ -121,7 +121,7 @@ block content
                                 label= index + 1
                             div.col-xs-2
                                 div= val.teamName
-                                button.UpdateTeam.btn.btn-primary.btn-xs(value='N'+(index+1)) Update
+                                button.UpdateTeam.btn.btn-primary.btn-xs(value='E'+(index+1)) Update
                             div.col-xs-9
                                 div.row
                                     div.col-xs-4
@@ -130,11 +130,11 @@ block content
                                         div.row Missed FT's
                                         div.row Round Total
                                     each num in [1,2,3,4,5,6]
-                                        div.col-xs-1(id='TeamN' + (index + 1) + 'R' + num + 'scores')
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
+                                        div.col-xs-1(id='TeamE' + (index + 1) + 'R' + num + 'scores')
+                                            div.row(id='TeamE' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
+                                            div.row(id='TeamE' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
+                                            div.row(id='TeamE' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
+                                            div.row(id='TeamE' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
                                     div.col-xs-1#total= val.totalScore
                                     div.col-xs-1
                         br
@@ -164,7 +164,7 @@ block content
                                 label= index + 1
                             div.col-xs-2
                                 div= val.teamName
-                                button.UpdateTeam.btn.btn-primary.btn-xs(value='N'+(index+1)) Update
+                                button.UpdateTeam.btn.btn-primary.btn-xs(value='W'+(index+1)) Update
                             div.col-xs-9
                                 div.row
                                     div.col-xs-4
@@ -173,11 +173,11 @@ block content
                                         div.row Missed FT's
                                         div.row Round Total
                                     each num in [1,2,3,4,5,6]
-                                        div.col-xs-1(id='TeamN' + (index + 1) + 'R' + num + 'scores')
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
-                                            div.row(id='TeamN' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
+                                        div.col-xs-1(id='TeamW' + (index + 1) + 'R' + num + 'scores')
+                                            div.row(id='TeamW' + (index + 1) + 'R' + num + '-3p')= val.scores['round'+num].missed3
+                                            div.row(id='TeamW' + (index + 1) + 'R' + num + '-2p')= val.scores['round'+num].missed2
+                                            div.row(id='TeamW' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].missedFT
+                                            div.row(id='TeamW' + (index + 1) + 'R' + num + '-ft')= val.scores['round'+num].score
                                     div.col-xs-1#total= val.totalScore
                                     div.col-xs-1
                         br

@@ -11,14 +11,14 @@ exports.updateSingleTeam = function (req, res) {
     msModel.getMasterBracket();
     mb = msModel.masterBracket;
     mb[region][seed].scores = scores;
-
     console.log('saving master bracket');
-    mb.save(function (err) {
+    mb.save(function (err, data) {
         if (err) {
-            console.log('err:' + err);
+            console.log(err);
+            res.status(500).end();
         } else {
             msModel.updateMasterBracket();
-            res.json({message: 'success'});
+            res.status(200).end();
         }
     });
 };

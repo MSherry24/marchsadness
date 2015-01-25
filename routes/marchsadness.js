@@ -18,6 +18,10 @@ router.get('/', function(req, res) {
         });
 });
 
+/*=================================
+ * Set the names of the teams in the tournament
+ *=================================*/
+
 router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
     "use strict";
     var masterBracket, sixteenArray, north, south, east, west;
@@ -57,6 +61,10 @@ router.post('/admin/updateNames', function(req, res) {
     msAdminControl.updateNames(req, res);
 });
 
+
+/*=================================
+ * Update NCAA Team's Missed Shots
+ *=================================*/
 var getUpdateTeamScores = function (req, res) {
     var masterBracket, sixteenArray, north, south, east, west;
     msModel.getMasterBracket();
@@ -91,8 +99,9 @@ var getUpdateTeamScores = function (req, res) {
 };
 router.get('/admin/updateTeamScores', getUpdateTeamScores);
 
+
 router.get('/admin/updateSingleTeam', function (req, res) {
-    var masterBracket, request, teamInfo;
+    var masterBracket, teamInfo;
     msModel.getMasterBracket();
     masterBracket = msModel.masterBracket;
     teamInfo = masterBracket[req.param('region') + 'Region']['seed' + req.param('seed')];
@@ -130,6 +139,14 @@ router.get('/createnewteam', authMain.isLoggedIn, function (req, res) {
 router.post('/createnewteam', authMain.isLoggedIn, function (req, res) {
     "use strict";
     msUserControl.createNewTeam(req, res);
+});
+
+/*=================================
+ * Delete a March Sadness Team
+ *=================================*/
+router.post('/deleteteam/:team', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.deleteTeam(req, res, req.params.team);
 });
 
 module.exports = router;

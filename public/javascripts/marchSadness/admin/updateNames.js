@@ -20,7 +20,7 @@ var updateNames = function() {
     regionsArray.map(function (region) {
         sixteenArray.map(function (e) {
             allTeams[region + e] = $('#' + region + 'Seed' + e).val();
-        })
+        });
     });
     stringTeams = {allTeams: JSON.stringify(allTeams)};
 

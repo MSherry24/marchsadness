@@ -9,6 +9,9 @@ nav(class="navbar navbar-inverse navbar-fixed-top")
                         li
                             a(href="/marchsadness") March Sadness Home
                     ul.nav.navbar-nav.pull-right
+                        if (user && user.isAdmin)
+                            li
+                                a(href="/marchsadness/admin/updateNames") Admin
                         if (!user)
                             li
                                 a(href="/users/login") Login Here

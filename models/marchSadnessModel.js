@@ -180,7 +180,7 @@ msModel.initializeMasterBracket = function () {
     });
 };
 
-msModel.updateMasterBracket = function() {
+msModel.updateMasterBracket = function () {
     var rounds, seedArray, regionsArray;
     seedArray = [1, 2, 3, 4,
         5, 6, 7, 8,

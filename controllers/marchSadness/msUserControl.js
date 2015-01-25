@@ -4,7 +4,9 @@
 
 var msModel = require('../../models/marchSadnessModel');
 
-
+/*=================================
+ * Render page that shows all teams for a single user
+ *=================================*/
 exports.getSingleUserTeams = function (req, res) {
     "use strict";
     msModel.UserTeam.find({owner: req.user._id}, function (err, teams) {
@@ -17,6 +19,9 @@ exports.getSingleUserTeams = function (req, res) {
     });
 };
 
+/*=================================
+ * Create a March Sadness Team
+ *=================================*/
 exports.createNewTeam = function(req, res) {
     "use strict";
     var newTeam;
@@ -68,7 +73,26 @@ exports.createNewTeam = function(req, res) {
     newTeam.save(function (err) {
         if (err) {
             console.log('err:' + err);
+        } else {
+            res.status(200).redirect("/marchsadness/viewmyteams");
         }
-        exports.getSingleUserTeams(req, res);
+    });
+};
+
+/*=================================
+ * Delete a March Sadness Team
+ *=================================*/
+exports.deleteTeam = function (req, res, teamId) {
+    "use strict";
+    msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
+        if (err) {
+            res.json({ error: err });
+            console.log('error deleting team');
+        } else if (team.owner[0].id !== req.user._id.id) {
+            res.json({ err: 'You are not the team owner'});
+        } else {
+            team.remove();
+            res.json({ err: ''});
+        }
     });
 };
