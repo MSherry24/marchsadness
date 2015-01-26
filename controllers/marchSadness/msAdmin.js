@@ -13,10 +13,30 @@ exports.updateSingleTeam = function (req, res) {
     updateMasterBracket(req, res, mb);
 };
 
+var updateAllNames = function (apiNames, allTeamsMap, index, callback) {
+    "use strict";
+    if (index < apiNames.length) {
+        msModel.msTeam.findOne({apiName: apiNames[index]}, function (err, result) {
+            if (!err) {
+                result.teamName = allTeamsMap[apiNames[index]];
+                result.save(function (err) {
+                    if (err) {
+                        console.log('error saving ' + result.apiName);
+                    }
+                });
+            }
+            updateAllNames(apiNames, allTeamsMap, index + 1, callback);
+        });
+    } else {
+        callback();
+    }
+};
+
 exports.updateNames = function (req, res) {
     "use strict";
-    var allTeams, sixteenArray, regionsArray, mb;
-    allTeams = JSON.parse(req.body.allTeams);
+    var allTeamsMap, apiNames, sixteenArray, regionsArray, mb;
+    apiNames = [];
+    allTeamsMap = JSON.parse(req.body.allTeams);
     sixteenArray = [1, 2, 3, 4,
         5, 6, 7, 8,
         9, 10, 11, 12,
@@ -28,17 +48,11 @@ exports.updateNames = function (req, res) {
     mb = msModel.masterBracket;
     regionsArray.map(function (region) {
         sixteenArray.map(function (e) {
-            mb[region + 'Region']['seed' + e].teamName = allTeams[region + e];
+            apiNames.push(region + e);
         });
     });
-    console.log('saving master bracket');
-    mb.save(function (err) {
-        if (err) {
-            console.log(err);
-            res.status(500).end();
-        } else {
-            res.status(200).end();
-        }
+    updateAllNames(apiNames, allTeamsMap, 0, function () {
+        res.status(200).end();
     });
 };
 

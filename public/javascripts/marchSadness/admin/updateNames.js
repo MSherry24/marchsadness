@@ -26,6 +26,6 @@ var updateNames = function() {
 
     $.post("/marchsadness/admin/updateNames", stringTeams,
         function () {
-            setTimeout(function() { location.reload(true) }, 4000);
+           location.reload(true);
     });
 };

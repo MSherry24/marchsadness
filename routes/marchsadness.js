@@ -24,34 +24,41 @@ router.get('/', function(req, res) {
 
 router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
     "use strict";
-    var masterBracket, sixteenArray, north, south, east, west;
-    masterBracket = msModel.masterBracket;
-    sixteenArray = [1, 2, 3, 4,
-        5, 6, 7, 8,
-        9, 10, 11, 12,
-        13, 14, 15, 16]
-        .map(function (x) {
-            return x.toString();
-        });
-    north = sixteenArray.map(function (e) {
-        return masterBracket.northRegion['seed' + e];
-    });
-    south = sixteenArray.map(function (e) {
-        return masterBracket.southRegion['seed' + e];
-    });
-    east = sixteenArray.map(function (e) {
-        return masterBracket.eastRegion['seed' + e];
-    });
-    west = sixteenArray.map(function (e) {
-        return masterBracket.westRegion['seed' + e];
-    });
-    res.render('marchsadness/admin/updateNames', {
-        north: north,
-        south: south,
-        east: east,
-        west: west,
-        masterBracket : masterBracket,
-        title : 'Admin - Update Names'
+    var north, south, east, west;
+    north = [];
+    south = [];
+    east = [];
+    west = [];
+    msModel.msTeam.find({}, function (err, teams) {
+        if (!err) {
+            var comparitor = function(a,b) {
+                if (a.seed > b.seed) { return 1; }
+                else if (a.seed < b.seed) { return -1; }
+                else { return 0; }
+            };
+            teams.map(function (thisTeam) {
+                if (thisTeam.region === 'north') {
+                    north.push(thisTeam);
+                } else if (thisTeam.region === 'south') {
+                    south.push(thisTeam);
+                } else if (thisTeam.region === 'east') {
+                    east.push(thisTeam);
+                } else {
+                    west.push(thisTeam);
+                }
+            });
+            north.sort(comparitor);
+            south.sort(comparitor);
+            east.sort(comparitor);
+            west.sort(comparitor);
+            res.render('marchsadness/admin/updateNames', {
+                north: north,
+                south: south,
+                east: east,
+                west: west,
+                title : 'Admin - Update Names'
+            });
+        }
     });
 });
 
