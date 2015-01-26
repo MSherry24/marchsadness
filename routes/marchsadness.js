@@ -25,7 +25,6 @@ router.get('/', function(req, res) {
 router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
     "use strict";
     var masterBracket, sixteenArray, north, south, east, west;
-    msModel.getMasterBracket();
     masterBracket = msModel.masterBracket;
     sixteenArray = [1, 2, 3, 4,
         5, 6, 7, 8,
@@ -56,7 +55,7 @@ router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
     });
 });
 
-router.post('/admin/updateNames', function(req, res) {
+router.post('/admin/updateNames', authMain.isAdmin, function(req, res) {
     "use strict";
     msAdminControl.updateNames(req, res);
 });
@@ -67,7 +66,6 @@ router.post('/admin/updateNames', function(req, res) {
  *=================================*/
 var getUpdateTeamScores = function (req, res) {
     var masterBracket, sixteenArray, north, south, east, west;
-    msModel.getMasterBracket();
     masterBracket = msModel.masterBracket;
     sixteenArray = [1, 2, 3, 4,
         5, 6, 7, 8,
@@ -97,11 +95,10 @@ var getUpdateTeamScores = function (req, res) {
         title : 'Admin - Update Team Scores'
     });
 };
-router.get('/admin/updateTeamScores', getUpdateTeamScores);
+router.get('/admin/updateTeamScores', authMain.isAdmin, getUpdateTeamScores);
 
-router.get('/admin/updateSingleTeam', function (req, res) {
+router.get('/admin/updateSingleTeam', authMain.isAdmin, function (req, res) {
     var masterBracket, teamInfo;
-    msModel.getMasterBracket();
     masterBracket = msModel.masterBracket;
     teamInfo = masterBracket[req.param('region') + 'Region']['seed' + req.param('seed')];
     res.render('marchsadness/admin/updateSingleTeam', {
@@ -113,7 +110,7 @@ router.get('/admin/updateSingleTeam', function (req, res) {
     });
 });
 
-router.post('/admin/updateSingleTeam', function(req, res) {
+router.post('/admin/updateSingleTeam', authMain.isAdmin, function(req, res) {
     msAdminControl.updateSingleTeam(req, res);
 });
 

@@ -154,17 +154,6 @@ var MasterBracket = mongoose.model('NCAA_Master_Bracket', masterBracketSchema);
 var UserTeam = mongoose.model('User_MarchSadness_Team', userTeamSchema);
 msModel.UserTeam = UserTeam;
 
-msModel.getMasterBracket = function() {
-    MasterBracket.findOne({}).exec(function (err, result) {
-        if (!err) {
-            msModel.masterBracket = result;
-        } else {
-            // error handling
-            console.log('error querying tourney teams: ' + err);
-        }
-    });
-};
-
 msModel.initializeMasterBracket = function () {
     console.log('Get Master Bracket');
     MasterBracket.find({}).exec(function(err, result) {
