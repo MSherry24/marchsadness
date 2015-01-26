@@ -145,5 +145,14 @@ router.post('/deleteteam/:team', authMain.isLoggedIn, function (req, res) {
     msUserControl.deleteTeam(req, res, req.params.team);
 });
 
+/*=================================
+ * View a March Sadness Team
+ *=================================*/
+router.get('/viewSingleTeam/:teamId', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getViewSingleTeam(req, res, req.params.teamId);
+});
+
+
 module.exports = router;
 

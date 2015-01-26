@@ -18,7 +18,7 @@ block content
                     each team, index in teams
                         tr.h3
                             td
-                                a(href="/marchsadness/viewSingleTeam?name=" + team._id)
+                                a(href="/marchsadness/viewSingleTeam/" + team._id)
                                     span= team.name
                             td= team.totalScore
                             td

@@ -6,43 +6,45 @@ var userTeamSchema = new mongoose.Schema({
     owner: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
     name: String,
     totalScore: Number,
-    round1: {
-        score: Number,
-        team1: String,
-        team2: String,
-        team3: String,
-        team4: String,
-        team5: String,
-        team6: String
-    },
-    round2: {
-        score: Number,
-        team1: String,
-        team2: String,
-        team3: String,
-        team4: String,
-        team5: String,
-        team6: String
-    },
-    round3: {
-        score: Number,
-        team1: String,
-        team2: String,
-        team3: String
-    },
-    round4: {
-        score: Number,
-        team1: String,
-        team2: String,
-        team3: String
-    },
-    round5: {
-        score: Number,
-        team1: String
-    },
-    round6: {
-        score: Number,
-        team1: String
+    rounds: {
+        round1: {
+            score: Number,
+            team1: String,
+            team2: String,
+            team3: String,
+            team4: String,
+            team5: String,
+            team6: String
+        },
+        round2: {
+            score: Number,
+            team1: String,
+            team2: String,
+            team3: String,
+            team4: String,
+            team5: String,
+            team6: String
+        },
+        round3: {
+            score: Number,
+            team1: String,
+            team2: String,
+            team3: String
+        },
+        round4: {
+            score: Number,
+            team1: String,
+            team2: String,
+            team3: String
+        },
+        round5: {
+            score: Number,
+            team1: String
+        },
+        round6: {
+            score: Number,
+            team1: String
+        }
     }
 });
 
@@ -171,7 +173,7 @@ msModel.initializeMasterBracket = function () {
 
 var createMasterBracket = function () {
     "use strict";
-    var sixteenArray, regionsArray, teamMap, regionMap;
+    var sixteenArray, regionsArray, teamMap, regionMap, masterBracket;
     teamMap = {};
     regionMap = {};
     sixteenArray = [1, 2, 3, 4,
@@ -218,9 +220,9 @@ var createMasterBracket = function () {
         regionMap[region] = {};
         sixteenArray.map(function (e) {
             regionMap[region]['seed' + e] = teamMap['team' + region + e];
-        })
+        });
     });
-    var masterBracket = new MasterBracket({
+    masterBracket = new MasterBracket({
         northRegion: regionMap['North'],
         southRegion: regionMap['South'],
         eastRegion: regionMap['East'],
