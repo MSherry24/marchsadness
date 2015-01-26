@@ -99,7 +99,6 @@ var getUpdateTeamScores = function (req, res) {
 };
 router.get('/admin/updateTeamScores', getUpdateTeamScores);
 
-
 router.get('/admin/updateSingleTeam', function (req, res) {
     var masterBracket, teamInfo;
     msModel.getMasterBracket();

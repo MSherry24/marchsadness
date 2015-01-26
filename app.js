@@ -19,9 +19,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var crypto = require('./custom_modules/crypto_methods');
 var authMethods = require('./custom_modules/authorization_methods')(passport);
-//passport.use(authMethods.getLocalStrategy(passport, LocalStrategy));
-//passport.serializeUser(authMethods.serialize_user);
-//passport.deserializeUser(authMethods.deserialize_user);
 
 //Routes
 var routes = require('./routes/index');

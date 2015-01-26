@@ -8,19 +8,9 @@ exports.updateSingleTeam = function (req, res) {
     scores = req.body.scores;
     region = req.body.region + 'Region';
     seed = 'seed' + req.body.seed;
-    msModel.getMasterBracket();
     mb = msModel.masterBracket;
     mb[region][seed].scores = scores;
-    console.log('saving master bracket');
-    mb.save(function (err, data) {
-        if (err) {
-            console.log(err);
-            res.status(500).end();
-        } else {
-            msModel.updateMasterBracket();
-            res.status(200).end();
-        }
-    });
+    updateMasterBracket(req, res, mb);
 };
 
 exports.updateNames = function (req, res) {
@@ -35,7 +25,6 @@ exports.updateNames = function (req, res) {
             return x.toString();
         });
     regionsArray = ['north', 'south', 'east', 'west'];
-    msModel.getMasterBracket();
     mb = msModel.masterBracket;
     regionsArray.map(function (region) {
         sixteenArray.map(function (e) {
@@ -43,6 +32,49 @@ exports.updateNames = function (req, res) {
         });
     });
     console.log('saving master bracket');
-    mb.save();
-    res.json({message: 'success'});
+    mb.save(function (err) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else {
+            res.status(200).end();
+        }
+    });
+};
+
+var updateMasterBracket = function (req, res, mb) {
+    var rounds, seedArray, regionsArray;
+    seedArray = [1, 2, 3, 4,
+        5, 6, 7, 8,
+        9, 10, 11, 12,
+        13, 14, 15, 16]
+        .map(function (x) {
+            return 'seed' + x.toString();
+        });
+    regionsArray = ['northRegion', 'southRegion', 'eastRegion', 'westRegion'];
+    rounds = ['1','2','3','4','5','6'].map(function (e) {
+        return 'round' + e.toString();
+    });
+    regionsArray.map(function (region) {
+        seedArray.map(function (seed) {
+            mb[region][seed].totalScore = 0;
+            rounds.map(function (round) {
+                var roundScore;
+                roundScore =
+                    mb[region][seed].scores[round].missed3 +
+                    mb[region][seed].scores[round].missed2 * 2 +
+                    mb[region][seed].scores[round].missedFT * 3;
+                mb[region][seed].scores[round].score = roundScore;
+                mb[region][seed].totalScore += roundScore;
+            });
+        });
+    });
+    mb.save(function (err) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else {
+            res.status(200).end();
+        }
+    });
 };
