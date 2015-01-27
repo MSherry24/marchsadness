@@ -1,6 +1,6 @@
 extends ../marchsadnesslayout
 block content
-    script(src="../../javascripts/marchsadness/users/viewMyTeams.js")
+    script(src="../../javascripts/marchsadness/users/viewSingleTeam.js")
     div(class="container")
         div.jumbotron.text-center
             br
@@ -17,6 +17,7 @@ block content
                         tr
                             th Team
                             th Score
+                            button#UpdateTeam.btn.btn-primary.btn-xs(value=team._id) Change Selections
                     tbody
                         //each round, roundIndex in team.rounds
                         //    if round.length > 0

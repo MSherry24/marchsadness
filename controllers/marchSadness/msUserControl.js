@@ -97,6 +97,9 @@ exports.deleteTeam = function (req, res, teamId) {
     });
 };
 
+/*=================================
+ * View a Single March Sadness Team
+ *=================================*/
 exports.getViewSingleTeam = function (req, res, teamId) {
     "use strict";
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
@@ -110,5 +113,36 @@ exports.getViewSingleTeam = function (req, res, teamId) {
                 owner: team.owner[0].id
             });
         }
+    });
+};
+
+/*=================================
+ * Make Picks for a March Sadness Team
+ *=================================*/
+exports.getMakeTeamSelections = function (req, res, teamId) {
+    "use strict";
+    msModel.msTeam.find({}, function (err, msTeams) {
+        var allTourneyTeams;
+        allTourneyTeams = {};
+        msTeams.map(function (team) {
+            allTourneyTeams[team.region + team.seed] = team;
+        });
+        if (err) {
+            console.log('getMakeTeamSelections - error getting tournament teams');
+        }
+
+        msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
+            if (err) {
+                res.status(404);
+                console.log('error deleting team');
+            } else {
+                res.render('marchsadness/user/makeTeamSelections', {
+                    msTeams: allTourneyTeams,
+                    user: req.user,
+                    team: team,
+                    owner: team.owner[0].id
+                });
+            }
+        });
     });
 };

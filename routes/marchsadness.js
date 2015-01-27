@@ -114,6 +114,13 @@ router.get('/viewSingleTeam/:teamId', authMain.isLoggedIn, function (req, res) {
     msUserControl.getViewSingleTeam(req, res, req.params.teamId);
 });
 
+/*=================================
+ * Select Teams for a March Sadness Team
+ *=================================*/
+router.get('/makeTeamSelections/:teamId', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getMakeTeamSelections(req, res, req.params.teamId);
+});
 
 module.exports = router;
 
