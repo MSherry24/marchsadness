@@ -98,6 +98,7 @@ exports.deleteTeam = function (req, res, teamId) {
 };
 
 exports.getViewSingleTeam = function (req, res, teamId) {
+    "use strict";
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
         if (err) {
             res.status(404);
@@ -106,8 +107,8 @@ exports.getViewSingleTeam = function (req, res, teamId) {
             res.render('marchsadness/user/viewSingleTeam', {
                 user: req.user,
                 team: team,
-                mb: msModel.masterBracket
+                owner: team.owner[0].id
             });
         }
     });
-}
+};

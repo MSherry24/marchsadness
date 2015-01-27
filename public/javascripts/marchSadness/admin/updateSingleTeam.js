@@ -10,12 +10,8 @@ var redirect = function () {
 };
 
 var UpdateTeam = function() {
-    var targetValue, seed, region, scores, req, rounds, shotTypes;
-    targetValue = event.target.value;
-    region = targetValue.split('/')[0];
-    seed = targetValue.split('/')[1];
-    req = { seed: seed,
-            region: region };
+    var scores, req, rounds, shotTypes;
+    req = {};
     scores = {};
     rounds = ['1','2','3','4','5','6'];
     shotTypes = ['3','2','FT'];
@@ -28,7 +24,7 @@ var UpdateTeam = function() {
         });
     });
     req.scores = scores;
-    $.post("/marchsadness/admin/updateSingleTeam", req, redirect());
+    $.post("/marchsadness/admin/updateSingleTeam/" + event.target.value, req, redirect());
 
 };
 

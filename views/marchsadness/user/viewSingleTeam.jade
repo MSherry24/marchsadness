@@ -1,3 +1,26 @@
-//
-   Created by Mike on 1/23/2015.
-
+extends ../marchsadnesslayout
+block content
+    script(src="../../javascripts/marchsadness/users/viewMyTeams.js")
+    div(class="container")
+        div.jumbotron.text-center
+            br
+            h1
+                span.fa.fa-lock My Teams
+            a(href="/marchsadness/createnewteam", class="btn btn-default")
+                span(class="fa fa-user") Create a Team
+        if owner !== user._id.id
+            h3.text-center You are not authorized to view this team
+        else
+            div.table-responsive
+                table.table
+                    thead
+                        tr
+                            th Team
+                            th Score
+                    tbody
+                        //each round, roundIndex in team.rounds
+                        //    if round.length > 0
+                        //        each msTeam, teamIndex in round
+                        //            tr.h3
+                        //                td= 'msTeam._id'
+                        //                td 0

@@ -14,15 +14,15 @@ block content
                     div.col-xs-4
                         span.h3(style='text-transform:capitalize')= teamInfo.teamName
                     div.col-xs-4
-                        span.h3(style='text-transform:capitalize')= region + ' region'
+                        span.h3(style='text-transform:capitalize')= teamInfo.region + ' region'
                     div.col-xs-4
-                        span.h3(style='text-transform:capitalize')= '#' + seed + ' seed'
+                        span.h3(style='text-transform:capitalize')= '#' + teamInfo.seed + ' seed'
                 br
                 br
                 div.row
                     div.col-xs-5
                     div.col-xs-2
-                        button#UpdateTeam.btn.btn-primary(value= region + '/' + seed) Update Team
+                        button#UpdateTeam.btn.btn-primary(value= teamInfo._id) Update Team
                     div.col-xs-5
                 br
                 br

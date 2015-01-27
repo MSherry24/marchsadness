@@ -4,13 +4,40 @@
 msModel = require('../../models/marchSadnessModel');
 
 exports.updateSingleTeam = function (req, res) {
-    var scores, region, seed, mb;
+    "use strict";
+    var scores, rounds, roundScore;
     scores = req.body.scores;
-    region = req.body.region + 'Region';
-    seed = 'seed' + req.body.seed;
-    mb = msModel.masterBracket;
-    mb[region][seed].scores = scores;
-    updateMasterBracket(req, res, mb);
+    msModel.msTeam.findOne({ "_id": req.params.teamId }, function (err, team) {
+        if (err) {
+            res.status(500).end();
+        } else {
+            team.scores = scores;
+            team.totalScore = 0;
+            rounds = ['1', '2', '3', '4', '5', '6'].map(function (e) {
+                return 'round' + e.toString();
+            });
+            rounds.map(function (round) {
+                roundScore =
+                    team.scores[round].missed3 +
+                    team.scores[round].missed2 * 2 +
+                    team.scores[round].missedFT * 3;
+                if (round === 'round3' || round === 'round4') {
+                    roundScore *= 2;
+                }
+                if (round === 'round5' || round === 'round6') {
+                    roundScore *= 3;
+                }
+                team.scores[round].score = roundScore;
+                team.totalScore += roundScore;
+            });
+            team.save(function (err) {
+                if (err) {
+                    console.log('error saving team score');
+                }
+                res.status(200);
+            });
+        }
+    });
 };
 
 var updateAllNames = function (apiNames, allTeamsMap, index, callback) {
@@ -45,7 +72,6 @@ exports.updateNames = function (req, res) {
             return x.toString();
         });
     regionsArray = ['north', 'south', 'east', 'west'];
-    mb = msModel.masterBracket;
     regionsArray.map(function (region) {
         sixteenArray.map(function (e) {
             apiNames.push(region + e);
@@ -56,39 +82,42 @@ exports.updateNames = function (req, res) {
     });
 };
 
-var updateMasterBracket = function (req, res, mb) {
-    var rounds, seedArray, regionsArray;
-    seedArray = [1, 2, 3, 4,
-        5, 6, 7, 8,
-        9, 10, 11, 12,
-        13, 14, 15, 16]
-        .map(function (x) {
-            return 'seed' + x.toString();
-        });
-    regionsArray = ['northRegion', 'southRegion', 'eastRegion', 'westRegion'];
-    rounds = ['1','2','3','4','5','6'].map(function (e) {
-        return 'round' + e.toString();
-    });
-    regionsArray.map(function (region) {
-        seedArray.map(function (seed) {
-            mb[region][seed].totalScore = 0;
-            rounds.map(function (round) {
-                var roundScore;
-                roundScore =
-                    mb[region][seed].scores[round].missed3 +
-                    mb[region][seed].scores[round].missed2 * 2 +
-                    mb[region][seed].scores[round].missedFT * 3;
-                mb[region][seed].scores[round].score = roundScore;
-                mb[region][seed].totalScore += roundScore;
+exports.getTeamsByRegion = function (callback) {
+    "use strict";
+    var north, south, east, west, regions;
+    north = [];
+    south = [];
+    east = [];
+    west = [];
+    msModel.msTeam.find({}, function (err, teams) {
+        if (!err) {
+            var comparitor = function (a, b) {
+                if (a.seed > b.seed) { return 1; }
+                if (a.seed < b.seed) { return -1; }
+                return 0;
+            };
+            teams.map(function (thisTeam) {
+                if (thisTeam.region === 'north') {
+                    north.push(thisTeam);
+                } else if (thisTeam.region === 'south') {
+                    south.push(thisTeam);
+                } else if (thisTeam.region === 'east') {
+                    east.push(thisTeam);
+                } else {
+                    west.push(thisTeam);
+                }
             });
-        });
-    });
-    mb.save(function (err) {
-        if (err) {
-            console.log(err);
-            res.status(500).end();
-        } else {
-            res.status(200).end();
+            north.sort(comparitor);
+            south.sort(comparitor);
+            east.sort(comparitor);
+            west.sort(comparitor);
         }
+        regions = {
+            north: north,
+            south: south,
+            east: east,
+            west: west
+        };
+        callback(regions);
     });
 };

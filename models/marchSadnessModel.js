@@ -82,122 +82,27 @@ var teamSchema = new mongoose.Schema({
     eliminated: Boolean
 });
 
-var masterBracketSchema = new mongoose.Schema({
-    northRegion: {
-        seed1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed4: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed5: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed6: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed7: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed8: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed9: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed10: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed11: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed12: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed13: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed14: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed15: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed16: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-    },
-    southRegion: {
-        seed1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed4: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed5: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed6: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed7: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed8: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed9: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed10: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed11: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed12: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed13: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed14: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed15: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed16: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-    },
-    eastRegion: {
-        seed1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed4: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed5: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed6: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed7: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed8: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed9: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed10: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed11: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed12: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed13: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed14: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed15: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed16: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-    },
-    westRegion: {
-        seed1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed4: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed5: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed6: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed7: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed8: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed9: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed10: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed11: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed12: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed13: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed14: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed15: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        seed16: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-    }
-});
-
-var MasterBracket = mongoose.model('NCAA_Master_Bracket', masterBracketSchema);
 var MsTeam = mongoose.model('March_Sadness_team', teamSchema);
 msModel.msTeam = MsTeam;
 var UserTeam = mongoose.model('User_MarchSadness_Team', userTeamSchema);
 msModel.UserTeam = UserTeam;
 
-msModel.initializeMasterBracket = function () {
-    console.log('Get Master Bracket');
-    MasterBracket.find({}).exec(function(err, result) {
-        if (!err) {
-            if (result.length === 0) {
-                createMasterBracket();
-            } else {
-                msModel.masterBracket = result[0];
-            }
-        } else {
-            console.log('Error creating dummy Master Bracket');
-        }
-    });
-};
-
-var insertAllTeams = function (index, array, callback) {
+var insertAllTeams = function (index, array) {
     "use strict";
     if (index < array.length) {
         array[index].save(function (err) {
             if (err) {
                 console.log('error saving team' + index);
             }
-            insertAllTeams(index + 1, array, callback);
+            insertAllTeams(index + 1, array);
         });
-    } else {
-        callback();
     }
 };
 
 var createMasterBracket = function () {
     "use strict";
-    var sixteenArray, regionsArray, teamMap, regionMap, masterBracket, teamArray;
-    teamMap = {};
+    var sixteenArray, regionsArray, teamArray;
     teamArray = [];
-    regionMap = {};
     sixteenArray = [1, 2, 3, 4,
         5, 6, 7, 8,
         9, 10, 11, 12,
@@ -238,35 +143,20 @@ var createMasterBracket = function () {
                 eliminated: false,
                 totalScore: 0
             });
-            teamMap[region + e] = team;
             teamArray.push(team);
         });
     });
-    insertAllTeams(0, teamArray, function () {
-        regionsArray.map(function (region) {
-            regionMap[region] = {};
-            sixteenArray.map(function (e) {
-                regionMap[region]['seed' + e] = teamMap[region + e];
-            });
-        });
-        masterBracket = new MasterBracket({
-            northRegion: regionMap['north'],
-            southRegion: regionMap['south'],
-            eastRegion: regionMap['east'],
-            westRegion: regionMap['west']
-        });
-        console.log('saving masterBracket');
-        masterBracket.save(function (err, data) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('Saved : ', data);
-                msModel.masterBracket = data;
-            }
-        });
-    });
+    insertAllTeams(0, teamArray);
 };
 
+msModel.initializeMasterBracket = function () {
+    console.log('Get Master Bracket');
+    MsTeam.find({}).exec(function (err, result) {
+        if (!err && result.length === 0) {
+            createMasterBracket();
+        }
+    });
+};
 
 
 module.exports = msModel;
