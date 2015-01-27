@@ -30,43 +30,21 @@ exports.createNewTeam = function(req, res) {
             owner: req.user._id,
             name: req.body.teamname,
             totalScore: 0,
-            round1: {
-                score: 0,
-                team1: '',
-                team2: '',
-                team3: '',
-                team4: '',
-                team5: '',
-                team6: ''
+            scores: {
+                round1: 0,
+                round2: 0,
+                round3: 0,
+                round4: 0,
+                round5: 0,
+                round6: 0
             },
-            round2: {
-                score: 0,
-                team1: '',
-                team2: '',
-                team3: '',
-                team4: '',
-                team5: '',
-                team6: ''
-            },
-            round3: {
-                score: 0,
-                team1: '',
-                team2: '',
-                team3: ''
-            },
-            round4: {
-                score: 0,
-                team1: '',
-                team2: '',
-                team3: ''
-            },
-            round5: {
-                score: 0,
-                team1: ''
-            },
-            round6: {
-                score: 0,
-                team1: ''
+            rounds: {
+                round1picks: [],
+                round2picks: [],
+                round3picks: [],
+                round4picks: [],
+                round5picks: [],
+                round6picks: []
             }
         }
     );
@@ -93,6 +71,37 @@ exports.deleteTeam = function (req, res, teamId) {
         } else {
             team.remove();
             res.json({ err: ''});
+        }
+    });
+};
+
+/*=================================
+ * Add a Selected Team to a March Sadness Team
+ *=================================*/
+exports.addPick = function (req, res, teamId) {
+    "use strict";
+    msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
+        if (err) {
+            res.json({ error: err });
+            console.log('error');
+        } else if (team.owner[0].id !== req.user._id.id) {
+            res.json({ err: 'You are not the team owner'});
+        } else {
+            msModel.msTeam.find({}, function (err, msTeam) {
+                team.rounds.round1picks = [];
+                team.rounds.round1picks.push(msTeam[0]);
+                team.rounds.round1picks.push(msTeam[1]);
+                team.rounds.round1picks.push(msTeam[2]);
+                team.rounds.round1picks.push(msTeam[3]);
+                team.rounds.round1picks.push(msTeam[4]);
+                team.rounds.round1picks.push(msTeam[5]);
+                team.save(function(err) {
+                    if (err) {
+                        console.log('error appending to team' + err);
+                    }
+                    res.status(200).end();
+                })
+            })
         }
     });
 };
@@ -137,9 +146,11 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
                 console.log('error deleting team');
             } else {
                 res.render('marchsadness/user/makeTeamSelections', {
+                    msTeamsString: JSON.stringify(allTourneyTeams),
                     msTeams: allTourneyTeams,
-                    user: req.user,
+                    teamString: JSON.stringify(team),
                     team: team,
+                    user: req.user,
                     owner: team.owner[0].id
                 });
             }

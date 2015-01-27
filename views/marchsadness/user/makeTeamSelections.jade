@@ -1,11 +1,14 @@
 extends ../marchsadnesslayout
 block content
+    script(type="text/javascript")!= "var team = " + teamString + "; var msTeams = " + msTeamsString +";"
+    script(src="../../javascripts/knockout-v3.2.0.js")
     script(src="../../javascripts/marchSadness/users/makeTeamSelections.js")
     div(class="container")
         div.jumbotron.text-center
             br
             h1
                 span.fa.fa-lock= team.name
+            button#addTeam.btn.btn-danger.btn-xs(value= team._id) Add new team
         if owner !== user._id.id
             h3.text-center You are not authorized to view this team
         else
@@ -28,42 +31,28 @@ block content
                     div.tab-content
                         div.tab-pane.active(role="tabpanel",id="Round1")
                             div.container
-                                div.row.text-center
-                                    div#r1p1.col-xs-2= team.rounds.round1.team1 === undefined ? 'Pick 1' : team.rounds.round1.team1
-                                    div#r1p2.col-xs-2= team.rounds.round1.team2 === undefined ? 'Pick 2' : team.rounds.round1.team2
-                                    div#r1p3.col-xs-2= team.rounds.round1.team3 === undefined ? 'Pick 3' : team.rounds.round1.team3
-                                    div#r1p4.col-xs-2= team.rounds.round1.team4 === undefined ? 'Pick 4' : team.rounds.round1.team4
-                                    div#r1p5.col-xs-2= team.rounds.round1.team5 === undefined ? 'Pick 5' : team.rounds.round1.team5
-                                    div#r1p6.col-xs-2= team.rounds.round1.team6 === undefined ? 'Pick 6' : team.rounds.round1.team6
+                                div.row.text-center(data-bind="foreach: round1picks")
+                                    div.col-xs-2(data-bind="text: name")
                         div.tab-pane(role="tabpanel", id="Round2")
                             div.container
-                                div.row.text-center
-                                    div#r2p1.col-xs-2= team.rounds.round2.team1 === undefined ? 'Pick 1' : team.rounds.round2.team1
-                                    div#r2p2.col-xs-2= team.rounds.round2.team2 === undefined ? 'Pick 2' : team.rounds.round2.team2
-                                    div#r2p3.col-xs-2= team.rounds.round2.team3 === undefined ? 'Pick 3' : team.rounds.round2.team3
-                                    div#r2p4.col-xs-2= team.rounds.round2.team4 === undefined ? 'Pick 4' : team.rounds.round2.team4
-                                    div#r2p5.col-xs-2= team.rounds.round2.team5 === undefined ? 'Pick 5' : team.rounds.round2.team5
-                                    div#r2p6.col-xs-2= team.rounds.round2.team6 === undefined ? 'Pick 6' : team.rounds.round2.team6
+                                div.row.text-center(data-bind="foreach: round2picks")
+                                    div.col-xs-2(data-bind="text: name")
                         div.tab-pane(role="tabpanel", id="Round3")
                             div.container
-                                div.row.text-center
-                                    div#r3p1.col-xs-4= team.rounds.round3.team1 === undefined ? 'Pick 1' : team.rounds.round3.team1
-                                    div#r3p2.col-xs-4= team.rounds.round3.team2 === undefined ? 'Pick 2' : team.rounds.round3.team2
-                                    div#r3p3.col-xs-4= team.rounds.round3.team3 === undefined ? 'Pick 3' : team.rounds.round3.team3
+                                div.row.text-center(data-bind="foreach: round3picks")
+                                    div.col-xs-4(data-bind="text: name")
                         div.tab-pane(role="tabpanel", id="Round4")
                             div.container
-                                div.row.text-center
-                                    div#r4p1.col-xs-4= team.rounds.round4.team1 === undefined ? 'Pick 1' : team.rounds.round4.team1
-                                    div#r4p2.col-xs-4= team.rounds.round4.team2 === undefined ? 'Pick 2' : team.rounds.round4.team2
-                                    div#r4p3.col-xs-4= team.rounds.round4.team3 === undefined ? 'Pick 3' : team.rounds.round4.team3
+                                div.row.text-center(data-bind="foreach: round4picks")
+                                    div.col-xs-4(data-bind="text: name")
                         div.tab-pane(role="tabpanel", id="Round5")
                             div.container
-                                div.row.text-center
-                                    div#r5p1.col-xs-12= team.rounds.round5.team1 === undefined ? 'Pick 1' : team.rounds.round5.team1
+                                div.row.text-center(data-bind="foreach: round5picks")
+                                    div.col-xs-12(data-bind="text: name")
                         div.tab-pane(role="tabpanel", id="Round6")
                             div.container
-                                div.row.text-center
-                                    div#r6p1.col-xs-12= team.rounds.round6.team1 === undefined ? 'Pick 1' : team.rounds.round6.team1
+                                div.row.text-center(data-bind="foreach: round6picks")
+                                    div.col-xs-12(data-bind="text: name")
                 hr
                 div#allTeams.container
                     each i, iIndex in [[1,16],[8,9],[5,12],[4,13],[6,11],[3,14],[7,10],[2,5]]
@@ -78,8 +67,5 @@ block content
                                 div.col-xs-2(id="north"+j, value=msTeams['_id'])= msTeams['north' + j].teamName
                                 div.col-xs-1
                         br
-                        div#test(value="Hello World")
-
-
 
 

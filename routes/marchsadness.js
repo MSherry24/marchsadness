@@ -107,6 +107,14 @@ router.post('/deleteteam/:team', authMain.isLoggedIn, function (req, res) {
 });
 
 /*=================================
+ * Add a March Sadness Team
+ *=================================*/
+router.post('/addPick/:team', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.addPick(req, res, req.params.team);
+});
+
+/*=================================
  * View a March Sadness Team
  *=================================*/
 router.get('/viewSingleTeam/:teamId', authMain.isLoggedIn, function (req, res) {
@@ -121,6 +129,8 @@ router.get('/makeTeamSelections/:teamId', authMain.isLoggedIn, function (req, re
     "use strict";
     msUserControl.getMakeTeamSelections(req, res, req.params.teamId);
 });
+
+
 
 module.exports = router;
 

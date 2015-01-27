@@ -15,38 +15,12 @@ var userTeamSchema = new mongoose.Schema({
         round6: Number
     },
     rounds: {
-        round1: {
-            team1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team4: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team5: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team6: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-        },
-        round2: {
-            team1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team4: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team5: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team6: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-        },
-        round3: {
-            team1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-        },
-        round4: {
-            team1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team2: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-            team3: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-        },
-        round5: {
-            team1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-        },
-        round6: {
-            team1: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
-        }
+        round1picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
+        round2picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
+        round3picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
+        round4picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
+        round5picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
+        round6picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
     }
 });
 
