@@ -64,13 +64,14 @@ exports.deleteTeam = function (req, res, teamId) {
     "use strict";
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
         if (err) {
-            res.json({ error: err });
+            res.status(500).json({ error: err }).end();
             console.log('error deleting team');
         } else if (team.owner[0].id !== req.user._id.id) {
-            res.json({ err: 'You are not the team owner'});
+            res.status(500).json({ err: 'You are not the team owner'}).end();
         } else {
-            team.remove();
-            res.json({ err: ''});
+            team.remove(function(err) {
+                res.status(200).end();
+            });
         }
     });
 };
@@ -88,13 +89,18 @@ exports.addPick = function (req, res, teamId) {
             res.json({ err: 'You are not the team owner'});
         } else {
             msModel.msTeam.find({}, function (err, msTeam) {
-                team.rounds.round1picks = [];
-                team.rounds.round1picks.push(msTeam[0]);
-                team.rounds.round1picks.push(msTeam[1]);
-                team.rounds.round1picks.push(msTeam[2]);
-                team.rounds.round1picks.push(msTeam[3]);
-                team.rounds.round1picks.push(msTeam[4]);
-                team.rounds.round1picks.push(msTeam[5]);
+                var allMsTeams = {};
+                msTeam.map(function(x) {
+                   allMsTeams[x._id] = x;
+                });
+                ['1','2','3','4','5','6'].map(function(i) {
+                    team.rounds['round' + i + 'picks'] = [];
+                    req.body['round' + i + 'picks'].map(function(x) {
+                        if(x.id !== '') {
+                            team.rounds['round' + i + 'picks'].push(allMsTeams[x.id]);
+                        }
+                    });
+                });
                 team.save(function(err) {
                     if (err) {
                         console.log('error appending to team' + err);

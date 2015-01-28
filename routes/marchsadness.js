@@ -101,7 +101,7 @@ router.post('/createnewteam', authMain.isLoggedIn, function (req, res) {
 /*=================================
  * Delete a March Sadness Team
  *=================================*/
-router.post('/deleteteam/:team', authMain.isLoggedIn, function (req, res) {
+router.post("/deleteteam/:team", authMain.isLoggedIn, function (req, res) {
     "use strict";
     msUserControl.deleteTeam(req, res, req.params.team);
 });
