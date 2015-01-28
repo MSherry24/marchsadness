@@ -23,6 +23,7 @@ $(document).ready(function () {
         e.preventDefault();
         $(this).tab('show');
     });
+    $('#saving').hide();
     // Activates knockout.js
     ko.applyBindings(new makePicksViewModel())
 });
@@ -38,8 +39,11 @@ var addTeam = function() {
         round5picks: round5picks(),
         round6picks: round6picks()
     };
+    $('#save').hide();
+    $('#saving').show();
     $.post(route, payload, function () {
-        window.location.reload(true);
+        $('#save').show();
+        $('#saving').hide();
     });
 };
 
@@ -58,10 +62,10 @@ function makePicksViewModel() {
     self.westTeams = ko.observableArray([]);
     self.allNcaaTeams = {};
 
-    tbdTeam = new NcaaTeamViewModel('TBD','','');
+    tbdTeam = new NcaaTeamViewModel('TBD','','', true);
     for (var key in msTeams) {
         var newTeam;
-        newTeam = new NcaaTeamViewModel(msTeams[key].teamName, msTeams[key]._id, msTeams[key].seed);
+        newTeam = new NcaaTeamViewModel(msTeams[key].teamName, msTeams[key]._id, msTeams[key].seed, true);
         self.allNcaaTeams[msTeams[key]._id] = newTeam;
         if (msTeams[key].region === 'north') { self.northTeams.push(newTeam); }
         if (msTeams[key].region === 'south') { self.southTeams.push(newTeam); }
@@ -73,9 +77,10 @@ function makePicksViewModel() {
     self.eastTeams.sort(seedComparator);
     self.westTeams.sort(seedComparator);
 
-    ['1','2','3','5','6'].map(function(i) {
+    ['1','2','3','4','5','6'].map(function(i) {
         team.rounds['round' + i + 'picks'].map(function(x) {
             self['round' + i + 'picks'].push(self.allNcaaTeams[x]);
+            self.allNcaaTeams[x].notSelected(false)
         });
     });
     while (self.round1picks().length < 6) { self.round1picks().push(tbdTeam); }
@@ -104,66 +109,63 @@ function makePicksViewModel() {
     self.pushTeam = function(team) {
         var selectedRound, tbdIndex;
         selectedRound = $("#roundTabs li[class='active']").attr('id')[1];
-        switch (selectedRound) {
-            case ("1"):
-                tbdIndex = self.indexOfFirstTBD('round1picks');
-                if (tbdIndex !== -1) {
-                    self.insertTeamIntoPicksArray('round1picks', team);
-                }
-                break;
-            case ("2"):
-                tbdIndex = self.indexOfFirstTBD('round2picks');
-                if (tbdIndex !== -1) {
-                    self.insertTeamIntoPicksArray('round2picks', team);
-                }
-                break;
-            case ("3"):
-                tbdIndex = self.indexOfFirstTBD('round3picks');
-                if (tbdIndex !== -1) {
-                    self.insertTeamIntoPicksArray('round3picks', team);
-                }
-                break;
-            case ("4"):
-                tbdIndex = self.indexOfFirstTBD('round4picks');
-                if (tbdIndex !== -1) {
-                    self.insertTeamIntoPicksArray('round4picks', team);
-                }
-                break;
-            case ("5"):
-                tbdIndex = self.indexOfFirstTBD('round5picks');
-                if (tbdIndex !== -1) {
-                    self.insertTeamIntoPicksArray('round5picks', team);
-                }
-                break;
-            case ("6"):
-                tbdIndex = self.indexOfFirstTBD('round6picks');
-                if (tbdIndex !== -1) {
-                    self.insertTeamIntoPicksArray('round6picks', team);
-                }
-                break;
+        tbdIndex = self.indexOfFirstTBD(selectedRound);
+        if (tbdIndex !== -1) {
+            self.insertTeamIntoPicksArray(selectedRound, team);
         }
-
     };
 
-    self.indexOfFirstTBD = function (roundIndex) {
+    self.popTeam = function(team) {
+        var selectedRound;
+        if (team.name !== 'TBD') {
+            selectedRound = $("#roundTabs li[class='active']").attr('id')[1];
+            team.notSelected(true);
+            self.removeTeam(team, selectedRound);
+        }
+    };
+
+    self.removeTeam = function (team, selectedRound) {
+        var roundIndex, tempArray, tempTeam;
+        tempArray = [];
+
+        roundIndex = 'round' + selectedRound + 'picks';
+        while(self[roundIndex]().length > 0) {
+            tempTeam = self[roundIndex].pop();
+            if (tempTeam.id !== team.id) {
+                tempArray.push(tempTeam);
+            }
+        }
+        while(tempArray.length > 0) {
+            self[roundIndex].push(tempArray.pop());
+        }
+        self[roundIndex].push(tbdTeam);
+    };
+
+    self.indexOfFirstTBD = function (selectedRound) {
+        var roundIndex;
+        roundIndex = 'round' + selectedRound + 'picks';
         for(var i = 0, len = self[roundIndex]().length; i < len; i++) {
             if (self[roundIndex]()[i].name === 'TBD') { return i; }
         }
         return -1;
     };
 
-    self.insertTeamIntoPicksArray = function(roundIndex, team) {
+    self.insertTeamIntoPicksArray = function(selectedRound, team) {
+        var roundIndex;
+        roundIndex = 'round' + selectedRound + 'picks';
+        team.notSelected(false);
         self[roundIndex].pop();
         self[roundIndex].reverse();
-        self[roundIndex].push(new NcaaTeamViewModel(team.name, team.id, team.seed));
+        self[roundIndex].push(team);
         self[roundIndex].reverse();
     };
 
-    function NcaaTeamViewModel(teamName, teamId, seed) {
+    function NcaaTeamViewModel(teamName, teamId, seed, notSelected) {
         var self = this;
         self.name = teamName;
         self.id = teamId;
         self.seed = seed;
+        self.notSelected = ko.observable(notSelected);
     }
 };
 

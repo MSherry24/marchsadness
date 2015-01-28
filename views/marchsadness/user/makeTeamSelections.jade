@@ -8,7 +8,8 @@ block content
             br
             h1
                 span.fa.fa-lock= team.name
-            button#addTeam.btn.btn-danger.btn-xs(value= team._id, data-bind="click: addTeam") Add new team
+            button#save.btn.btn-success.btn-xs(value= team._id, data-bind="click: addTeam") Save Changes
+            button#saving.btn.btn-success.btn-xs.disabled() Saving
         if owner !== user._id.id
             h3.text-center You are not authorized to view this team
         else
@@ -30,55 +31,92 @@ block content
                     br
                     div.tab-content
                         div.tab-pane.active(role="tabpanel",id="Round1")
-                            div.container(data-bind="foreach: round1picks")
-                                div.col-xs-2(data-bind="text: name")
+                            div.container
+                                div.row.text-center(data-bind="foreach: round1picks")
+                                    div.col-xs-2
+                                        h4.col-xs-10(data-bind="text: name")
+                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                         div.tab-pane(role="tabpanel", id="Round2")
                             div.container
                                 div.row.text-center(data-bind="foreach: round2picks")
-                                    div.col-xs-2(data-bind="text: $data.name")
+                                    div.col-xs-2
+                                        h4.col-xs-10(data-bind="text: name")
+                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                         div.tab-pane(role="tabpanel", id="Round3")
                             div.container
                                 div.row.text-center(data-bind="foreach: round3picks")
-                                    div.col-xs-4(data-bind="text: name")
+                                    div.col-xs-1
+                                    div.col-xs-2
+                                        h4.col-xs-10(data-bind="text: name")
+                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                    div.col-xs-1
                         div.tab-pane(role="tabpanel", id="Round4")
                             div.container
                                 div.row.text-center(data-bind="foreach: round4picks")
-                                    div.col-xs-4(data-bind="text: name")
+                                    div.col-xs-1
+                                    div.col-xs-2
+                                        h4.col-xs-10(data-bind="text: name")
+                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                    div.col-xs-1
                         div.tab-pane(role="tabpanel", id="Round5")
                             div.container
                                 div.row.text-center(data-bind="foreach: round5picks")
-                                    div.col-xs-12(data-bind="text: name")
+                                    div.col-xs-5
+                                    div.col-xs-2
+                                        h4.col-xs-10(data-bind="text: name")
+                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                    div.col-xs-5
                         div.tab-pane(role="tabpanel", id="Round6")
                             div.container
                                 div.row.text-center(data-bind="foreach: round6picks")
-                                    div.col-xs-12(data-bind="text: name")
+                                    div.col-xs-5
+                                    div.col-xs-2
+                                        h4.col-xs-10(data-bind="text: name")
+                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                    div.col-xs-5
                 hr
                 div.container
                     div.row
                         div.col-xs-3(data-bind="foreach: northTeams")
-                            div.row
-                                button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam") +
-
-                                div.col-xs-1(data-bind="text: seed")
-                                div.col-xs-10(data-bind="text: name")
+                            div.row(data-bind="if: notSelected()")
+                                button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: !notSelected()")
+                                button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
                             br
-
-
                         div.col-xs-3(data-bind="foreach: southTeams")
-                            div.col-xs-2.text-right(data-bind="text: seed")
-                            div.col-xs-10(data-bind="text: name")
+                            div.row(data-bind="if: notSelected()")
+                                button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: !notSelected()")
+                                button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            br
                         div.col-xs-3(data-bind="foreach: eastTeams")
-                            div.col-xs-2.text-right(data-bind="text: seed")
-                            div.col-xs-10(data-bind="text: name")
+                            div.row(data-bind="if: notSelected()")
+                                button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: !notSelected()")
+                                button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            br
                         div.col-xs-3(data-bind="foreach: westTeams")
-                            div.col-xs-2.text-right(data-bind="text: seed")
-                            div.col-xs-10(data-bind="text: name")
-                        //div.col-xs-3.text-center(data-bind="foreach: southTeams")
-                        //    div.row(data-bind="text: name")
-                        //div.col-xs-3.text-center(data-bind="foreach: eastTeams")
-                        //    div.row(data-bind="text: name")
-                        //div.col-xs-3.text-center(data-bind="foreach: westTeams")
-                        //    div.row(data-bind="text: name")
+                            div.row(data-bind="if: notSelected()")
+                                button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: !notSelected()")
+                                button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            br
                 br
 
 
