@@ -5,23 +5,41 @@ block content
         div.jumbotron.text-center
             br
             h1
-                span.fa.fa-lock My Teams
-            a(href="/marchsadness/createnewteam", class="btn btn-default")
-                span(class="fa fa-user") Create a Team
+                span.fa.fa-lock= team.name
+            a(href="/marchsadness/viewmyteams", class="btn btn-default")
+                span.fa.fa-user View All My Teams
         if owner !== user._id.id
             h3.text-center You are not authorized to view this team
         else
-            div.table-responsive
-                table.table
-                    thead
-                        tr
-                            th Team
-                            th Score
-                            button#UpdateTeam.btn.btn-primary.btn-xs(value=team._id) Change Selections
-                    tbody
-                        //each round, roundIndex in team.rounds
-                        //    if round.length > 0
-                        //        each msTeam, teamIndex in round
-                        //            tr.h3
-                        //                td= 'msTeam._id'
-                        //                td 0
+        div.container
+            div.row
+                if owner === user._id.id
+                    div.col.xs-12
+                        button#UpdateTeam.btn.btn-primary.text-center(value=team._id) Update Picks
+                        h1.pull-right= "Total Score: " + team.totalScore
+                each round, index in [1,2,3,4,5,6]
+                    h3.col.xs-12= "Round " + round
+                    div.table-responsive
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th Team
+                                    th.text-center Missed 3's
+                                    th.text-center Missed 2's
+                                    th.text-center Missed FT's
+                                    th.text-center Round Score
+                            tbody
+                                each pick in team.rounds['round'+round+'picks']
+                                    tr
+                                        td= allTourneyTeams[pick].teamName
+                                        td.text-center= allTourneyTeams[pick].scores['round'+round].missed3
+                                        td.text-center= allTourneyTeams[pick].scores['round'+round].missed2
+                                        td.text-center= allTourneyTeams[pick].scores['round'+round].missedFT
+                                        td.text-center= allTourneyTeams[pick].scores['round'+round].score
+                                tr
+                                    td Total Round Score
+                                    td.text-center= ''
+                                    td.text-center= ''
+                                    td.text-center= ''
+                                    td.text-center= team.scores['round' + round]
+

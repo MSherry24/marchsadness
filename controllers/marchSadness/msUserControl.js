@@ -119,14 +119,23 @@ exports.getViewSingleTeam = function (req, res, teamId) {
     "use strict";
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
         if (err) {
-            res.status(404);
+            res.status(404).end();
             console.log('error deleting team');
         } else {
-            res.render('marchsadness/user/viewSingleTeam', {
-                user: req.user,
-                team: team,
-                owner: team.owner[0].id
+            msModel.msTeam.find({}, function (err, msTeams) {
+                var allTourneyTeams;
+                allTourneyTeams = {};
+                msTeams.map(function (msTeam) {
+                    allTourneyTeams[msTeam._id] = msTeam;
+                });
+                res.render('marchsadness/user/viewSingleTeam', {
+                    user: req.user,
+                    team: team,
+                    allTourneyTeams: allTourneyTeams,
+                    owner: team.owner[0].id
+                });
             });
+
         }
     });
 };
