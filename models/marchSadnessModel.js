@@ -76,7 +76,7 @@ var createMasterBracket = function () {
         .map(function (x) {
             return x.toString();
         });
-    regionsArray = ['north', 'south', 'east', 'west'];
+    regionsArray = ['midwest', 'south', 'east', 'west'];
     sixteenArray.map(function (e) {
         regionsArray.map(function (region) {
             var roundScores = {

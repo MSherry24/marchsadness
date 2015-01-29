@@ -15,4 +15,14 @@ nav(class="navbar navbar-inverse navbar-fixed-top")
                     a(href="/marchSadness/admin/updateNames") Edit Team Names
                 li
                     a(href="/marchsadness/admin/updateTeamScores") Edit Team Scores
+            ul.nav.navbar-nav.pull-right
+                if (user && user.isAdmin)
+                    li
+                        a(href="/marchsadness/admin") Admin
+                if (!user)
+                    li
+                        a(href="/users/login") Login Here
+                if (user)
+                    li
+                        a(href="/users/logout") Logout
 <!--/.nav-collapse -->

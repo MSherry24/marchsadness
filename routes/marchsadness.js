@@ -19,6 +19,17 @@ router.get('/', function(req, res) {
 });
 
 /*=================================
+ * Render the March Sadness Admin Page
+ *=================================*/
+router.get('/admin', authMain.isAdmin, function (req, res) {
+    "use strict";
+    res.render('marchsadness/admin/adminHome',
+        {
+            user : req.user
+        });
+});
+
+/*=================================
  * Set the names of the teams in the tournament
  *=================================*/
 
@@ -26,11 +37,12 @@ router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
     "use strict";
     msAdminControl.getTeamsByRegion(function (regions) {
         res.render('marchsadness/admin/updateNames', {
-            north: regions.north,
+            midwest: regions.midwest,
             south: regions.south,
             east: regions.east,
             west: regions.west,
-            title: 'Admin - Update Team Scores'
+            title: 'Admin - Update Team Names',
+            user: req.user
         });
     });
 });
@@ -45,13 +57,15 @@ router.post('/admin/updateNames', authMain.isAdmin, function(req, res) {
  * View Update NCAA Team's Missed Shots Page
  *=================================*/
 var getUpdateTeamScores = function (req, res) {
+    "use strict";
     msAdminControl.getTeamsByRegion(function (regions) {
         res.render('marchsadness/admin/updateTeamScores', {
-            north: regions.north,
+            midwest: regions.midwest,
             south: regions.south,
             east: regions.east,
             west: regions.west,
-            title: 'Admin - Update Team Scores'
+            title: 'Admin - Update Team Scores',
+            user: req.user
         });
     });
 };

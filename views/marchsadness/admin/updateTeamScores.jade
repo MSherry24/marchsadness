@@ -5,14 +5,15 @@ block content
         div(class="container")
             div(class="row")
                 div(class="col-xs-12")
-                    h1.text-center= title
-                    p.text-center Admin - Update Team Scores
+                    h1.text-center Admin - Update Team Scores
             div.row.text-center
                 button#UpdateUserScores.btn.btn-warning.btn Update User Scores
+                button#UpdateUserScoresDisabled.btn.btn-warning.btn.disabled Saving
+
     div.container
         div.row
             div.col-xs-6.text-center(style='background: rgba(0,68,204,0.2);')
-                h2 North
+                h2 Midwest
                 div.row
                     div.row
                         div.col-xs-1
@@ -31,7 +32,7 @@ block content
                                 div.h4.col-xs-1 6
                                 div.h4.col-xs-1 T
                                 div.col-xs-1
-                    each val, index in north
+                    each val, index in midwest
                         div.row
                             div.col-xs-1.text-align-right
                                 label= index + 1

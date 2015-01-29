@@ -8,8 +8,13 @@ var updateTeam = function () {
 
 var updateUserScores = function () {
     "use strict";
+    $('#UpdateUserScores').hide();
+    $('#UpdateUserScoresDisabled').show();
     $.post("/marchsadness/admin/updateUserScores/", function () {
-        window.location.href = "/marchsadness/admin/updateTeamScores";
+        setTimeout(function () {
+            $('#UpdateUserScores').show();
+            $('#UpdateUserScoresDisabled').hide();
+        }, 1500);
     });
 
 };
@@ -17,4 +22,5 @@ var updateUserScores = function () {
 $(document).ready(function () {
     $('.UpdateTeam').on('click', updateTeam);
     $('#UpdateUserScores').on('click', updateUserScores);
+    $('#UpdateUserScoresDisabled').hide();
 });

@@ -6,16 +6,15 @@ block content
             div(class="row")
                 div(class="col-xs-12")
                     h1.text-center= title
-                    p.text-center Welcome to Failure League's March Sadness!
     div.container
         div.row
             div.col-xs-5
             div.col-xs-2
-                button#UpdateNames.btn.btn-primary Update Names
+                button#UpdateNames.btn.btn-primary Save Changes
             div.col-xs-5
         div.row
             div.col-xs-6.text-center
-                h3 North
+                h3 Midwest
                 div.row
                     div.row
                         div.col-xs-4
@@ -23,12 +22,12 @@ block content
                         div.col-xs-4
                             div Team Name
                         div.col-xs-4
-                    each val, index in north
+                    each val, index in midwest
                         div.row
                             div.col-xs-4.text-align-right
                                 label= index + 1
                             div.col-xs-4
-                                input(value=val.teamName, id='northSeed' + (index + 1))
+                                input(value=val.teamName, id='midwestSeed' + (index + 1))
                             div.col-xs-4
             div.col-xs-6.text-center
                 h3 South

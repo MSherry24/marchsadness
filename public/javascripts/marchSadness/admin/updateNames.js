@@ -15,7 +15,7 @@ var updateNames = function() {
         .map(function (x) {
             return x.toString();
         });
-    regionsArray = ['north', 'south', 'east', 'west'];
+    regionsArray = ['midwest', 'south', 'east', 'west'];
 
     regionsArray.map(function (region) {
         sixteenArray.map(function (e) {
@@ -26,6 +26,7 @@ var updateNames = function() {
 
     $.post("/marchsadness/admin/updateNames", stringTeams,
         function () {
-           location.reload(true);
+           //location.reload(true);
+           window.location.replace("/marchsadness/admin");
     });
 };

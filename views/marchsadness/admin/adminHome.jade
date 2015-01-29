@@ -1,0 +1,20 @@
+extends msAdminLayout
+block content
+    script(src="/javascripts/marchSadness/admin/updateNames.js")
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center Admin Home
+    div.container
+        div.row.text-center
+            h2.col-xs-12 From here you can...
+            div.col-xs-4
+                div.row
+                    ul
+                        li
+                            a(href="/marchSadness/admin/updateNames")
+                                h3 Update NCAA Team Names
+                        li
+                            a(href="/marchsadness/admin/updateTeamScores")
+                                h3 Update NCAA Team Scores

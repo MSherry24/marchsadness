@@ -56,7 +56,7 @@ function makePicksViewModel() {
     self.round4picks = ko.observableArray([]);
     self.round5picks = ko.observableArray([]);
     self.round6picks = ko.observableArray([]);
-    self.northTeams = ko.observableArray([]);
+    self.midwestTeams = ko.observableArray([]);
     self.southTeams = ko.observableArray([]);
     self.eastTeams = ko.observableArray([]);
     self.westTeams = ko.observableArray([]);
@@ -67,12 +67,12 @@ function makePicksViewModel() {
         var newTeam;
         newTeam = new NcaaTeamViewModel(msTeams[key].teamName, msTeams[key]._id, msTeams[key].seed, true);
         self.allNcaaTeams[msTeams[key]._id] = newTeam;
-        if (msTeams[key].region === 'north') { self.northTeams.push(newTeam); }
+        if (msTeams[key].region === 'midwest') { self.midwestTeams.push(newTeam); }
         if (msTeams[key].region === 'south') { self.southTeams.push(newTeam); }
         if (msTeams[key].region === 'east') { self.eastTeams.push(newTeam); }
         if (msTeams[key].region === 'west') { self.westTeams.push(newTeam); }
-    };
-    self.northTeams.sort(seedComparator);
+    }
+    self.midwestTeams.sort(seedComparator);
     self.southTeams.sort(seedComparator);
     self.eastTeams.sort(seedComparator);
     self.westTeams.sort(seedComparator);
@@ -101,8 +101,13 @@ function makePicksViewModel() {
             round5picks: self.round5picks(),
             round6picks: self.round6picks()
         };
+        $('#save').hide();
+        $('#saving').show();
         $.post(route, payload, function () {
-            window.location.reload(true);
+            setTimeout(function () {
+                $('#save').show();
+                $('#saving').hide();
+            }, 1500);
         });
     };
 
@@ -167,9 +172,7 @@ function makePicksViewModel() {
         self.seed = seed;
         self.notSelected = ko.observable(notSelected);
     }
-};
-
-
+}
 
 function seedComparator(a, b) {
     if (a.seed < b.seed) { return -1; }

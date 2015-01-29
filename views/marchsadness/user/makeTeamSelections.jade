@@ -18,7 +18,7 @@ block content
             div.container
                 div.row.text-center
                     button#save.btn.btn-success.btn(value= team._id, data-bind="click: addTeam") Save Changes
-                    button#saving.btn.btn-success.btn.disabled() Saving
+                    button#saving.btn.btn-success.btn.disabled Saving
                 br
                 div.row(role="tabpanel")
                     ul#roundTabs.nav.nav-tabs(role="tablist")
@@ -83,7 +83,7 @@ block content
                 hr
                 div.container
                     div.row
-                        div.col-xs-3(data-bind="foreach: northTeams")
+                        div.col-xs-3(data-bind="foreach: midwestTeams")
                             div.row(data-bind="if: notSelected()")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")

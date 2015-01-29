@@ -71,7 +71,7 @@ exports.updateNames = function (req, res) {
         .map(function (x) {
             return x.toString();
         });
-    regionsArray = ['north', 'south', 'east', 'west'];
+    regionsArray = ['midwest', 'south', 'east', 'west'];
     regionsArray.map(function (region) {
         sixteenArray.map(function (e) {
             apiNames.push(region + e);
@@ -84,8 +84,8 @@ exports.updateNames = function (req, res) {
 
 exports.getTeamsByRegion = function (callback) {
     "use strict";
-    var north, south, east, west, regions;
-    north = [];
+    var midwest, south, east, west, regions;
+    midwest = [];
     south = [];
     east = [];
     west = [];
@@ -97,8 +97,8 @@ exports.getTeamsByRegion = function (callback) {
                 return 0;
             };
             teams.map(function (thisTeam) {
-                if (thisTeam.region === 'north') {
-                    north.push(thisTeam);
+                if (thisTeam.region === 'midwest') {
+                    midwest.push(thisTeam);
                 } else if (thisTeam.region === 'south') {
                     south.push(thisTeam);
                 } else if (thisTeam.region === 'east') {
@@ -107,13 +107,13 @@ exports.getTeamsByRegion = function (callback) {
                     west.push(thisTeam);
                 }
             });
-            north.sort(comparitor);
+            midwest.sort(comparitor);
             south.sort(comparitor);
             east.sort(comparitor);
             west.sort(comparitor);
         }
         regions = {
-            north: north,
+            midwest: midwest,
             south: south,
             east: east,
             west: west
