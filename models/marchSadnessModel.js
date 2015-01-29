@@ -45,14 +45,6 @@ var teamSchema = new mongoose.Schema({
         round6: roundScoresObject
     },
     totalScore: Number,
-    wonRound: {
-        round1: Boolean,
-        round2: Boolean,
-        round3: Boolean,
-        round4: Boolean,
-        round5: Boolean,
-        round6: Boolean
-    },
     eliminated: Boolean
 });
 
@@ -105,14 +97,6 @@ var createMasterBracket = function () {
                     round4: roundScores,
                     round5: roundScores,
                     round6: roundScores
-                },
-                wonRound: {
-                    round1: false,
-                    round2: false,
-                    round3: false,
-                    round4: false,
-                    round5: false,
-                    round6: false
                 },
                 eliminated: false,
                 totalScore: 0
