@@ -121,3 +121,41 @@ exports.getTeamsByRegion = function (callback) {
         callback(regions);
     });
 };
+
+exports.updateUserScores = function (req, res) {
+    "use strict";
+    msModel.UserTeam.find({}, function (err, userTeams) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else {
+            msModel.msTeam.find({}, function (msTeamErr, msTeams) {
+                if (msTeamErr) {
+                    console.log(msTeamErr);
+                    res.status(500).end();
+                } else {
+                    var allMsTeams;
+                    allMsTeams = {};
+                    msTeams.map(function (singleMsTeam) {
+                        allMsTeams[singleMsTeam._id] = singleMsTeam;
+                    });
+                    userTeams.map(function (singleUserTeam) {
+                        var roundScore, userTotalScore;
+                        userTotalScore = 0;
+                        [1, 2, 3, 4, 5, 6].map(function (round) {
+                            roundScore = 0;
+                            singleUserTeam.rounds['round' + round + 'picks'].map(function (pickId) {
+                                roundScore += allMsTeams[pickId].scores['round' + round].score;
+                            });
+                            singleUserTeam.scores['round' + round] = roundScore;
+                            userTotalScore += roundScore;
+                        });
+                        singleUserTeam.totalScore = userTotalScore;
+                        singleUserTeam.save();
+                    });
+                }
+                res.status(200).end();
+            });
+        }
+    });
+};

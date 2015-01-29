@@ -42,7 +42,7 @@ router.post('/admin/updateNames', authMain.isAdmin, function(req, res) {
 
 
 /*=================================
- * Update NCAA Team's Missed Shots
+ * View Update NCAA Team's Missed Shots Page
  *=================================*/
 var getUpdateTeamScores = function (req, res) {
     msAdminControl.getTeamsByRegion(function (regions) {
@@ -57,6 +57,18 @@ var getUpdateTeamScores = function (req, res) {
 };
 router.get('/admin/updateTeamScores', authMain.isAdmin, getUpdateTeamScores);
 
+/*=================================
+ * Update scores for all users
+ *=================================*/
+router.post('/admin/updateUserScores', authMain.isAdmin, function (req, res) {
+    "use strict";
+    msAdminControl.updateUserScores(req, res);
+});
+
+
+/*=================================
+ * View Single Team Score Update Page
+ *=================================*/
 router.get('/admin/updateSingleTeam/:teamId', authMain.isAdmin, function (req, res) {
     "use strict";
     msModel.msTeam.findOne({"_id": req.params.teamId}, function (err, team) {
