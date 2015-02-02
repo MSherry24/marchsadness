@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-//var db = mongoose.connection;
-//var userModel = {};
-//var userSchema, Users;
 
 var userSchema = mongoose.Schema({
     local: {
         email: String,
         password: String
     },
+    firstName: String,
+    lastName: String,
+    okToEmail: Boolean,
     isAdmin: Boolean
 });
 

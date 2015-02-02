@@ -5,7 +5,7 @@ block content
         div.jumbotron.text-center
             br
             h1
-                span.fa.fa-lock My Teams
+                span.fa.fa-lock= user.name + "'s Teams"
             a(href="/marchsadness/createnewteam", class="btn btn-default")
                 span(class="fa fa-user") Create a Team
         div.table-responsive

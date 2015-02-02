@@ -1,0 +1,34 @@
+//
+   Created by Mike on 1/22/2015.
+extends ../layout
+block content
+    script(type="text/javascript", src="../../../javascripts/users/editProfile.js")
+    div.container
+        div.page-header.text-center
+            h1
+                span.fa.fa-anchor Profile Page
+                div.row
+                    a.btn.btn-default(href="/users/profile") Back
+
+        div.row
+            <!-- LOCAL INFORMATION -->
+            div.col-sm-6
+                div.well
+                    form(role="form", action="/users/profile/edit", method="post")
+                        div.form-group
+                            label(for="firstName") First Name:
+                            input#firstName.form-control(type="text", name="firstName", value=user.firstName)
+                            br
+                            label(for="lastName") Last Name:
+                            input#lastName.form-control(type="text", name="lastName", value=user.lastName)
+                            br
+                            label(for="email") Email:
+                            input#email.form-control(type="email", name="email", value=user.local.email)
+                            br
+                            label(for="email") Can we send you email sometimes?
+                            div
+                                input#oktoemail(type="checkbox", name="oktoemail", checked=(user.okToEmail ? "checked" : undefined))
+                                span= ' Yes'
+                            br
+                            a#saveChanges.btn.btn-default.btn-primary(type="submit") Save Changes
+                            a#saveChangesDisabled.btn.btn-default.btn-primary.disabled Saving

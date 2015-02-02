@@ -12,57 +12,24 @@ block content
               <!-- LOGIN FORM -->
               form(action="/users/signup", method="post")
                   div.form-group
+                      label First Name
+                      input(type="text", class="form-control", name="firstName")
+                  div.form-group
+                      label Last Name
+                      input(type="text", class="form-control", name="lastName")
+                  div.form-group
                       label Email
-                      input(type="text", class="form-control", name="email")
+                      input(type="text", class="form-control", name="email", required)
                   div.form-group
                       label Password
-                      input(type="password", class="form-control", name="password")
+                      input(type="password", class="form-control", name="password", required)
+                  label(for="email") Can we send you email sometimes?
+                  div
+                      input#oktoemail(type="checkbox", name="oktoemail", checked)
+                      span= ' Yes'
+                  br
+                  br
                   button( type="submit", class="btn btn-warning btn-lg") Signup
               hr
               p Already have an account? <a href="/users/login">Login</a></p>
               p Or go <a href="/marchsadness">home</a>.</p>
-
-
-   //      div(class="row")
-   //         div(class="col-xs-12")
-   //            h1.text-center= title
-   //            p.text-center Fill out the form below to create a new account!
-   //div.container
-   //   form(name="newUser",method="post",action="/users/newuser")
-   //      div(class="row")
-   //         div.col-xs-2
-   //            label.label.label-default(for="FirstName") First Name
-   //         div.col-xs-4
-   //            input.form-control#FirstName(type="text", name="firstname")
-   //         div.col-xs-6
-   //      div.row
-   //         div.col-xs-2
-   //            label.label.label-default(for="LastName") Last Name
-   //         div.col-xs-4
-   //            input.form-control#LastName(type="text", name="lastname")
-   //      div(class="row")
-   //         div.col-xs-2
-   //            label.label.label-default(for="Email") Email *
-   //         div.col-xs-4
-   //            input.form-control#Email(type="email", required="true", name="email")
-   //         div.col-xs-6
-   //      div(class="row")
-   //         div.col-xs-2
-   //            label.label.label-default(for="userName") User Name *
-   //         div.col-xs-4
-   //            input.form-control#userName(type="text", required="true", name="username")
-   //         div.col-xs-6
-   //      div(class="row")
-   //         div.col-xs-2
-   //            label.label.label-default(for="password") Password *
-   //         div.col-xs-4
-   //            input.form-control#password(type="password", required="true", name="password")
-   //         div.col-xs-2
-   //            label.label.label-default(for="password2") Re-enter Password *
-   //         div.col-xs-4
-   //            input.form-control#password2(type="password", required="true")
-   //      p.row
-   //         div.col-xs-5
-   //         div.col-xs-2
-   //            button#submitbutton.btn.btn-primary.btn-lg.text-center(type="submit") Submit
-   //         div.col-xs-5

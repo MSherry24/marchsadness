@@ -66,8 +66,12 @@ module.exports = function(passport) {
                         newUser.local.password = newUser.generateHash(password);
                         if (newUser.local.email === 'mikesherry24@gmail.com') {
                             newUser.isAdmin = true;
-                        } else
-                        newUser.isAdmin = false;
+                        } else {
+                            newUser.isAdmin = false;
+                        }
+                        newUser.firstName = req.body.firstName;
+                        newUser.lastName = req.body.lastName;
+                        newUser.okToEmail = req.body.oktoemail === "on";
 
                         // save the user
                         newUser.save(function(err) {
@@ -76,11 +80,8 @@ module.exports = function(passport) {
                             return done(null, newUser);
                         });
                     }
-
                 });
-
             });
-
         }));
 
     // =========================================================================

@@ -17,11 +17,13 @@ nav(class="navbar navbar-inverse navbar-fixed-top")
              if (user && user.isAdmin)
                  li
                      a(href="/marchsadness/admin/updateNames") Admin
-             //if (!user)
-             //    li
-             //        a(href="/users/login") Login Here
-             //if (user)
-             //    li
-             //        a(href="/users/logout") Logout
+             if (!user)
+                 li
+                     a(href="/users/login") Login Here
+             if (user)
+                 li
+                     a(href="/users/profile") Profile
+                 li
+                     a(href="/users/logout") Logout
 
 <!--/.nav-collapse -->

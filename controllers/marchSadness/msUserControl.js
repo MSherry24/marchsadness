@@ -67,7 +67,11 @@ exports.deleteTeam = function (req, res, teamId) {
             res.status(500).json({ error: err }).end();
             console.log('error deleting team');
         } else if (team.owner[0].id !== req.user._id.id) {
-            res.status(500).json({ err: 'You are not the team owner'}).end();
+                req.flash('cantdelete', 'You are not authorized to delete that team.');
+                res.render('marchsadness/marchsadnesshome', {
+                    message: req.flash('cantdelete'),
+                    user: req.user
+                });
         } else {
             team.remove(function(err) {
                 res.status(200).end();
@@ -120,9 +124,9 @@ exports.getViewSingleTeam = function (req, res, teamId) {
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
         if (err) {
             console.log('that team does not exist');
-            req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
+            req.flash('Error', 'There has been an error with your request');
             res.render('marchsadness/marchsadnesshome', {
-                message: req.flash('TeamDoesNotExist'),
+                message: req.flash('Error'),
                 user: req.user
             });
         } else if (team === null) {
@@ -163,13 +167,27 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
             allTourneyTeams[team.region + team.seed] = team;
         });
         if (err) {
-            console.log('getMakeTeamSelections - error getting tournament teams');
+            req.flash('Error', 'There has been an error with your request');
+            res.render('marchsadness/marchsadnesshome', {
+                message: req.flash('Error'),
+                user: req.user
+            });
         }
 
         msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
             if (err) {
-                res.status(404);
-                console.log('error deleting team');
+                req.flash('Error', 'There has been an error with your request');
+                res.render('marchsadness/marchsadnesshome', {
+                    message: req.flash('Error'),
+                    user: req.user
+                });
+            } else if (team === null) {
+                console.log('that team does not exist');
+                req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
+                res.render('marchsadness/marchsadnesshome', {
+                    message: req.flash('TeamDoesNotExist'),
+                    user: req.user
+                });
             } else {
                 res.render('marchsadness/user/makeTeamSelections', {
                     msTeamsString: JSON.stringify(allTourneyTeams),

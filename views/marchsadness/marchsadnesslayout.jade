@@ -24,4 +24,11 @@ html
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     script(src="../../javascripts/bootstrap/bootstrap.min.js")
     include msNavBar
+    br
+    br
+    br
+    div.container
+        div.row
+            if (message && message.length > 0)
+                div.alert.alert-warning= message
     block content
