@@ -157,6 +157,22 @@ router.get('/makeTeamSelections/:teamId', authMain.isLoggedIn, function (req, re
     msUserControl.getMakeTeamSelections(req, res, req.params.teamId);
 });
 
+/*=================================
+ * Create a new League
+ *=================================*/
+router.get('/createnewleague', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    res.render('marchsadness/createNewLeague', {
+        user: req.user
+    });
+});
+
+router.post('/createnewleague', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.createNewLeague(req, res);
+});
+
+
 
 
 module.exports = router;

@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 var msModel = {};
 
+var leagueId;
+
 var userTeamSchema = new mongoose.Schema({
     owner: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
     name: String,
@@ -15,12 +17,12 @@ var userTeamSchema = new mongoose.Schema({
         round6: Number
     },
     rounds: {
-        round1picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        round2picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        round3picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        round4picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        round5picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}],
-        round6picks: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
+        round1picks: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_team'}],
+        round2picks: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_team'}],
+        round3picks: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_team'}],
+        round4picks: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_team'}],
+        round5picks: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_team'}],
+        round6picks: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_team'}]
     }
 });
 
@@ -48,10 +50,19 @@ var teamSchema = new mongoose.Schema({
     eliminated: Boolean
 });
 
+var leagueSchema = new mongoose.Schema({
+    manager: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
+    name: String,
+    password: String,
+    memberTeams: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
+});
+
 var MsTeam = mongoose.model('March_Sadness_team', teamSchema);
 msModel.msTeam = MsTeam;
 var UserTeam = mongoose.model('User_MarchSadness_Team', userTeamSchema);
 msModel.UserTeam = UserTeam;
+var MsLeague = mongoose.model('March_Sadness_League', leagueSchema);
+msModel.MsLeague = MsLeague;
 
 var insertAllTeams = function (index, array) {
     "use strict";
@@ -106,6 +117,8 @@ var createMasterBracket = function () {
     });
     insertAllTeams(0, teamArray);
 };
+
+
 
 msModel.initializeMasterBracket = function () {
     console.log('Get Master Bracket');

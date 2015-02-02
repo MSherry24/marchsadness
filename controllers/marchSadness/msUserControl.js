@@ -3,6 +3,7 @@
  */
 
 var msModel = require('../../models/marchSadnessModel');
+var bcrypt = require('bcrypt-nodejs');
 
 /*=================================
  * Render page that shows all teams for a single user
@@ -200,4 +201,30 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
             }
         });
     });
+};
+
+/*=================================
+ * Create New League
+ *=================================*/
+exports.createNewLeague = function (req, res) {
+    "use strict";
+    var newLeague;
+    newLeague = new msModel.MsLeague({
+        manager: req.user._id,
+        name: req.body.leaguename,
+        password: generateHash(req.body.password)
+    });
+    newLeague.save(function() {
+        res.status(200).redirect('/marchsadness');
+    })
+};
+
+// generating a hash
+ var generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+var validPassword = function (password) {
+    return bcrypt.compareSync(password, this.local.password);
 };
