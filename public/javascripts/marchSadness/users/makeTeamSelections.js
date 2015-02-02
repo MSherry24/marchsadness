@@ -156,13 +156,18 @@ function makePicksViewModel() {
     };
 
     self.insertTeamIntoPicksArray = function(selectedRound, team) {
-        var roundIndex;
+        var roundIndex, tempArray;
+        tempArray = [];
         roundIndex = 'round' + selectedRound + 'picks';
         team.notSelected(false);
-        self[roundIndex].pop();
-        self[roundIndex].reverse();
+        while (self[roundIndex]().length > 0
+                && self[roundIndex]()[self[roundIndex]().length -1].name === 'TBD') {
+            tempArray.push(self[roundIndex].pop());
+        }
         self[roundIndex].push(team);
-        self[roundIndex].reverse();
+        while(tempArray.length > 1) {
+            self[roundIndex].push(tempArray.pop())
+        }
     };
 
     function NcaaTeamViewModel(teamName, teamId, seed, notSelected) {
