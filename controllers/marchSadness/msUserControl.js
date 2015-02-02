@@ -119,8 +119,19 @@ exports.getViewSingleTeam = function (req, res, teamId) {
     "use strict";
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
         if (err) {
-            res.status(404).end();
-            console.log('error deleting team');
+            console.log('that team does not exist');
+            req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
+            res.render('marchsadness/marchsadnesshome', {
+                message: req.flash('TeamDoesNotExist'),
+                user: req.user
+            });
+        } else if (team === null) {
+            console.log('that team does not exist');
+            req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
+            res.render('marchsadness/marchsadnesshome', {
+                message: req.flash('TeamDoesNotExist'),
+                user: req.user
+                });
         } else {
             msModel.msTeam.find({}, function (err, msTeams) {
                 var allTourneyTeams;

@@ -14,7 +14,8 @@ router.get('/', function(req, res) {
     res.render('marchsadness/marchsadnesshome',
         {
             title: 'March Sadness',
-            user : req.user
+            user : req.user,
+            message: req.flash('TeamDoesNotExist')
         });
 });
 

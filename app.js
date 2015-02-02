@@ -11,6 +11,7 @@ var flash = require('connect-flash');
 //DB Code
 // mongo start code - mongod.exe --config e:\mongodb\mongo.config
 // mongo start code - mongod.exe --config C:\Users\msherry\Documents\mongodb\mongo.config
+// mongo start code - ./mongod --dbpath ~/Documents/workspace/node
 var mongoose = require('./models/db');
 //var userModel = require('./models/usermodel');
 
