@@ -2,10 +2,9 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 var msModel = {};
 
-var leagueId;
-
 var userTeamSchema = new mongoose.Schema({
     owner: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
+    leagues: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_League'}],
     name: String,
     totalScore: Number,
     scores: {
@@ -54,7 +53,7 @@ var leagueSchema = new mongoose.Schema({
     manager: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
     name: String,
     password: String,
-    memberTeams: [{type: mongoose.Schema.ObjectId, ref: 'User_MarchSadness_Team'}]
+    memberTeamOwners: [{type: mongoose.Schema.ObjectId, ref: 'Users'}]
 });
 
 var MsTeam = mongoose.model('March_Sadness_team', teamSchema);

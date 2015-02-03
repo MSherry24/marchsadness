@@ -1,0 +1,36 @@
+extends ../marchsadnesslayout
+block content
+    script(src="../../javascripts/marchSadness/users/viewSingleTeam.js")
+    div(class="container")
+        div.jumbotron.text-center
+            br
+            h1
+                span.fa.fa-lock= league.name
+            a(href="/marchsadness/viewmyleagues", class="btn btn-default")
+                span.fa.fa-user View All My Leagues
+            a(href="/marchsadness/viewmyteams", class="btn btn-default")
+                span.fa.fa-user View All My Teams
+        div.container
+            div.row
+                div.table-responsive
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Team
+                                th Round 1
+                                th Round 2
+                                th Round 3
+                                th Round 4
+                                th Round 5
+                                th Round 6
+                                th Total
+                        tbody
+                            each team in teams
+                                tr
+                                    td= team.name
+                                    td.text-center= team.scores.round1
+                                    td.text-center= team.scores.round2
+                                    td.text-center= team.scores.round3
+                                    td.text-center= team.scores.round4
+                                    td.text-center= team.scores.round5
+                                    td.text-center= team.scores.round6

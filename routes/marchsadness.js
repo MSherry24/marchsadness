@@ -172,7 +172,22 @@ router.post('/createnewleague', authMain.isLoggedIn, function (req, res) {
     msUserControl.createNewLeague(req, res);
 });
 
+/*=================================
+ * View a list of all of one user's leagues
+ *=================================*/
 
+router.get('/viewmyleagues', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getSingleUserLeagues(req, res);
+});
+
+/*=================================
+ * View a March Sadness League
+ *=================================*/
+router.get('/viewSingleleague/:leagueId', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getViewSingleLeague(req, res, req.params.leagueId);
+});
 
 
 module.exports = router;

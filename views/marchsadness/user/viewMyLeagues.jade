@@ -1,0 +1,24 @@
+extends ../marchsadnesslayout
+block content
+    script(src="../../javascripts/marchSadness/users/viewMyTeams.js")
+    div(class="container")
+        div.jumbotron.text-center
+            br
+            h1
+                span.fa.fa-lock= user.firstName + "'s Leagues"
+            a(href="/marchsadness/createNewLeague", class="btn btn-default")
+                span(class="fa fa-user") Create a League
+        div.table-responsive
+            table.table
+                thead
+                    tr
+                        th League
+                tbody
+                    each league, index in leagues
+                        tr.h3
+                            td
+                                a(href="/marchsadness/viewSingleLeague/" + league._id)
+                                    span= league.name
+                            td
+                                if (league.owner === user._id)
+                                    button.deleteLeague.btn.btn-danger.btn-xs(value= league._id) Delete

@@ -212,7 +212,8 @@ exports.createNewLeague = function (req, res) {
     newLeague = new msModel.MsLeague({
         manager: req.user._id,
         name: req.body.leaguename,
-        password: generateHash(req.body.password)
+        password: generateHash(req.body.password),
+        memberTeamOwners: [req.user._id]
     });
     newLeague.save(function() {
         res.status(200).redirect('/marchsadness');
@@ -227,4 +228,56 @@ exports.createNewLeague = function (req, res) {
 // checking if password is valid
 var validPassword = function (password) {
     return bcrypt.compareSync(password, this.local.password);
+};
+
+/*=================================
+ * Render page that shows all teams for a single user
+ *=================================*/
+exports.getSingleUserLeagues = function (req, res) {
+    "use strict";
+    msModel.MsLeague.find({memberTeamOwners: req.user._id}, function (err, leagues) {
+        if (!err) {
+            res.render('marchsadness/user/viewMyLeagues', {
+                user: req.user,
+                leagues: leagues
+            });
+        }
+    });
+};
+
+/*=================================
+ * View a Single March Sadness Team
+ *=================================*/
+exports.getViewSingleLeague = function (req, res, leagueId) {
+    "use strict";
+    msModel.MsLeague.findOne({"_id" : leagueId}, function (err, league) {
+        if (err) {
+            console.log('that league does not exist');
+            req.flash('Error', 'There has been an error with your request');
+            res.render('marchsadness/marchsadnesshome', {
+                message: req.flash('Error'),
+                user: req.user
+            });
+        } else if (league === null) {
+            console.log('that league does not exist');
+            req.flash('LeagueDoesNotExist', 'The league you requested does not exist.');
+            res.render('marchsadness/marchsadnesshome', {
+                message: req.flash('TeamDoesNotExist'),
+                user: req.user
+            });
+        } else {
+            msModel.UserTeam.find({league: leagueId}, function (err, userTeams) {
+                if (err) {
+                    console.log(err);
+                    res.status(500).end();
+                }
+                res.render('marchsadness/user/viewSingleLeague', {
+                    user: req.user,
+                    league: league,
+                    teams: userTeams
+                });
+            });
+
+        }
+    });
 };
