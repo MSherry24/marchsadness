@@ -19,7 +19,7 @@ block content
                                     td.h3= team.name
                                     td
                                         if (team.leagues.indexOf(league._id) === -1)
-                                            button.btn.btn-default.btn-sm.btn-success.AddTeam(value= league._id + '/' + team._id) +
+                                            button.btn.btn-default.btn-sm.btn-success.AddTeam(value= league._id + '/' + team._id) Add This Team
                                         else
-                                            p Member
+                                            p Already a Member
 

@@ -1,0 +1,22 @@
+extends ../marchsadnesslayout
+block content
+    script(src="../../javascripts/marchSadness/users/joinLeagueGeneric.js")
+    div(class="container")
+        div.text-center
+            br
+            h1
+                span.h1.fa.fa-lock= 'Join a League'
+        br
+        div.container
+            div.row
+                div.col-xs-4
+                div.col-xs-4.text-center
+                    p To join this league, enter the league id and password below
+                    label League Id
+                    input#leagueId.form-control(type="text" name="leagueId")
+                    br
+                    label League Password
+                    input#leaguePassword.form-control(type="text" name="leaguePassword")
+                    br
+                    button#submit.btn.btn-default.btn-primary Join
+                div.col-xs-4

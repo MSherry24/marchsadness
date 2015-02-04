@@ -220,5 +220,15 @@ router.post('/joinLeague/:leagueId', authMain.isLoggedIn, function (req, res) {
     msUserControl.postJoinLeague(req, res, req.params.leagueId);
 });
 
+router.get('/joinALeague', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getJoinALeague(req, res);
+});
+
+router.get('/joinALeague/:message', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getJoinALeague(req, res, req.params.message);
+});
+
 module.exports = router;
 

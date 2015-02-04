@@ -356,11 +356,23 @@ exports.getJoinLeague = function (req, res, leagueId) {
     })
 };
 
+exports.getJoinALeague = function (req, res, message) {
+    if (message === 'wrongleagueid') {
+        req.flash('wrongleagueid', 'There was an error finding the id you entered. Please ensure the id is correct and try again.');
+    }
+    res.render('marchsadness/user/joinLeagueGeneric', {
+        user: req.user,
+        message: req.flash('wrongleagueid')
+    });
+};
+
 exports.postJoinLeague = function (req, res, leagueId) {
     msModel.MsLeague.findOne({_id: leagueId}, function (err, league) {
         if (err) {
             console.log(err);
-            res.status(500).end();
+            res.json({message: 'wrongleagueid'});
+        } else if (league === null) {
+            res.json({message: 'wrongleagueid'});
         } else if (bcrypt.compareSync(req.body.password, league.password)) {
             if (league.memberTeamOwners.indexOf(req.user._id) === -1) {
                 league.memberTeamOwners.push(req.user._id);
