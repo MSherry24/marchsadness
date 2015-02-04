@@ -2,35 +2,51 @@ extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/viewSingleTeam.js")
     div(class="container")
-        div.jumbotron.text-center
+        div.text-center
             br
             h1
-                span.fa.fa-lock= league.name
-            a(href="/marchsadness/viewmyleagues", class="btn btn-default")
-                span.fa.fa-user View All My Leagues
-            a(href="/marchsadness/viewmyteams", class="btn btn-default")
-                span.fa.fa-user View All My Teams
+                span.h1.fa.fa-lock= league.name
+            if (inLeague)
+                a(href="/marchsadness/addTeamToLeague/" + league._id, class="btn btn-default btn-primary")
+                    span.fa.fa-user Add your team to this league
+            br
+            if (leagueManager)
+                br
+                span.h4='To invite other players to join this league, send them the password and '
+                a(href="/marchsadness/joinLeague/" + league._id)
+                    span.h4= 'this link'
+                br
+                br
         div.container
-            div.row
-                div.table-responsive
-                    table.table.table-striped
-                        thead
-                            tr
-                                th Team
-                                th Round 1
-                                th Round 2
-                                th Round 3
-                                th Round 4
-                                th Round 5
-                                th Round 6
-                                th Total
-                        tbody
-                            each team in teams
+            if (!inLeague)
+                div.row.text-center
+                    p.text-center You must be a league member to view this page.
+                    a.btn.btn-default.btn-primary(href="/marchsadness/joinLeague/" + league._id)
+                        span.fa.fa-user.text-center Join This League
+            else
+                div.row
+                    div.table-responsive
+                        table.table.table-striped
+                            thead
                                 tr
-                                    td= team.name
-                                    td.text-center= team.scores.round1
-                                    td.text-center= team.scores.round2
-                                    td.text-center= team.scores.round3
-                                    td.text-center= team.scores.round4
-                                    td.text-center= team.scores.round5
-                                    td.text-center= team.scores.round6
+                                    th.text-center Rank
+                                    th.text-center Team
+                                    th.text-right Round 1
+                                    th.text-right Round 2
+                                    th.text-right Round 3
+                                    th.text-right Round 4
+                                    th.text-right Round 5
+                                    th.text-right Round 6
+                                    th.text-right Total
+                            tbody
+                                each team, i in teams
+                                    tr
+                                        td.text-center= i + 1
+                                        td.text-center= team.name
+                                        td.text-right= team.scores.round1
+                                        td.text-right= team.scores.round2
+                                        td.text-right= team.scores.round3
+                                        td.text-right= team.scores.round4
+                                        td.text-right= team.scores.round5
+                                        td.text-right= team.scores.round6
+                                        td.text-right= team.totalScore

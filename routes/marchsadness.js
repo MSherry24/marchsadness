@@ -184,11 +184,41 @@ router.get('/viewmyleagues', authMain.isLoggedIn, function (req, res) {
 /*=================================
  * View a March Sadness League
  *=================================*/
+router.get('/viewSingleleague/:leagueId/:message', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getViewSingleLeague(req, res, req.params.leagueId, req.params.message);
+});
+
 router.get('/viewSingleleague/:leagueId', authMain.isLoggedIn, function (req, res) {
     "use strict";
     msUserControl.getViewSingleLeague(req, res, req.params.leagueId);
 });
 
+/*=================================
+ * Add User's team to a league
+ *=================================*/
+router.get('/addTeamToLeague/:leagueId', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getAddTeamToLeague(req, res, req.params.leagueId);
+});
+
+router.post('/addTeamToLeague/:leagueId/:teamId', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.postAddTeamToLeague(req, res, req.params.leagueId, req.params.teamId);
+});
+
+/*=================================
+ * Add User's team to a league
+ *=================================*/
+router.get('/joinLeague/:leagueId', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getJoinLeague(req, res, req.params.leagueId);
+});
+
+router.post('/joinLeague/:leagueId', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.postJoinLeague(req, res, req.params.leagueId);
+});
 
 module.exports = router;
 

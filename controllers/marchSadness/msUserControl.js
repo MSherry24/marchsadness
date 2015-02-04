@@ -246,11 +246,14 @@ exports.getSingleUserLeagues = function (req, res) {
 };
 
 /*=================================
- * View a Single March Sadness Team
+ * View a Single March Sadness League
  *=================================*/
-exports.getViewSingleLeague = function (req, res, leagueId) {
+exports.getViewSingleLeague = function (req, res, leagueId, message) {
     "use strict";
+    var inLeague, leagueManager;
     msModel.MsLeague.findOne({"_id" : leagueId}, function (err, league) {
+        inLeague = league.memberTeamOwners.indexOf(req.user._id) !== -1;
+        leagueManager = league.manager.indexOf(req.user._id) !== -1;
         if (err) {
             console.log('that league does not exist');
             req.flash('Error', 'There has been an error with your request');
@@ -266,18 +269,111 @@ exports.getViewSingleLeague = function (req, res, leagueId) {
                 user: req.user
             });
         } else {
-            msModel.UserTeam.find({league: leagueId}, function (err, userTeams) {
+            msModel.UserTeam.find({leagues: leagueId}, function (err, userTeams) {
                 if (err) {
                     console.log(err);
                     res.status(500).end();
                 }
+                if (message === 'wrongpassword') {
+                    req.flash('wrongpassword', 'The league password you entered is incorrect.');
+                }
+                userTeams.sort(teamScoreComparitor).reverse();
                 res.render('marchsadness/user/viewSingleLeague', {
+                    message: req.flash('wrongpassword'),
                     user: req.user,
                     league: league,
+                    inLeague: inLeague,
+                    leagueManager: leagueManager,
                     teams: userTeams
                 });
             });
 
         }
     });
+};
+
+var teamScoreComparitor = function(a,b) {
+    if (a.totalScore < b.totalScore) {return -1}
+    if (a.totalScore > b.totalScore) {return 1}
+    return 0;
+};
+
+/*=================================
+ * View the page where the user can add one of their teams to a league
+ *=================================*/
+exports.getAddTeamToLeague = function (req, res, leagueId) {
+    msModel.UserTeam.find({owner: req.user._id}, function (err, teams) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else {
+            msModel.MsLeague.findOne({_id: leagueId}, function(err, league) {
+                if (err) {
+                    console.log(err);
+                    res.status(500).end();
+                }
+                res.render('marchsadness/user/addTeamToLeague', {
+                    user: req.user,
+                    league: league,
+                    teams: teams
+                });
+            } )
+        }
+    })
+};
+
+exports.postAddTeamToLeague = function (req, res, leagueId, teamId) {
+    msModel.UserTeam.findOne({_id: teamId}, function (err, userTeam) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else {
+            userTeam.leagues.push(leagueId);
+            userTeam.save(function(err) {
+                if (err) {
+                    res.status(500).end();
+                } else {
+                    res.status(200).end();
+                }
+            })
+        }
+    })
+};
+
+/*=================================
+ * Join a league
+ *=================================*/
+exports.getJoinLeague = function (req, res, leagueId) {
+    msModel.MsLeague.findOne({_id: leagueId}, function (err, league) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        }
+        res.render('marchsadness/user/joinLeague', {
+            user: req.user,
+            league: league
+        });
+    })
+};
+
+exports.postJoinLeague = function (req, res, leagueId) {
+    msModel.MsLeague.findOne({_id: leagueId}, function (err, league) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        } else if (bcrypt.compareSync(req.body.password, league.password)) {
+            if (league.memberTeamOwners.indexOf(req.user._id) === -1) {
+                league.memberTeamOwners.push(req.user._id);
+            }
+            league.save(function(err) {
+                if (err) {
+                    res.status(500).end();
+                } else {
+                    res.status(200).end();
+                }
+            })
+        } else {
+            res.json({message: 'wrongpassword'});
+        }
+    })
 };
