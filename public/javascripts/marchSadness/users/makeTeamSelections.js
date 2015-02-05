@@ -112,10 +112,11 @@ function makePicksViewModel() {
     };
 
     self.pushTeam = function(team) {
-        var selectedRound, tbdIndex;
+        var selectedRound, tbdIndex, roundLocked;
         selectedRound = $("#roundTabs li[class='active']").attr('id')[1];
+        roundLocked = $("#roundTabs li[class='active']").text().indexOf('(L)') !== -1;
         tbdIndex = self.indexOfFirstTBD(selectedRound);
-        if (tbdIndex !== -1) {
+        if (tbdIndex !== -1 && !roundLocked) {
             self.insertTeamIntoPicksArray(selectedRound, team);
         }
     };
