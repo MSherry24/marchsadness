@@ -159,3 +159,27 @@ exports.updateUserScores = function (req, res) {
         }
     });
 };
+
+exports.markRoundsAsStarted = function (req, res) {
+    "use strict";
+    msModel.MsConfig.findOne({}, function (err, config) {
+        if (err) {
+            console.log('error = ' + err);
+        } else {
+            config.roundStarted.round1 = req.body.round1;
+            config.roundStarted.round2 = req.body.round2;
+            config.roundStarted.round3 = req.body.round3;
+            config.roundStarted.round4 = req.body.round4;
+            config.roundStarted.round5 = req.body.round5;
+            config.roundStarted.round6 = req.body.round6;
+        }
+        config.save(function (err) {
+            if (err) {
+                console.log('error = ' + err);
+                res.status(500).end();
+            } else {
+                res.status(200).end();
+            }
+        });
+    });
+};

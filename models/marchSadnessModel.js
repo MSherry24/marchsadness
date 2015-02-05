@@ -2,6 +2,17 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 var msModel = {};
 
+var configSchema = new mongoose.Schema({
+        roundStarted: {
+            round1: Boolean,
+            round2: Boolean,
+            round3: Boolean,
+            round4: Boolean,
+            round5: Boolean,
+            round6: Boolean
+        }
+    });
+
 var userTeamSchema = new mongoose.Schema({
     owner: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
     leagues: [{type: mongoose.Schema.ObjectId, ref: 'March_Sadness_League'}],
@@ -56,6 +67,8 @@ var leagueSchema = new mongoose.Schema({
     memberTeamOwners: [{type: mongoose.Schema.ObjectId, ref: 'Users'}]
 });
 
+var MsConfig = mongoose.model('March_Sadness_Config', configSchema);
+msModel.MsConfig = MsConfig;
 var MsTeam = mongoose.model('March_Sadness_team', teamSchema);
 msModel.msTeam = MsTeam;
 var UserTeam = mongoose.model('User_MarchSadness_Team', userTeamSchema);
@@ -120,7 +133,6 @@ var createMasterBracket = function () {
 
 
 msModel.initializeMasterBracket = function () {
-    console.log('Get Master Bracket');
     MsTeam.find({}).exec(function (err, result) {
         if (!err && result.length === 0) {
             createMasterBracket();
@@ -128,5 +140,24 @@ msModel.initializeMasterBracket = function () {
     });
 };
 
+msModel.initializeMsConfig = function () {
+    "use strict";
+    var newConfig;
+    MsConfig.find({}).exec(function (err, result) {
+        if (!err && result.length === 0) {
+            newConfig = new MsConfig({
+                roundStarted: {
+                    round1: false,
+                    round2: false,
+                    round3: false,
+                    round4: false,
+                    round5: false,
+                    round6: false
+                }
+            });
+            newConfig.save();
+        }
+    });
+};
 
 module.exports = msModel;

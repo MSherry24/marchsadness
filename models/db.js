@@ -6,6 +6,7 @@ db.once('open', function() {
     "use strict";
     var msModel = require('./marchSadnessModel');
     msModel.initializeMasterBracket();
+    msModel.initializeMsConfig();
 });
 
 // Here we find an appropriate database to connect to, defaulting to

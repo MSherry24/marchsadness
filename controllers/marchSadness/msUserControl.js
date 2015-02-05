@@ -190,13 +190,20 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
                     user: req.user
                 });
             } else {
-                res.render('marchsadness/user/makeTeamSelections', {
-                    msTeamsString: JSON.stringify(allTourneyTeams),
-                    msTeams: allTourneyTeams,
-                    teamString: JSON.stringify(team),
-                    team: team,
-                    user: req.user,
-                    owner: team.owner[0].id
+                msModel.MsConfig.findOne({}, function(err, config) {
+                    if (!err && config !== null) {
+                        res.render('marchsadness/user/makeTeamSelections', {
+                            config: config,
+                            msTeamsString: JSON.stringify(allTourneyTeams),
+                            msTeams: allTourneyTeams,
+                            teamString: JSON.stringify(team),
+                            team: team,
+                            user: req.user,
+                            owner: team.owner[0].id
+                        });
+                    } else {
+                        res.status(500).end();
+                    }
                 });
             }
         });
