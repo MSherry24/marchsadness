@@ -5,7 +5,8 @@ msModel = require('../../models/marchSadnessModel');
 
 exports.updateSingleTeam = function (req, res) {
     "use strict";
-    var scores, rounds, roundScore;
+    var scores, rounds, roundScore, eliminated;
+    eliminated = req.body.eliminated;
     scores = req.body.scores;
     msModel.msTeam.findOne({ "_id": req.params.teamId }, function (err, team) {
         if (err) {
@@ -30,6 +31,7 @@ exports.updateSingleTeam = function (req, res) {
                 team.scores[round].score = roundScore;
                 team.totalScore += roundScore;
             });
+            team.eliminated = eliminated;
             team.save(function (err) {
                 if (err) {
                     console.log('error saving team score');

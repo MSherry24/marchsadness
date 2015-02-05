@@ -28,6 +28,12 @@ block content
                 div.row
                     table.table
                         tr
+                            td
+                            td Eliminated
+                            td
+                                input.form-control#eliminated(type="checkbox", checked=(teamInfo.eliminated ? "checked" : undefined))
+                            td
+                        tr
                             td Round
                             td Missed 3's
                             td Missed 2's

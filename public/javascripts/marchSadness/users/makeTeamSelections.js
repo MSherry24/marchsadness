@@ -62,10 +62,10 @@ function makePicksViewModel() {
     self.westTeams = ko.observableArray([]);
     self.allNcaaTeams = {};
 
-    tbdTeam = new NcaaTeamViewModel('TBD','','', true);
+    tbdTeam = new NcaaTeamViewModel('TBD','','', true, false);
     for (var key in msTeams) {
         var newTeam;
-        newTeam = new NcaaTeamViewModel(msTeams[key].teamName, msTeams[key]._id, msTeams[key].seed, true);
+        newTeam = new NcaaTeamViewModel(msTeams[key].teamName, msTeams[key]._id, msTeams[key].seed, true, msTeams[key].eliminated);
         self.allNcaaTeams[msTeams[key]._id] = newTeam;
         if (msTeams[key].region === 'midwest') { self.midwestTeams.push(newTeam); }
         if (msTeams[key].region === 'south') { self.southTeams.push(newTeam); }
@@ -170,12 +170,13 @@ function makePicksViewModel() {
         }
     };
 
-    function NcaaTeamViewModel(teamName, teamId, seed, notSelected) {
+    function NcaaTeamViewModel(teamName, teamId, seed, notSelected, eliminated) {
         var self = this;
         self.name = teamName;
         self.id = teamId;
         self.seed = seed;
         self.notSelected = ko.observable(notSelected);
+        self.eliminated = eliminated;
     }
 }
 

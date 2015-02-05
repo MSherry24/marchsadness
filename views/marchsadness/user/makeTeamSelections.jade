@@ -20,6 +20,7 @@ block content
                     button#save.btn.btn-success.btn(value= team._id, data-bind="click: addTeam") Save Changes
                     button#saving.btn.btn-success.btn.disabled Saving
                 br
+
                 div.row(role="tabpanel")
                     ul#roundTabs.nav.nav-tabs(role="tablist")
                         li#r1tab.active(role="presentation")
@@ -88,50 +89,70 @@ block content
                                     div.col-xs-5
                 hr
                 div.container
-                    div.row.text-center
-                        p Selections are locked (L) at the start of each round.
+
                     br
                     div.row
                         div.col-xs-3(data-bind="foreach: midwestTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                         div.col-xs-3(data-bind="foreach: southTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                         div.col-xs-3(data-bind="foreach: eastTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                         div.col-xs-3(data-bind="foreach: westTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                 br
+                div.row.text-center
+                    div.col-xs-6
+                        p (L) Selections are locked at the start of each round.
+                    div.col-xs-6
+                        p (E) Team has been eliminated from the tournament.
 
 
