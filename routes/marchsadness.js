@@ -33,7 +33,6 @@ router.get('/admin', authMain.isAdmin, function (req, res) {
 /*=================================
  * Set the names of the teams in the tournament
  *=================================*/
-
 router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {
     "use strict";
     msAdminControl.getTeamsByRegion(function (regions) {
