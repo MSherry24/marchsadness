@@ -5,7 +5,8 @@ msModel = require('../../models/marchSadnessModel');
 
 exports.updateSingleTeam = function (req, res) {
     "use strict";
-    var scores, rounds, roundScore;
+    var scores, rounds, roundScore, eliminated;
+    eliminated = req.body.eliminated;
     scores = req.body.scores;
     msModel.msTeam.findOne({ "_id": req.params.teamId }, function (err, team) {
         if (err) {
@@ -30,6 +31,7 @@ exports.updateSingleTeam = function (req, res) {
                 team.scores[round].score = roundScore;
                 team.totalScore += roundScore;
             });
+            team.eliminated = eliminated;
             team.save(function (err) {
                 if (err) {
                     console.log('error saving team score');
@@ -157,5 +159,29 @@ exports.updateUserScores = function (req, res) {
                 res.status(200).end();
             });
         }
+    });
+};
+
+exports.markRoundsAsStarted = function (req, res) {
+    "use strict";
+    msModel.MsConfig.findOne({}, function (err, config) {
+        if (err) {
+            console.log('error = ' + err);
+        } else {
+            config.roundStarted.round1 = req.body.round1;
+            config.roundStarted.round2 = req.body.round2;
+            config.roundStarted.round3 = req.body.round3;
+            config.roundStarted.round4 = req.body.round4;
+            config.roundStarted.round5 = req.body.round5;
+            config.roundStarted.round6 = req.body.round6;
+        }
+        config.save(function (err) {
+            if (err) {
+                console.log('error = ' + err);
+                res.status(500).end();
+            } else {
+                res.status(200).end();
+            }
+        });
     });
 };

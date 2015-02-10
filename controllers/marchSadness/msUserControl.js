@@ -3,6 +3,7 @@
  */
 
 var msModel = require('../../models/marchSadnessModel');
+var User = require('../../models/usermodel');
 var bcrypt = require('bcrypt-nodejs');
 
 /*=================================
@@ -138,20 +139,25 @@ exports.getViewSingleTeam = function (req, res, teamId) {
                 user: req.user
                 });
         } else {
-            msModel.msTeam.find({}, function (err, msTeams) {
-                var allTourneyTeams;
-                allTourneyTeams = {};
-                msTeams.map(function (msTeam) {
-                    allTourneyTeams[msTeam._id] = msTeam;
-                });
-                res.render('marchsadness/user/viewSingleTeam', {
-                    user: req.user,
-                    team: team,
-                    allTourneyTeams: allTourneyTeams,
-                    owner: team.owner[0].id
+            User.findById(team.owner[0], function (err, owner) {
+                msModel.MsConfig.findOne({}, function(err, config) {
+                    msModel.msTeam.find({}, function (err, msTeams) {
+                        var allTourneyTeams;
+                        allTourneyTeams = {};
+                        msTeams.map(function (msTeam) {
+                            allTourneyTeams[msTeam._id] = msTeam;
+                        });
+                        res.render('marchsadness/user/viewSingleTeam', {
+                            config: config,
+                            user: req.user,
+                            team: team,
+                            allTourneyTeams: allTourneyTeams,
+                            owner: owner,
+                            userIsOwner: req.user._id.id === owner._id.id
+                        });
+                    });
                 });
             });
-
         }
     });
 };
@@ -190,13 +196,20 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
                     user: req.user
                 });
             } else {
-                res.render('marchsadness/user/makeTeamSelections', {
-                    msTeamsString: JSON.stringify(allTourneyTeams),
-                    msTeams: allTourneyTeams,
-                    teamString: JSON.stringify(team),
-                    team: team,
-                    user: req.user,
-                    owner: team.owner[0].id
+                msModel.MsConfig.findOne({}, function(err, config) {
+                    if (!err && config !== null) {
+                        res.render('marchsadness/user/makeTeamSelections', {
+                            config: config,
+                            msTeamsString: JSON.stringify(allTourneyTeams),
+                            msTeams: allTourneyTeams,
+                            teamString: JSON.stringify(team),
+                            team: team,
+                            user: req.user,
+                            owner: team.owner[0].id
+                        });
+                    } else {
+                        res.status(500).end();
+                    }
                 });
             }
         });

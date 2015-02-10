@@ -12,6 +12,8 @@ block content
 
     div.container
         div.row
+            p.text-center (E) = Team Eliminated From Tournament
+        div.row
             div.col-xs-6.text-center(style='background: rgba(0,68,204,0.2);')
                 h2 Midwest
                 div.row
@@ -37,7 +39,7 @@ block content
                             div.col-xs-1.text-align-right
                                 label= index + 1
                             div.col-xs-2
-                                div= val.teamName
+                                div= (val.eliminated ? '(E) ' : '') + val.teamName
                                 button.UpdateTeam.btn.btn-primary.btn-xs(value=val._id) Update
                             div.col-xs-9
                                 div.row
@@ -80,7 +82,7 @@ block content
                             div.col-xs-1.text-align-right
                                 label= index + 1
                             div.col-xs-2
-                                div= val.teamName
+                                div= (val.eliminated ? '(E) ' : '') + val.teamName
                                 button.UpdateTeam.btn.btn-primary.btn-xs(value=val._id) Update
                             div.col-xs-9
                                 div.row
@@ -123,7 +125,7 @@ block content
                             div.col-xs-1.text-align-right
                                 label= index + 1
                             div.col-xs-2
-                                div= val.teamName
+                                div= (val.eliminated ? '(E) ' : '') + val.teamName
                                 button.UpdateTeam.btn.btn-primary.btn-xs(value=val._id) Update
                             div.col-xs-9
                                 div.row
@@ -166,7 +168,7 @@ block content
                             div.col-xs-1.text-align-right
                                 label= index + 1
                             div.col-xs-2
-                                div= val.teamName
+                                div= (val.eliminated ? '(E) ' : '') + val.teamName
                                 button.UpdateTeam.btn.btn-primary.btn-xs(value=val._id) Update
                             div.col-xs-9
                                 div.row

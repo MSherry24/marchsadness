@@ -20,20 +20,21 @@ block content
                     button#save.btn.btn-success.btn(value= team._id, data-bind="click: addTeam") Save Changes
                     button#saving.btn.btn-success.btn.disabled Saving
                 br
+
                 div.row(role="tabpanel")
                     ul#roundTabs.nav.nav-tabs(role="tablist")
                         li#r1tab.active(role="presentation")
-                            a(href="#Round1", aria-controls="home", role="tab", data-toggle="tab") Round 1
+                            a(href="#Round1", aria-controls="home", role="tab", data-toggle="tab")= 'Round 1 ' + (config.roundStarted.round1 ? '(L)' : '')
                         li#r2tab(role="presentation")
-                            a(href="#Round2", aria-controls="profile", role="tab", data-toggle="tab") Round 2
+                            a(href="#Round2", aria-controls="profile", role="tab", data-toggle="tab")= 'Round 2 ' + (config.roundStarted.round2 ? '(L)' : '')
                         li#r3tab(role="presentation")
-                            a(href="#Round3", aria-controls="messages", role="tab", data-toggle="tab") Round 3
+                            a(href="#Round3", aria-controls="messages", role="tab", data-toggle="tab")= 'Round 3 ' + (config.roundStarted.round3 ? '(L)' : '')
                         li#r4tab(role="presentation")
-                            a(href="#Round4", aria-controls="settings", role="tab", data-toggle="tab") Round 4
+                            a(href="#Round4", aria-controls="settings", role="tab", data-toggle="tab")= 'Round 4 ' + (config.roundStarted.round4 ? '(L)' : '')
                         li#r5tab(role="presentation")
-                            a(href="#Round5", aria-controls="settings", role="tab", data-toggle="tab") Round 5
+                            a(href="#Round5", aria-controls="settings", role="tab", data-toggle="tab")= 'Round 5 ' + (config.roundStarted.round5 ? '(L)' : '')
                         li#r6tab(role="presentation")
-                            a(href="#Round6", aria-controls="settings", role="tab", data-toggle="tab") Round 6
+                            a(href="#Round6", aria-controls="settings", role="tab", data-toggle="tab")= 'Round 6 ' + (config.roundStarted.round6 ? '(L)' : '')
                     br
                     div.tab-content
                         div.tab-pane.active(role="tabpanel",id="Round1")
@@ -41,20 +42,23 @@ block content
                                 div.row.text-center(data-bind="foreach: round1picks")
                                     div.col-xs-2
                                         h4.col-xs-10(data-bind="text: name")
-                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                        if(!config.roundStarted.round1)
+                                            button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                         div.tab-pane(role="tabpanel", id="Round2")
                             div.container
                                 div.row.text-center(data-bind="foreach: round2picks")
                                     div.col-xs-2
                                         h4.col-xs-10(data-bind="text: name")
-                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                        if(!config.roundStarted.round2)
+                                            button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                         div.tab-pane(role="tabpanel", id="Round3")
                             div.container
                                 div.row.text-center(data-bind="foreach: round3picks")
                                     div.col-xs-1
                                     div.col-xs-2
                                         h4.col-xs-10(data-bind="text: name")
-                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                        if(!config.roundStarted.round3)
+                                            button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                                     div.col-xs-1
                         div.tab-pane(role="tabpanel", id="Round4")
                             div.container
@@ -62,7 +66,8 @@ block content
                                     div.col-xs-1
                                     div.col-xs-2
                                         h4.col-xs-10(data-bind="text: name")
-                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                        if(!config.roundStarted.round4)
+                                            button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                                     div.col-xs-1
                         div.tab-pane(role="tabpanel", id="Round5")
                             div.container
@@ -70,7 +75,8 @@ block content
                                     div.col-xs-5
                                     div.col-xs-2
                                         h4.col-xs-10(data-bind="text: name")
-                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                        if(!config.roundStarted.round5)
+                                            button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                                     div.col-xs-5
                         div.tab-pane(role="tabpanel", id="Round6")
                             div.container
@@ -78,51 +84,75 @@ block content
                                     div.col-xs-5
                                     div.col-xs-2
                                         h4.col-xs-10(data-bind="text: name")
-                                        button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
+                                        if(!config.roundStarted.round6)
+                                            button.col-xs-2.btn.btn-warning.btn-xs(data-bind="click: $parent.popTeam") x
                                     div.col-xs-5
                 hr
                 div.container
+
+                    br
                     div.row
                         div.col-xs-3(data-bind="foreach: midwestTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                         div.col-xs-3(data-bind="foreach: southTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                         div.col-xs-3(data-bind="foreach: eastTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                         div.col-xs-3(data-bind="foreach: westTeams")
-                            div.row(data-bind="if: notSelected()")
+                            div.row(data-bind="if: notSelected() && !eliminated")
                                 button.col-xs-1.btn.btn-primary.btn-xs(data-bind="click: $parent.pushTeam" ) +
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
-                            div.row(data-bind="if: !notSelected()")
+                            div.row(data-bind="if: !notSelected() && !eliminated")
                                 button.disabled.col-xs-1.btn.btn-xs +
+                                div.col-xs-2(data-bind="text: seed")
+                                div.col-xs-9(data-bind="text: name")
+                            div.row(data-bind="if: eliminated")
+                                button.disabled.col-xs-1.btn.btn-xs E
                                 div.col-xs-2(data-bind="text: seed")
                                 div.col-xs-9(data-bind="text: name")
                             br
                 br
+                div.row.text-center
+                    div.col-xs-6
+                        p (L) Selections are locked at the start of each round.
+                    div.col-xs-6
+                        p (E) Team has been eliminated from the tournament.
 
 

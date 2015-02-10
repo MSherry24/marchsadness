@@ -40,7 +40,8 @@ block content
                                 each team, i in teams
                                     tr
                                         td.text-center= i + 1
-                                        td.text-center= team.name
+                                        td.text-center
+                                            a(href="/marchsadness/viewsingleteam/" + team._id)= team.name
                                         td.text-right= team.scores.round1
                                         td.text-right= team.scores.round2
                                         td.text-right= team.scores.round3

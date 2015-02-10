@@ -13,8 +13,8 @@ var UpdateTeam = function() {
     var scores, req, rounds, shotTypes;
     req = {};
     scores = {};
-    rounds = ['1','2','3','4','5','6'];
-    shotTypes = ['3','2','FT'];
+    rounds = ['1', '2', '3', '4', '5', '6'];
+    shotTypes = ['3', '2', 'FT'];
 
     rounds.map(function (round) {
         scores['round' + round] = {};
@@ -23,6 +23,7 @@ var UpdateTeam = function() {
             scores['round' + round]['missed' + shotType] = $(pageIndex).val();
         });
     });
+    req.eliminated = $('#eliminated').is(':checked');
     req.scores = scores;
     $.post("/marchsadness/admin/updateSingleTeam/" + event.target.value, req, redirect());
 

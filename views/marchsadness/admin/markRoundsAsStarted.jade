@@ -1,0 +1,25 @@
+extends msAdminLayout
+block content
+    script(src="../../javascripts/marchSadness/admin/markRoundsAsStarted.js")
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center Admin - Mark Rounds as Started
+    div.container
+        div.row.text-center
+            button#UpdateRounds.btn.btn-primary Save Changes
+        br
+        br
+        div.row
+            div.col-xs-4
+            div.col-xs-4
+                div.table-responsive
+                    table.table
+                        tbody
+                            each round, index in config
+                                tr.h3.text-left
+                                    td='Round ' + (index + 1) + ' Started'
+                                    td
+                                        input(id="round"+(index+1), type="checkbox", checked=(round ? "checked" : undefined))
+            div.col-xs-4

@@ -102,6 +102,36 @@ router.post('/admin/updateSingleTeam/:teamId', authMain.isAdmin, function (req, 
 });
 
 /*=================================
+ * Mark Rounds as Started
+ *=================================*/
+router.get('/admin/markRoundsAsStarted', authMain.isAdmin, function (req, res) {
+    "use strict";
+    var rounds;
+    msModel.MsConfig.findOne({}, function (err, config) {
+        rounds = [
+            config.roundStarted.round1,
+            config.roundStarted.round2,
+            config.roundStarted.round3,
+            config.roundStarted.round4,
+            config.roundStarted.round5,
+            config.roundStarted.round6
+        ];
+        if (err) {
+            res.status(404).end();
+        } else {
+            res.render('marchsadness/admin/markRoundsAsStarted', {
+                config: rounds,
+                user: req.user
+            });
+        }
+    });
+});
+
+router.post('/admin/markRoundsAsStarted', authMain.isAdmin, function (req, res) {
+    msAdminControl.markRoundsAsStarted(req, res);
+});
+
+/*=================================
  * View All User's Teams
  *=================================*/
 router.get('/viewmyteams', authMain.isLoggedIn, function (req, res) {
