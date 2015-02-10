@@ -1,3 +1,28 @@
-//
-   Created by MSherry on 2/10/2015.
-
+extends msAdminLayout
+block content
+    link(rel='stylesheet', href='/stylesheets/kendo/kendo.default.min.css')
+    script(src='/javascripts/kendo/kendo.list.min.js')
+    script(src='/javascripts/kendo/kendo.combobox.min.js')
+    script(src='/javascripts/kendo/kendo.dropdownlist.min.js')
+    script(src='/javascripts/kendo/kendo.userevents.min.js')
+    script(src='/javascripts/kendo/kendo.draganddrop.min.js')
+    script(src='/javascripts/kendo/kendo.window.min.js')
+    script(src='/javascripts/kendo/kendo.slider.min.js')
+    script(src='/javascripts/kendo/kendo.colorpicker.min.js')
+    script(src='/javascripts/kendo/kendo.listview.min.js')
+    script(src='/javascripts/kendo/kendo.upload.min.js')
+    script(src='/javascripts/kendo/kendo.imagebrowser.min.js')
+    script(src='/javascripts/kendo/kendo.editor.min.js')
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center Manage Blog
+    div.container
+        div.row.text-center
+            h2.col-xs-12
+                div.row
+                    label Title
+                    input(type="text")
+                div.row
+                    input#textarea

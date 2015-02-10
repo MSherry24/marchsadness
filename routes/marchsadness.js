@@ -136,7 +136,6 @@ router.post('/admin/markRoundsAsStarted', authMain.isAdmin, function (req, res) 
 /*=================================
  * Manage Blog
  *=================================*/
-
 router.get('/admin/manageBlog', authMain.isAdmin, function (req, res) {
     "use strict";
     var rounds;
@@ -150,6 +149,18 @@ router.get('/admin/manageBlog', authMain.isAdmin, function (req, res) {
             });
         }
     });
+});
+
+/*=================================
+ * Edit/Create Blog Post
+ *=================================*/
+router.get('/admin/blogPost', authMain.isAdmin, function (req, res) {
+    "use strict";
+    if (req.params.postId) {
+
+    } else {
+        res.render('marchsadness/admin/blogPost');
+    }
 });
 
 
