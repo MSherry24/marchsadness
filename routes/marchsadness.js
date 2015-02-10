@@ -4,11 +4,13 @@
 var express = require('express');
 var router = express.Router();
 var msModel = require('../models/marchSadnessModel');
+var blog = require('../models/blogModel');
 var msAdminControl = require('../controllers/marchSadness/msAdmin');
 var msUserControl = require('../controllers/marchSadness/msUserControl');
 var authMain = require('../controllers/auth/authMain');
 
 
+/********************************************** ADMIN CODE ***************************************/
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('marchsadness/marchsadnesshome',
@@ -131,6 +133,27 @@ router.post('/admin/markRoundsAsStarted', authMain.isAdmin, function (req, res) 
     msAdminControl.markRoundsAsStarted(req, res);
 });
 
+/*=================================
+ * Manage Blog
+ *=================================*/
+
+router.get('/admin/manageBlog', authMain.isAdmin, function (req, res) {
+    "use strict";
+    var rounds;
+    blog.BlogPost.find({}, function (err, blogPosts) {
+        if (err) {
+            res.status(404).end();
+        } else {
+            res.render('marchsadness/admin/manageBlog', {
+                blogPosts: blogPosts,
+                user: req.user
+            });
+        }
+    });
+});
+
+
+/********************************************** USER CODE ***************************************/
 /*=================================
  * View All User's Teams
  *=================================*/
