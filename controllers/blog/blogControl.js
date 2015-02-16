@@ -11,7 +11,7 @@ var getTimeStamp = function () {
         month = date.getMonth() + 1,
         day = date.getDate(),
         year = date.getFullYear(),
-        hour = date.getHours(),
+        hour = date.getHours() - 6,
         minute = date.getMinutes();
     if (minute < 10) {
         minute = '0' + minute;
