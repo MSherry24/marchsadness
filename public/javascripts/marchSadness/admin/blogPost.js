@@ -9,13 +9,13 @@ var submitPost = function () {
     req.postId = $("#SubmitButton").val();
     $("#SubmitButton").addClass('disabled');
     $("#SubmitButton").html('Saving');
-    $.post("/marchsadness/admin/blogpost", req,
+    $.post("/marchsadness/admin/blogPost", req,
         function () {
             window.location.replace("/marchsadness/admin/manageBlog");
         });
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
     // create Editor from textarea HTML element with default set of tools
     $("#textarea").jqte();
     $("#SubmitButton").on('click', submitPost);
