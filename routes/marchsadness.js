@@ -13,11 +13,25 @@ var authMain = require('../controllers/auth/authMain');
 /********************************************** ADMIN CODE ***************************************/
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('marchsadness/marchsadnesshome',
+    "use strict";
+    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(2).exec(function (err, topTeams) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('marchsadness/marchsadnesshome',
+            {
+                title: 'March Sadness',
+                user: req.user,
+                topTeams: topTeams,
+                message: req.flash('TeamDoesNotExist')
+            });
+    });
+});
+
+router.get('/rules', function(req, res) {
+    res.render('marchsadness/rules',
         {
-            title: 'March Sadness',
-            user : req.user,
-            message: req.flash('TeamDoesNotExist')
+            user : req.user
         });
 });
 

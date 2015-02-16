@@ -2,26 +2,12 @@ extends marchsadnesslayout
 block content
     div(class="container")
         div.jumbotron.text-center
-            br
-            if (!user)
-                h1
-                    span.fa.fa-lock Login or Signup
-                p Login or Register with:
-                a(href="/users/login", class="btn btn-default")
-                    span.fa.fa-user Login
-                a(href="/users/signup", class="btn btn-default")
-                    span(class="fa fa-user") Signup
-            if (user)
-                h1
-                    span.fa.fa-lock Welcome to March Sadness
-                p From here you can:
-                a(href="/marchsadness/viewmyteams", class="btn btn-default")
-                    span.fa.fa-user View My Teams
-                a(href="/marchsadness/createnewteam", class="btn btn-default")
-                    span(class="fa fa-user") Create a Team
-                a(href="/marchsadness/viewmyleagues", class="btn btn-default")
-                    span(class="fa fa-user") View my Leagues
-                a(href="/marchsadness/createnewleague", class="btn btn-default")
-                    span(class="fa fa-user") Create a League
-                a(href="/marchsadness/joinaleague", class="btn btn-default")
-                    span(class="fa fa-user") Join a League
+            div.row
+                h1 March Sadness
+                p.h6 March Sadness is that game that challenges you to predict which teams in this year's NCAA Men's Basketball tournament... won't do so hot.
+        div.container
+            div.row
+                div.col-xs-8
+                    include blog
+                div.col-xs-4
+                    include globalRanks

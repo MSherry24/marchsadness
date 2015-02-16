@@ -1,0 +1,15 @@
+//
+   Created by Mike on 2/15/2015.
+div.row.text-center
+    b Top Teams
+div.row
+table.table
+    thead
+        tr
+            th Team
+            th.text-right Score
+    tbody
+        each team, index in topTeams
+            tr
+                td= team.name
+                td.text-right= team.totalScore

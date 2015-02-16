@@ -1,0 +1,80 @@
+extends marchsadnesslayout
+block content
+    div(class="container")
+        div.row.h1.text-center Playing March Sadness
+        div.row
+            div.col-sm-12
+                p.h3 Step 1: Create a Team
+                    div.container
+                        div.row
+                            p Go to the <a href='/marchsadness/createnewteam'>team creation page</a>, enter a team name, and click "Submit". It's as easy as that.
+                p.h3 Step 2: Make Your Picks
+                    div.container
+                        div.row
+                            ul
+                                li Each round, you select eligible NCAA teams to represent your team.
+                                li A team is ineligible for selection if you have selected them in a previous round or if they have been eliminated from the tournament.
+                        div.row
+                            div.col-sm-5
+                                table.table
+                                    thead
+                                        tr
+                                            th Round
+                                            th 1
+                                            th 2
+                                            th 3
+                                            th 4
+                                            th 5
+                                            th 6
+                                    tbody
+                                        tr
+                                            td # of Teams You Select
+                                            td 6
+                                            td 6
+                                            td 3
+                                            td 3
+                                            td 1
+                                            td 1
+                p.h3 Step 3: Score Points
+                    div.container
+                        div.row
+                            ul
+                                li The teams you select each round earn your team points by missing shots.
+                                li The value of a missed shot depends on the type of shot, and the round of the tournament.
+                        div.row
+                            div.col-sm-9
+                                table.table
+                                    thead
+                                        tr
+                                            th.text-center Shot Type
+                                            th.text-center Round 1
+                                            th.text-center Round 2
+                                            th.text-center Round 3
+                                            th.text-center Round 4
+                                            th.text-center Round 5
+                                            th.text-center Round 6
+                                    tbody
+                                        tr
+                                            td.text-center 3 Point Shot
+                                            td.text-center 1
+                                            td.text-center 1
+                                            td.text-center 2
+                                            td.text-center 2
+                                            td.text-center 3
+                                            td.text-center 3
+                                        tr
+                                            td.text-center 2 Point Shot
+                                            td.text-center 2
+                                            td.text-center 2
+                                            td.text-center 4
+                                            td.text-center 4
+                                            td.text-center 6
+                                            td.text-center 6
+                                        tr
+                                            td.text-center Free Throw
+                                            td.text-center 3
+                                            td.text-center 3
+                                            td.text-center 6
+                                            td.text-center 6
+                                            td.text-center 9
+                                            td.text-center 9
