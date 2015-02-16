@@ -9,7 +9,7 @@ exports.isLoggedIn = function(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/marchsadness');
+    res.redirect('/users/login');
 };
 
 exports.isAdmin = function(req, res, next) {
