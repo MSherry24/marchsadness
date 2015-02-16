@@ -2,7 +2,6 @@
  * Created by Mike on 1/22/2015.
  */
 var msModel = require('../../models/marchSadnessModel');
-var Blog = require('../../models/blogModel');
 var User = require('../../models/usermodel');
 
 exports.updateSingleTeam = function (req, res) {
@@ -185,23 +184,5 @@ exports.markRoundsAsStarted = function (req, res) {
                 res.status(200).end();
             }
         });
-    });
-};
-
-exports.postNewBlog = function (req, res) {
-    "use strict";
-
-
-    var newBlog = new Blog.BlogPost({
-        author: req.user.firstName,
-        title: req.body.postTitle,
-        body: req.body.postBody,
-        timestamp: Blog.getTimeStamp()
-    });
-    newBlog.save(function (err) {
-        if (err) {
-            console.log(err);
-        }
-        res.status(200).end();
     });
 };

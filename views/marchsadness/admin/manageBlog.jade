@@ -1,6 +1,6 @@
 extends msAdminLayout
 block content
-    script(src="/javascripts/marchSadness/admin/updateNames.js")
+    script(src="/javascripts/marchSadness/admin/manageBlog.js")
     div(class="jumbotron")
         div(class="container")
             div(class="row")
@@ -19,6 +19,9 @@ block content
                         tbody
                             each post in blogPosts
                                 tr.text-left
-                                    td= post.title
+                                    td
+                                        a(href='/marchsadness/admin/blogPost/' + post._id)= post.title
                                     td= post.author
                                     td= post.timestamp
+                                    td
+                                        button.btn.btn-danger(value=post._id) Delete

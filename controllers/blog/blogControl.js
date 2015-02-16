@@ -4,28 +4,9 @@
 var User = require('../../models/usermodel');
 var Blog = require('../../models/blogModel');
 
-exports.newBlogPost = function(req, res) {
-    User.findById(req.user._id, function (err, user) {
-        var newPost;
-
-        newPost = new Blog.BlogPost ({
-            title: req.body.title,
-            body: req.body.body,
-            author: user.firstName,
-            timeStamp: this.getTimeStamp()
-        });
-        newPost.save(function(err) {
-            if (err) {
-                console.log('blog save error:' + err);
-            }
-            res.status(500).end();
-        })
-    })
-};
-
-var getTimeStamp = function () {
-    var
-        date = new Date(),
+var getTimeStamp = function() {
+    "use strict";
+    var date = new Date(),
         ampm = 'am',
         month = date.getMonth() + 1,
         day = date.getDate(),
@@ -33,10 +14,60 @@ var getTimeStamp = function () {
         hour = date.getHours(),
         minute = date.getMinutes();
     date.setHours(date.getHours() - 5);
+    if (hour >= 12) {
+        ampm = 'pm';
+    }
     if (hour === 0) { hour = 12; }
     if (hour > 12) {
         hour = hour - 12;
-        ampm = 'pm';
     }
-    return month + '/' + day + '/' + year + ' (' + hour + ':' + minute + ampm + '): ';
-}
+    return month + '/' + day + '/' + year + ' (' + hour + ':' + minute + ampm + ' CST) ';
+};
+
+exports.deletePost = function (req, res) {
+    "use strict";
+    Blog.BlogPost.findOne({"_id" : req.body.postId}, function (err, post) {
+        if (err) {
+            console.log(err);
+        }
+        if (post) {
+            post.remove(function (err) {
+                if (err) {
+                    console.log(err);
+                    res.status(500).end();
+                }
+                res.status(200).end();
+            });
+        }
+    });
+};
+
+exports.editPost = function (req, res) {
+    "use strict";
+    Blog.BlogPost.update({"_id": req.body.postId}, {
+        title: req.body.postTitle,
+        body: req.body.postBody
+    }, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        }
+        res.status(200).end();
+    });
+};
+
+exports.postNewBlog = function (req, res) {
+    "use strict";
+    var newBlog = new Blog.BlogPost({
+        author: req.user.firstName,
+        title: req.body.postTitle,
+        body: req.body.postBody,
+        timestamp: this.getTimeStamp()
+    });
+    newBlog.save(function (err) {
+        if (err) {
+            console.log(err);
+        }
+        res.status(200).end();
+    });
+};

@@ -2,13 +2,13 @@
  * Created by mikesherry24 on 9/13/14.
  */
 
-var submitPost = function() {
-    var req = {};
+var submitPost = function () {
+    var url, req = {};
     req.postBody = $('#textarea').val();
     req.postTitle = $('#title').val();
+    req.postId = $("#SubmitButton").val();
     $("#SubmitButton").addClass('disabled');
     $("#SubmitButton").html('Saving');
-
     $.post("/marchsadness/admin/blogpost", req,
         function () {
             window.location.replace("/marchsadness/admin/manageBlog");

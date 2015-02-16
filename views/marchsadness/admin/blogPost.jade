@@ -8,14 +8,23 @@ block content
             div(class="container")
                 div(class="row")
                     div(class="col-xs-12")
-                        h1.text-center Manage Blog
+                        h1.text-center Blog Post
         div.container
             div.row
                 h2.col-xs-12
                     div.row
                         label= 'Title: '
-                        input#title(type="text")
+                        if (post)
+                            input#title(type="text", value= post.title)
+                        else
+                            input#title(type="text")
                     div.row
+                    if (post)
+                        input#textarea(value= post.body)
+                    else
                         input#textarea
                     div.row.text-right
-                        button#SubmitButton.btn.btn-default.btn-primary Submit
+                        if (post)
+                            button#SubmitButton.btn.btn-default.btn-primary(value=post._id) Submit
+                        else
+                            button#SubmitButton.btn.btn-default.btn-primary Submit

@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var msModel = require('../models/marchSadnessModel');
 var blog = require('../models/blogModel');
+var blogControl = require('../controllers/blog/blogControl');
 var msAdminControl = require('../controllers/marchSadness/msAdmin');
 var msUserControl = require('../controllers/marchSadness/msUserControl');
 var authMain = require('../controllers/auth/authMain');
@@ -159,7 +160,7 @@ router.post('/admin/markRoundsAsStarted', authMain.isAdmin, function (req, res) 
 router.get('/admin/manageBlog', authMain.isAdmin, function (req, res) {
     "use strict";
     var rounds;
-    blog.BlogPost.find({}, function (err, blogPosts) {
+    blog.BlogPost.find({}).sort({timestamp: -1}).exec(function (err, blogPosts) {
         if (err) {
             res.status(404).end();
         } else {
@@ -176,20 +177,36 @@ router.get('/admin/manageBlog', authMain.isAdmin, function (req, res) {
  *=================================*/
 router.get('/admin/blogPost', authMain.isAdmin, function (req, res) {
     "use strict";
-    if (req.params.postId) {
+    res.render('marchsadness/admin/blogPost', {
+        user: req.user
+    });
+});
 
-    } else {
-        res.render('marchsadness/admin/blogPost');
-    }
+router.get('/admin/blogPost/:postId', authMain.isAdmin, function (req, res) {
+    "use strict";
+    blog.BlogPost.findOne({"_id": req.params.postId}, function (err, post) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('marchsadness/admin/blogPost', {
+            user: req.user,
+            post: post
+        });
+    });
 });
 
 router.post('/admin/blogPost', authMain.isAdmin, function (req, res) {
     "use strict";
-    if (req.params.postId) {
-
+    if (req.body.postId) {
+        blogControl.editPost(req, res);
     } else {
-        msAdminControl.postNewBlog(req, res);
+        blogControl.postNewBlog(req, res);
     }
+});
+
+router.post('/admin/deletePost', authMain.isAdmin, function (req, res) {
+    "use strict";
+    blogControl.deletePost(req, res);
 });
 
 /********************************************** USER CODE ***************************************/
