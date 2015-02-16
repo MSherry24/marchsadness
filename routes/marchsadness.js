@@ -18,13 +18,19 @@ router.get('/', function(req, res) {
         if (err) {
             console.log(err);
         }
-        res.render('marchsadness/marchsadnesshome',
-            {
-                title: 'March Sadness',
-                user: req.user,
-                topTeams: topTeams,
-                message: req.flash('TeamDoesNotExist')
-            });
+        blog.BlogPost.find({}).limit(5).sort({timestamp: -1}).exec(function (err, blogPosts) {
+            if (err) {
+                console.log(err);
+            }
+            res.render('marchsadness/marchsadnesshome',
+                {
+                    title: 'March Sadness',
+                    user: req.user,
+                    topTeams: topTeams,
+                    blogPosts: blogPosts,
+                    message: req.flash('TeamDoesNotExist')
+                });
+        });
     });
 });
 
@@ -177,6 +183,14 @@ router.get('/admin/blogPost', authMain.isAdmin, function (req, res) {
     }
 });
 
+router.post('/admin/blogPost', authMain.isAdmin, function (req, res) {
+    "use strict";
+    if (req.params.postId) {
+
+    } else {
+        msAdminControl.postNewBlog(req, res);
+    }
+});
 
 /********************************************** USER CODE ***************************************/
 /*=================================

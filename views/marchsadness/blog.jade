@@ -1,4 +1,8 @@
 //
    Created by Mike on 2/15/2015.
-div.row.text-center
-    b Blog
+div.container
+    each post, index in blogPosts
+        div.row
+            h2= post.title
+            p= "By: " + post.author + ' ' + post.timestamp
+            div!= post.body

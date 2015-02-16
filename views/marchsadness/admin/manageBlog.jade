@@ -12,13 +12,13 @@ block content
                 div.row
                     table.table.table-striped
                         thead
-                            tr
-                                th Timestamp
-                                th Author
+                            tr.text-left
                                 th Title
+                                th Author
+                                th Timestamp
                         tbody
                             each post in blogPosts
-                                tr
-                                    td= post.timestamp
-                                    td= post.author
+                                tr.text-left
                                     td= post.title
+                                    td= post.author
+                                    td= post.timestamp

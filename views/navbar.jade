@@ -1,27 +1,44 @@
 nav(class="navbar navbar-inverse navbar-fixed-top")
-   div(class="container")
-      div(class="navbar-header")
-         button(type="button", class="navbar-toggle collapsed", data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
-            span(class="sr-only") Toggle navigation
-            span(class="icon-bar")
-            span(class="icon-bar")
-            span(class="icon-bar")
-         a(href="#", class="navbar-brand") Failure League
-      div(id="navbar", class="collapse navbar-collapse")
-         ul(class="nav navbar-nav")
-            li
-                a(href="/marchsadness") March Sadness
-         ul.nav.navbar-nav.pull-right
-             if (user && user.isAdmin)
-                 li
-                     a(href="/marchsadness/admin/updateNames") Admin
-             if (!user)
-                 li
-                     a(href="/users/login") Login Here
-             if (user)
-                 li
-                     a(href="/users/profile") Profile
-                 li
-                     a(href="/users/logout") Logout
-
+    div(class="container")
+        div.navbar.navbar-fixed-top
+            div.navbar-inner
+                div.container
+                    ul.nav.navbar-nav
+                        li.active
+                            a.navbar-brand(href="/") Failure League
+                        li.dropdown
+                            a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false") March Sadness
+                                span.caret
+                            ul.dropdown-menu(role="menu")
+                                li
+                                    a(href="/marchsadness") Home
+                                li
+                                    a(href="/marchsadness/Rules") Rules
+                                if (user)
+                                    li
+                                        a(href="/marchsadness/viewMyTeams") View My Teams
+                                    li
+                                        a(href="/marchsadness/createnewteam") Create New Team
+                                    li
+                                        a(href="/marchsadness/viewMyLeagues") View My Leagues
+                                    li
+                                        a(href="/marchsadness/createnewleague") Create New League
+                                    li
+                                        a(href="/marchsadness/joinALeague") Join A League
+                    ul.nav.navbar-nav.pull-right
+                        if (user && user.isAdmin)
+                            li.dropdown
+                                a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false") Admin
+                                    span.caret
+                                ul.dropdown-menu(role="menu")
+                                    li
+                                        a(href="/marchsadness/admin") Home
+                        if (!user)
+                            li
+                                a(href="/users/login") Login Here
+                        if (user)
+                            li
+                                a(href="/users/profile") Profile
+                            li
+                                a(href="/users/logout") Logout
 <!--/.nav-collapse -->
