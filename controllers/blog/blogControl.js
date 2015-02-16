@@ -13,7 +13,9 @@ var getTimeStamp = function () {
         year = date.getFullYear(),
         hour = date.getHours(),
         minute = date.getMinutes();
-    date.setHours(date.getHours() - 5);
+    if (minute < 10) {
+        minute = '0' + minute;
+    }
     if (hour >= 12) {
         ampm = 'pm';
     }
