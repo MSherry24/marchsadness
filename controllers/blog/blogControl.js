@@ -4,7 +4,7 @@
 var User = require('../../models/usermodel');
 var Blog = require('../../models/blogModel');
 
-var getTimeStamp = function() {
+var getTimeStamp = function () {
     "use strict";
     var date = new Date(),
         ampm = 'am',
@@ -62,7 +62,7 @@ exports.postNewBlog = function (req, res) {
         author: req.user.firstName,
         title: req.body.postTitle,
         body: req.body.postBody,
-        timestamp: this.getTimeStamp()
+        timestamp: getTimeStamp()
     });
     newBlog.save(function (err) {
         if (err) {
