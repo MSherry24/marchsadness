@@ -8,11 +8,17 @@ var getTimeStamp = function () {
     "use strict";
     var date = new Date(),
         ampm = 'am',
-        month = date.getMonth() + 1,
-        day = date.getDate(),
-        year = date.getFullYear(),
-        hour = date.getHours() - 6,
-        minute = date.getMinutes();
+        month,
+        day,
+        year,
+        hour,
+        minute;
+    date.setHours(date.getHours() - 5);
+    month = date.getMonth() + 1;
+    day = date.getDate();
+    year = date.getFullYear();
+    hour = date.getHours() - 6;
+    minute = date.getMinutes();
     if (minute < 10) {
         minute = '0' + minute;
     }
