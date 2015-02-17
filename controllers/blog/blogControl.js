@@ -13,11 +13,11 @@ var getTimeStamp = function () {
         year,
         hour,
         minute;
-    date.setHours(date.getHours() - 5);
+    date.setHours(date.getHours() - 6);
     month = date.getMonth() + 1;
     day = date.getDate();
     year = date.getFullYear();
-    hour = date.getHours() - 6;
+    hour = date.getHours();
     minute = date.getMinutes();
     if (minute < 10) {
         minute = '0' + minute;
