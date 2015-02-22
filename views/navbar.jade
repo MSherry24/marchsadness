@@ -43,12 +43,15 @@ nav(class="navbar navbar-inverse navbar-fixed-top")
                                         a(href="/marchsadness/admin/manageBlog") Manage Blog
                                     li
                                         a(href="/marchsadness/admin/blogPost") New Blog Post
-                        if (!user)
-                            li
-                                a(href="/users/login") Login Here
                         if (user)
                             li
                                 a(href="/users/profile") Profile
+                        li
+                            a(href="/contact") Contact Us
+                        if (user)
                             li
                                 a(href="/users/logout") Logout
+                        if (!user)
+                            li
+                                a(href="/users/login") Login Here
 <!--/.nav-collapse -->

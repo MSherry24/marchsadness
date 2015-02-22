@@ -1,0 +1,37 @@
+extends layout
+block content
+    script(type="text/javascript", src="../javascripts/contact.js")
+    div.container
+        div.page-header.text-center
+            h1
+                span.fa.fa-anchor Contact Us
+        div.row
+            p What is the purpose of your message?
+            div.dropdown
+                button.btn.btn-default.dropdown-toggle(type="button", id="dropdownMenu1", data-toggle="dropdown", aria-expanded="true")= "Make a Selection  "
+                    span.caret
+                ul(class="dropdown-menu", role="menu", aria-labelledby="dropdownMenu1")
+                    li(role="presentation")
+                        a.dropdown-select(value='1', role="menuitem", tabindex="-1", href="#")
+                            div(value='1') Report a Bug
+                    li(role="presentation")
+                        a.dropdown-select(value='2', role="menuitem", tabindex="-1", href="#")
+                            div(value='2') Customer Support
+                    li(role="presentation")
+                        a.dropdown-select(value='3', role="menuitem", tabindex="-1", href="#")
+                            div(value='3') Make a Suggestion
+                    li(role="presentation")
+                        a.dropdown-select(value='4', role="menuitem", tabindex="-1", href="#")
+                            div(value='4') Just Say Hello
+        br
+        div.row
+            form
+                div.form-group
+                    label(for="email") Your Email Address
+                    input(type="email")#email.form-control
+                div.form-group
+                    label(for="textArea") Your Message
+                    textarea#message.form-control(rows="10")
+            div.text-center
+                button#submitButton.btn.btn-default.btn-primary(type="submit") Send Message
+
