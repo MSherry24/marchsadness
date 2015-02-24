@@ -1,0 +1,54 @@
+.fl-text-green {
+    color: #457932;
+}
+
+.fl-text-light-green {
+    color: #A2BC98;
+}
+
+.fl-text-gray {
+    color: #656565;
+}
+
+.fl-text-light-gray {
+    color: #999999;
+}
+
+.fl-text-brown {
+    color: #754C29;
+}
+
+.fl-text-yellow {
+    color: #E0AD40;
+}
+
+.fl-background-green {
+    color: #457932;
+}
+
+.fl-background-light-gray {
+    background-color: #A2BC98;
+}
+
+.fl-background-gray {
+    background-color: #656565;
+}
+
+.fl-background-light-gray {
+    background-color: #999999;
+}
+
+.fl-background-brown {
+    background-color: #754C29;
+}
+
+.fl-background-yellow {
+    background-color: #E0AD40;
+}
+
+.fl-font-regular {
+    font-family: "Roboto";
+    font-style: normal;
+}
+
+

@@ -61,6 +61,7 @@ var teamSchema = new mongoose.Schema({
 });
 
 var leagueSchema = new mongoose.Schema({
+    leagueNumber: Number,
     manager: [{type: mongoose.Schema.ObjectId, ref: 'Users'}],
     name: String,
     password: String,

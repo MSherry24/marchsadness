@@ -1,0 +1,54 @@
+.ms-text-orange {
+    color: #F05928;
+}
+
+.ms-text-light-orange {
+    color: #F7AC93;
+}
+
+.ms-text-gray {
+    color: #656565;
+}
+
+.ms-text-light-gray {
+    color: #999999;
+}
+
+.ms-text-black {
+    color: #000000;
+}
+
+.ms-text-yellow {
+    color: #656565;
+}
+
+.ms-background-orange {
+    color: #F05928;
+}
+
+.ms-background-light-orange {
+    background-color: #F7AC93;
+}
+
+.ms-background-gray {
+    background-color: #656565;
+}
+
+.ms-background-light-gray {
+    background-color: #999999;
+}
+
+.ms-background-black {
+    background-color: #000000;
+}
+
+.ms-background-yellow {
+    background-color: #656565;
+}
+
+.ms-font-regular {
+    font-family: "Roboto";
+    font-style: normal;
+}
+
+

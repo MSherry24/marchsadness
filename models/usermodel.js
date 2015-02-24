@@ -9,7 +9,8 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     okToEmail: Boolean,
-    isAdmin: Boolean
+    isAdmin: Boolean,
+    passwordReset: String
 });
 
 // methods ======================
