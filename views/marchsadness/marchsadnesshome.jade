@@ -1,14 +1,12 @@
 extends marchsadnesslayout
 block content
-    div(class="container")
-        div.jumbotron.text-center
-            div.row
-                h1 March Sadness
-                p.h6 March Sadness is that game that challenges you to predict which teams in this year's NCAA Men's Basketball tournament... won't do so hot.
-                p Check out our <a href="/marchsadness/rules">rules</a> page for more details.
-        div.container
-            div.row
-                div.col-xs-8
-                    include blog
-                div.col-xs-4
-                    include globalRanks
+    div.jumbotron.text-center
+        div.row
+            h1 March Sadness
+            p.h6 March Sadness is that game that challenges you to predict which teams in this year's NCAA Men's Basketball tournament... won't do so hot.
+            p Check out our <a href="/marchsadness/rules">rules</a> page for more details.
+    div.row
+        div.col-xs-8
+            include blog
+        div.col-xs-4
+            include globalRanks
