@@ -211,6 +211,14 @@ router.post('/admin/deletePost', authMain.isAdmin, function (req, res) {
 
 /********************************************** USER CODE ***************************************/
 /*=================================
+ * User Index
+ *=================================*/
+router.get('/index', authMain.isLoggedIn, function (req, res) {
+    "use strict";
+    msUserControl.getIndex(req, res);
+});
+
+/*=================================
  * View All User's Teams
  *=================================*/
 router.get('/viewmyteams', authMain.isLoggedIn, function (req, res) {

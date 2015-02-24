@@ -2,8 +2,20 @@
    Created by Mike on 2/23/2015.
 div.continter
     div.row
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elit turpis, rutrum non aliquam nec, fermentum ut mi. Aliquam erat volutpat. Maecenas gravida arcu pretium ligula porta volutpat eu nec ante. Fusce sapien eros, porta nec hendrerit ut, pellentesque eget sem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed porttitor finibus euismod. Integer blandit et metus quis varius. Quisque auctor porttitor blandit. Nunc vel odio accumsan, hendrerit est non, placerat mi. Donec lacus mauris, iaculis eu cursus vitae, ultricies eu quam.
-        p Donec ut ligula metus. In condimentum pretium massa, sit amet egestas nulla placerat eu. Sed id ex hendrerit, bibendum nulla ultrices, molestie massa. Quisque nisi eros, auctor at libero eget, eleifend sodales lorem. Donec quis nulla tortor. Nulla tempus dignissim nulla, sit amet scelerisque mauris fermentum et. Nam ultricies pulvinar velit. Duis maximus, magna a auctor commodo, turpis diam ornare velit, sagittis commodo nisl turpis et libero. Phasellus sit amet cursus augue.
-        p Proin ornare consequat odio, a tincidunt elit pharetra eu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec vestibulum, massa in vulputate scelerisque, sem quam efficitur sapien, ut vestibulum est magna quis mi. Praesent cursus accumsan tellus, in varius mi mollis eget. Donec eget eros sed mauris vestibulum tempus sed a elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur finibus ante ac volutpat ultricies.
-        p Quisque ante justo, lacinia vel maximus ut, viverra vitae felis. Sed finibus commodo lacus, quis ultrices nibh lacinia vel. Nulla vitae feugiat erat. Nullam ac hendrerit urna. Donec varius, diam eget luctus pharetra, augue massa aliquet orci, pharetra semper purus mauris sit amet arcu. Quisque ac felis finibus ante facilisis feugiat. Ut iaculis consequat neque sed rhoncus. Duis cursus ante ac mi pretium, in tincidunt sapien tincidunt.
-        p In et erat commodo, vestibulum risus vitae, convallis erat. Mauris scelerisque varius pretium. Nulla quis efficitur augue, ac sagittis lorem. Maecenas non tellus sed arcu pellentesque posuere. Ut ut efficitur leo. Nulla lobortis ante ac lacus ornare, eget iaculis lacus semper. Nullam aliquam lorem malesuada dignissim sollicitudin.
+        h3 My Ballots
+        if (teams)
+            ul
+                for team, index in teams
+                    li
+                        a(href="/marchsadness/viewSingleTeam/" + team._id)= team.name
+        else
+            input(type="submit" value="Create a Team" onclick="window.location='/marchsadness/createnewteam';")
+        hr
+        h3 My Leagues
+        if (leagues)
+            ul
+                for league, index in leagues
+                    li
+                        a(href="/marchsadness/viewSingleLeague/" + league._id)= league.name
+        else
+            input(type="submit" value="Join a League" onclick="window.location='/marchsadness/joinaleague';")

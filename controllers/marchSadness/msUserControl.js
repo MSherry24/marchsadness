@@ -7,6 +7,26 @@ var User = require('../../models/usermodel');
 var bcrypt = require('bcrypt-nodejs');
 
 /*=================================
+ * Get Index
+ *=================================*/
+exports.getIndex = function (req, res) {
+    "use strict";
+    msModel.UserTeam.find({owner: req.user._id}, function (err, teams) {
+        if (!err) {
+            msModel.MsLeague.find({memberTeamOwners: req.user._id}, function (err, leagues) {
+                if (!err) {
+                    res.render('marchsadness/user/index', {
+                        user: req.user,
+                        leagues: leagues,
+                        teams: teams
+                    });
+                }
+            });
+        }
+    });
+};
+
+/*=================================
  * Render page that shows all teams for a single user
  *=================================*/
 exports.getSingleUserTeams = function (req, res) {
