@@ -10,7 +10,7 @@ div.continter
                         a(href="/marchsadness/viewSingleTeam/" + ballot._id)= ballot.name
         else
             input(type="submit" value="Create a Ballot" onclick="window.location='/marchsadness/createnewteam';")
-        hr
+    div.row
         h3 My Leagues
         if (leagues.length > 0)
             ul

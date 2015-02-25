@@ -46,9 +46,19 @@
     background-color: #656565;
 }
 
-.ms-font-regular {
-    font-family: "Roboto";
-    font-style: normal;
+.ms-font-bold {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.ms-font-normal {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.ms-font-title {
+    font-family: 'Corben', Georgia, Times, serif;
+    font-weight: bold;
 }
 
 
