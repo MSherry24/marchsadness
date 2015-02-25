@@ -3,7 +3,7 @@
 div.continter
     div.row
         h3 My Ballots
-        if (ballots)
+        if (ballots.length > 0)
             ul
                 for ballot, index in ballots
                     li
@@ -12,7 +12,7 @@ div.continter
             input(type="submit" value="Create a Ballot" onclick="window.location='/marchsadness/createnewteam';")
         hr
         h3 My Leagues
-        if (leagues)
+        if (leagues.length > 0)
             ul
                 for league, index in leagues
                     li
