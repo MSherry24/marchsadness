@@ -12,11 +12,11 @@ div.table-responsive
                 th Team
                 th Score
         tbody
-            each team, index in teams
+            each ballot, index in ballots
                 tr.h3
                     td
-                        a(href="/marchsadness/viewSingleTeam/" + team._id)
-                            span= team.name
-                    td= team.totalScore
+                        a(href="/marchsadness/viewSingleTeam/" + ballot._id)
+                            span= ballot.name
+                    td= ballot.totalScore
                     td
-                        button.deleteTeam.btn.btn-danger.btn-xs(value= team._id) Delete
+                        button.deleteTeam.btn.btn-danger.btn-xs(value= ballot._id) Delete

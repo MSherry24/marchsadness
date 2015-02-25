@@ -7,41 +7,6 @@ var User = require('../../models/usermodel');
 var bcrypt = require('bcrypt-nodejs');
 
 /*=================================
- * Get Index
- *=================================*/
-exports.getIndex = function (req, res) {
-    "use strict";
-    msModel.UserTeam.find({owner: req.user._id}, function (err, teams) {
-        if (!err) {
-            msModel.MsLeague.find({memberTeamOwners: req.user._id}, function (err, leagues) {
-                if (!err) {
-                    res.render('marchsadness/user/index', {
-                        user: req.user,
-                        leagues: leagues,
-                        teams: teams
-                    });
-                }
-            });
-        }
-    });
-};
-
-/*=================================
- * Render page that shows all teams for a single user
- *=================================*/
-exports.getSingleUserTeams = function (req, res) {
-    "use strict";
-    msModel.UserTeam.find({owner: req.user._id}, function (err, teams) {
-        if (!err) {
-            res.render('marchsadness/user/viewMyTeams', {
-                user: req.user,
-                teams: teams
-            });
-        }
-    });
-};
-
-/*=================================
  * Create a March Sadness Team
  *=================================*/
 exports.createNewTeam = function(req, res) {
@@ -90,9 +55,11 @@ exports.deleteTeam = function (req, res, teamId) {
             console.log('error deleting team');
         } else if (team.owner[0].id !== req.user._id.id) {
                 req.flash('cantdelete', 'You are not authorized to delete that team.');
-                res.render('marchsadness/marchsadnesshome', {
+                res.render('marchsadness/index', {
                     message: req.flash('cantdelete'),
-                    user: req.user
+                    user: req.user,
+                    ballots: req.userBallots,
+                    leagues: req.userLeagues
                 });
         } else {
             team.remove(function(err) {
@@ -147,16 +114,20 @@ exports.getViewSingleTeam = function (req, res, teamId) {
         if (err) {
             console.log('that team does not exist');
             req.flash('Error', 'There has been an error with your request');
-            res.render('marchsadness/marchsadnesshome', {
+            res.render('marchsadness/index', {
                 message: req.flash('Error'),
-                user: req.user
+                user: req.user,
+                ballots: req.userBallots,
+                leagues: req.userLeagues
             });
         } else if (team === null) {
             console.log('that team does not exist');
             req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
-            res.render('marchsadness/marchsadnesshome', {
+            res.render('marchsadness/index', {
                 message: req.flash('TeamDoesNotExist'),
-                user: req.user
+                user: req.user,
+                ballots: req.userBallots,
+                leagues: req.userLeagues
                 });
         } else {
             User.findById(team.owner[0], function (err, owner) {
@@ -173,7 +144,9 @@ exports.getViewSingleTeam = function (req, res, teamId) {
                             team: team,
                             allTourneyTeams: allTourneyTeams,
                             owner: owner,
-                            userIsOwner: req.user._id.id === owner._id.id
+                            userIsOwner: req.user._id.id === owner._id.id,
+                            ballots: req.userBallots,
+                            leagues: req.userLeagues
                         });
                     });
                 });
@@ -195,25 +168,31 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
         });
         if (err) {
             req.flash('Error', 'There has been an error with your request');
-            res.render('marchsadness/marchsadnesshome', {
+            res.render('marchsadness/index', {
                 message: req.flash('Error'),
-                user: req.user
+                user: req.user,
+                ballots: req.userBallots,
+                leagues: req.userLeagues
             });
         }
 
         msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
             if (err) {
                 req.flash('Error', 'There has been an error with your request');
-                res.render('marchsadness/marchsadnesshome', {
+                res.render('marchsadness/index', {
                     message: req.flash('Error'),
-                    user: req.user
+                    user: req.user,
+                    ballots: req.userBallots,
+                    leagues: req.userLeagues
                 });
             } else if (team === null) {
                 console.log('that team does not exist');
                 req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
-                res.render('marchsadness/marchsadnesshome', {
+                res.render('marchsadness/index', {
                     message: req.flash('TeamDoesNotExist'),
-                    user: req.user
+                    user: req.user,
+                    ballots: req.userBallots,
+                    leagues: req.userLeagues
                 });
             } else {
                 msModel.MsConfig.findOne({}, function(err, config) {
@@ -225,7 +204,9 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
                             teamString: JSON.stringify(team),
                             team: team,
                             user: req.user,
-                            owner: team.owner[0].id
+                            owner: team.owner[0].id,
+                            ballots: req.userBallots,
+                            leagues: req.userLeagues
                         });
                     } else {
                         res.status(500).end();
@@ -246,7 +227,9 @@ exports.createNewLeague = function (req, res) {
         manager: req.user._id,
         name: req.body.leaguename,
         password: generateHash(req.body.password),
-        memberTeamOwners: [req.user._id]
+        memberTeamOwners: [req.user._id],
+        ballots: req.userBallots,
+        leagues: req.userLeagues
     });
     newLeague.save(function() {
         res.status(200).redirect('/marchsadness');
@@ -256,26 +239,6 @@ exports.createNewLeague = function (req, res) {
 // generating a hash
  var generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-// checking if password is valid
-var validPassword = function (password) {
-    return bcrypt.compareSync(password, this.local.password);
-};
-
-/*=================================
- * Render page that shows all teams for a single user
- *=================================*/
-exports.getSingleUserLeagues = function (req, res) {
-    "use strict";
-    msModel.MsLeague.find({memberTeamOwners: req.user._id}, function (err, leagues) {
-        if (!err) {
-            res.render('marchsadness/user/viewMyLeagues', {
-                user: req.user,
-                leagues: leagues
-            });
-        }
-    });
 };
 
 /*=================================
@@ -290,16 +253,20 @@ exports.getViewSingleLeague = function (req, res, leagueId, message) {
         if (err) {
             console.log('that league does not exist');
             req.flash('Error', 'There has been an error with your request');
-            res.render('marchsadness/marchsadnesshome', {
+            res.render('marchsadness/index', {
                 message: req.flash('Error'),
-                user: req.user
+                user: req.user,
+                ballots: req.userBallots,
+                leagues: req.userLeagues
             });
         } else if (league === null) {
             console.log('that league does not exist');
             req.flash('LeagueDoesNotExist', 'The league you requested does not exist.');
-            res.render('marchsadness/marchsadnesshome', {
+            res.render('marchsadness/index', {
                 message: req.flash('TeamDoesNotExist'),
-                user: req.user
+                user: req.user,
+                ballots: req.userBallots,
+                leagues: req.userLeagues
             });
         } else {
             msModel.UserTeam.find({leagues: leagueId}, function (err, userTeams) {
@@ -317,7 +284,9 @@ exports.getViewSingleLeague = function (req, res, leagueId, message) {
                     league: league,
                     inLeague: inLeague,
                     leagueManager: leagueManager,
-                    teams: userTeams
+                    teams: userTeams,
+                    ballots: req.userBallots,
+                    leagues: req.userLeagues
                 });
             });
 
@@ -348,7 +317,9 @@ exports.getAddTeamToLeague = function (req, res, leagueId) {
                 res.render('marchsadness/user/addTeamToLeague', {
                     user: req.user,
                     league: league,
-                    teams: teams
+                    teams: teams,
+                    ballots: req.userBallots,
+                    leagues: req.userLeagues
                 });
             } )
         }
@@ -384,7 +355,9 @@ exports.getJoinLeague = function (req, res, leagueId) {
         }
         res.render('marchsadness/user/joinLeague', {
             user: req.user,
-            league: league
+            league: league,
+            ballots: req.userBallots,
+            leagues: req.userLeagues
         });
     })
 };
@@ -395,7 +368,9 @@ exports.getJoinALeague = function (req, res, message) {
     }
     res.render('marchsadness/user/joinLeagueGeneric', {
         user: req.user,
-        message: req.flash('wrongleagueid')
+        message: req.flash('wrongleagueid'),
+        ballots: req.userBallots,
+        leagues: req.userLeagues
     });
 };
 

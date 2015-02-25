@@ -3,13 +3,13 @@
 div.continter
     div.row
         h3 My Ballots
-        if (teams)
+        if (ballots)
             ul
-                for team, index in teams
+                for ballot, index in ballots
                     li
-                        a(href="/marchsadness/viewSingleTeam/" + team._id)= team.name
+                        a(href="/marchsadness/viewSingleTeam/" + ballot._id)= ballot.name
         else
-            input(type="submit" value="Create a Team" onclick="window.location='/marchsadness/createnewteam';")
+            input(type="submit" value="Create a Ballot" onclick="window.location='/marchsadness/createnewteam';")
         hr
         h3 My Leagues
         if (leagues)

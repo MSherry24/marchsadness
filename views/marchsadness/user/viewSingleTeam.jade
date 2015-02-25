@@ -1,46 +1,44 @@
 extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/viewSingleTeam.js")
-    div(class="container")
-        div.jumbotron.text-center
-            br
-            h1
-                span.fa.fa-lock= team.name
-            h3
-                span= "Owner: " + owner.firstName
-    div.container
-        div.row
-            if userIsOwner
-                div.col-xs-12
-                    button#UpdateTeam.btn.btn-primary.text-center(value=team._id) Update Picks
-                    h1.pull-right= "Total Score: " + team.totalScore
-            else
-                div.col-xs-12.text-center
-                    p Other players' picks are not visible until picks lock at the beginning of each round.
-            each round, index in [1,2,3,4,5,6]
-                if(userIsOwner || config.roundStarted['round'+round])
-                    h3.col.xs-12= "Round " + round
-                    div.table-responsive
-                        table.table.table-striped
-                            thead
+    div.jumbotron.text-center
+        br
+        h1
+            span.fa.fa-lock= team.name
+        h3
+            span= "Owner: " + owner.firstName
+    div.row
+        if userIsOwner
+            div.col-xs-12
+                button#UpdateTeam.btn.btn-primary.text-center(value=team._id) Update Picks
+                h1.pull-right= "Total Score: " + team.totalScore
+        else
+            div.col-xs-12.text-center
+                p Other players' picks are not visible until picks lock at the beginning of each round.
+        each round, index in [1,2,3,4,5,6]
+            if(userIsOwner || config.roundStarted['round'+round])
+                h3.col.xs-12= "Round " + round
+                div.table-responsive
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Team
+                                th.text-center Missed 3's
+                                th.text-center Missed 2's
+                                th.text-center Missed FT's
+                                th.text-center Round Score
+                        tbody
+                            each pick in team.rounds['round'+round+'picks']
                                 tr
-                                    th Team
-                                    th.text-center Missed 3's
-                                    th.text-center Missed 2's
-                                    th.text-center Missed FT's
-                                    th.text-center Round Score
-                            tbody
-                                each pick in team.rounds['round'+round+'picks']
-                                    tr
-                                        td= allTourneyTeams[pick].teamName
-                                        td.text-center= allTourneyTeams[pick].scores['round'+round].missed3
-                                        td.text-center= allTourneyTeams[pick].scores['round'+round].missed2
-                                        td.text-center= allTourneyTeams[pick].scores['round'+round].missedFT
-                                        td.text-center= allTourneyTeams[pick].scores['round'+round].score
-                                tr
-                                    td Total Round Score
-                                    td.text-center= ''
-                                    td.text-center= ''
-                                    td.text-center= ''
-                                    td.text-center= team.scores['round' + round]
+                                    td= allTourneyTeams[pick].teamName
+                                    td.text-center= allTourneyTeams[pick].scores['round'+round].missed3
+                                    td.text-center= allTourneyTeams[pick].scores['round'+round].missed2
+                                    td.text-center= allTourneyTeams[pick].scores['round'+round].missedFT
+                                    td.text-center= allTourneyTeams[pick].scores['round'+round].score
+                            tr
+                                td Total Round Score
+                                td.text-center= ''
+                                td.text-center= ''
+                                td.text-center= ''
+                                td.text-center= team.scores['round' + round]
 
