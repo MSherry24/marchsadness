@@ -9,7 +9,7 @@
     box-shadow:         inset  0  10px 10px -10px #696868;
     min-height: 15px;
     background-color: #FFD912;
-    margin-top: -40px;
+    margin-top: -10px;
 }
 #ms-navbar-angle-line-test-orange {
     -webkit-transform: skewY(-2.5deg);
@@ -22,4 +22,16 @@
     box-shadow:         inset  0  10px 10px -10px #696868;
     min-height: 15px;
     background-color: #F05928;
+}
+
+.navbar-inner {
+    min-width: 1000px;
+}
+
+.ms-logo {
+    padding-left: 100px;
+}
+
+.ms-navbar-right {
+    padding-right: 100px;
 }

@@ -2,45 +2,29 @@ link(rel='stylesheet', href='../../stylesheets/msNavbar.css')
 link(rel='stylesheet', href='../../stylesheets/msStyles.css')
 nav.navbar
     div.container-fluid
+        div.navbar-header
+            a(href="/").ms-logo
+                img(src='../images/logo.png')
         div.collapse.navbar-collapse
-            div.navbar-inner
-                div.container
-                    ul.nav.navbar-nav
-                        li
-                            a(href="/")
-                                img(src='../images/logo.png')
-                        li.navbar-brand(style="margin-top: 2%")
-                            a.ms-text-black(href="/about") About
-                        li.navbar-brand(style="margin-top: 2%")
-                            a.ms-text-black(href="/blog") Blog
-                        li.navbar-brand(style="margin-top: 2%")
-                            a.ms-text-black(href="/marchsadness/Rules") Rules
-                    ul.nav.navbar-nav.pull-right
-                        if (user && user.isAdmin)
-                            li.dropdown
-                                a.dropdown-toggle.ms-text-black(href="#", data-toggle="dropdown", role="button", aria-expanded="false") Admin
-                                    span.caret
-                                ul.dropdown-menu(role="menu")
-                                    li
-                                        a(href="/marchsadness/admin") Home
-                                    li
-                                        a(href="/marchsadness/admin/updateNames") Update Names
-                                    li
-                                        a(href="/marchsadness/admin/updateTeamScores") Update Scores
-                                    li
-                                        a(href="/marchsadness/admin/markRoundsAsStarted") Mark Rounds as Started
-                                    li
-                                        a(href="/marchsadness/admin/manageBlog") Manage Blog
-                                    li
-                                        a(href="/marchsadness/admin/blogPost") New Blog Post
-                        if (user)
-                            li.navbar-brand
-                                a.ms-text-black(href="/users/profile") Profile
-                        if (user)
-                            li.navbar-brand
-                                a.ms-text-black(href="/users/logout") Logout
-                        if (!user)
-                            li.navbar-brand
-                                a.ms-text-black(href="/users/login") Login Here
+            ul.nav.navbar-nav
+                li.navbar-brand(style="margin-top: 2%")
+                    a.ms-text-black(href="/about") About
+                li.navbar-brand(style="margin-top: 2%")
+                    a.ms-text-black(href="/blog") Blog
+                li.navbar-brand(style="margin-top: 2%")
+                    a.ms-text-black(href="/marchsadness/Rules") Rules
+            ul.nav.navbar-nav.pull-right.ms-navbar-right
+                if (user && user.isAdmin)
+                    li.navbar-brand
+                        a(href="/marchsadness/admin") Admin
+                if (user)
+                    li.navbar-brand
+                        a.ms-text-black(href="/users/profile") Profile
+                if (user)
+                    li.navbar-brand
+                        a.ms-text-black(href="/users/logout") Logout
+                if (!user)
+                    li.navbar-brand
+                        a.ms-text-black(href="/users/login") Login Here
 div#ms-navbar-angle-line-test-yellow= ""
 div#ms-navbar-angle-line-test-orange= ""
