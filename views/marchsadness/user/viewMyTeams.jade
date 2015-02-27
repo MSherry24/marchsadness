@@ -2,21 +2,21 @@ script(src="../../javascripts/marchSadness/users/viewMyTeams.js")
 div.jumbotron.text-center
     br
     h1
-        span.fa.fa-lock= user.firstName + "'s Teams"
+        span.fa.fa-lock.ms-font-title= user.firstName + "'s Teams"
     a(href="/marchsadness/createnewteam", class="btn btn-default")
         span(class="fa fa-user") Create a Team
-div.table-responsive
+div.table-responsive.ms-font-normal
     table.table
         thead
             tr
                 th Team
                 th Score
         tbody
-            each team, index in teams
+            each ballot, index in ballots
                 tr.h3
                     td
-                        a(href="/marchsadness/viewSingleTeam/" + team._id)
-                            span= team.name
-                    td= team.totalScore
+                        a(href="/marchsadness/viewSingleTeam/" + ballot._id)
+                            span= ballot.name
+                    td= ballot.totalScore
                     td
-                        button.deleteTeam.btn.btn-danger.btn-xs(value= team._id) Delete
+                        button.deleteTeam.btn.btn-danger.btn-xs(value= ballot._id) Delete

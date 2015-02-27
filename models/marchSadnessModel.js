@@ -161,4 +161,19 @@ msModel.initializeMsConfig = function () {
     });
 };
 
+msModel.getTeamsAndLeagues = function(req, res, next) {
+    "use strict";
+    UserTeam.find({owner: req.user._id}, function (err, ballots) {
+        if (!err && ballots && !req.userBallots) {
+            req.userBallots = ballots;
+        }
+        msModel.MsLeague.find({memberTeamOwners: req.user._id}, function (err, leagues) {
+            if (!err && leagues && !req.userLeagues) {
+                req.userLeagues = leagues;
+            }
+            return next();
+        });
+    });
+};
+
 module.exports = msModel;

@@ -10,7 +10,6 @@ var msAdminControl = require('../controllers/marchSadness/msAdmin');
 var msUserControl = require('../controllers/marchSadness/msUserControl');
 var authMain = require('../controllers/auth/authMain');
 
-
 /********************************************** ADMIN CODE ***************************************/
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -213,26 +212,24 @@ router.post('/admin/deletePost', authMain.isAdmin, function (req, res) {
 /*=================================
  * User Index
  *=================================*/
-router.get('/index', authMain.isLoggedIn, function (req, res) {
+router.get('/index', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
-    msUserControl.getIndex(req, res);
-});
-
-/*=================================
- * View All User's Teams
- *=================================*/
-router.get('/viewmyteams', authMain.isLoggedIn, function (req, res) {
-    "use strict";
-    msUserControl.getSingleUserTeams(req, res);
+    res.render('marchsadness/user/index', {
+        user: req.user,
+        leagues: req.userLeagues,
+        ballots: req.userBallots
+    });
 });
 
 /*=================================
  * Create a New March Sadness Team
  *=================================*/
-router.get('/createnewteam', authMain.isLoggedIn, function (req, res) {
+router.get('/createnewteam', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     res.render('marchsadness/createNewTeam', {
-        user: req.user
+        user: req.user,
+        ballots: req.userBallots,
+        leagues: req.userLeagues
     });
 });
 
@@ -260,7 +257,7 @@ router.post('/addPick/:team', authMain.isLoggedIn, function (req, res) {
 /*=================================
  * View a March Sadness Team
  *=================================*/
-router.get('/viewSingleTeam/:teamId', authMain.isLoggedIn, function (req, res) {
+router.get('/viewSingleTeam/:teamId', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getViewSingleTeam(req, res, req.params.teamId);
 });
@@ -268,7 +265,7 @@ router.get('/viewSingleTeam/:teamId', authMain.isLoggedIn, function (req, res) {
 /*=================================
  * Select Teams for a March Sadness Team
  *=================================*/
-router.get('/makeTeamSelections/:teamId', authMain.isLoggedIn, function (req, res) {
+router.get('/makeTeamSelections/:teamId', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getMakeTeamSelections(req, res, req.params.teamId);
 });
@@ -276,10 +273,12 @@ router.get('/makeTeamSelections/:teamId', authMain.isLoggedIn, function (req, re
 /*=================================
  * Create a new League
  *=================================*/
-router.get('/createnewleague', authMain.isLoggedIn, function (req, res) {
+router.get('/createnewleague', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     res.render('marchsadness/createNewLeague', {
-        user: req.user
+        user: req.user,
+        ballots: req.userBallots,
+        leagues: req.userLeagues
     });
 });
 
@@ -289,23 +288,14 @@ router.post('/createnewleague', authMain.isLoggedIn, function (req, res) {
 });
 
 /*=================================
- * View a list of all of one user's leagues
- *=================================*/
-
-router.get('/viewmyleagues', authMain.isLoggedIn, function (req, res) {
-    "use strict";
-    msUserControl.getSingleUserLeagues(req, res);
-});
-
-/*=================================
  * View a March Sadness League
  *=================================*/
-router.get('/viewSingleleague/:leagueId/:message', authMain.isLoggedIn, function (req, res) {
+router.get('/viewSingleleague/:leagueId/:message', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getViewSingleLeague(req, res, req.params.leagueId, req.params.message);
 });
 
-router.get('/viewSingleleague/:leagueId', authMain.isLoggedIn, function (req, res) {
+router.get('/viewSingleleague/:leagueId', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getViewSingleLeague(req, res, req.params.leagueId);
 });
@@ -313,7 +303,7 @@ router.get('/viewSingleleague/:leagueId', authMain.isLoggedIn, function (req, re
 /*=================================
  * Add User's team to a league
  *=================================*/
-router.get('/addTeamToLeague/:leagueId', authMain.isLoggedIn, function (req, res) {
+router.get('/addTeamToLeague/:leagueId', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getAddTeamToLeague(req, res, req.params.leagueId);
 });
@@ -326,7 +316,7 @@ router.post('/addTeamToLeague/:leagueId/:teamId', authMain.isLoggedIn, function 
 /*=================================
  * Add User's team to a league
  *=================================*/
-router.get('/joinLeague/:leagueId', authMain.isLoggedIn, function (req, res) {
+router.get('/joinLeague/:leagueId', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getJoinLeague(req, res, req.params.leagueId);
 });
@@ -336,12 +326,12 @@ router.post('/joinLeague/:leagueId', authMain.isLoggedIn, function (req, res) {
     msUserControl.postJoinLeague(req, res, req.params.leagueId);
 });
 
-router.get('/joinALeague', authMain.isLoggedIn, function (req, res) {
+router.get('/joinALeague', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getJoinALeague(req, res);
 });
 
-router.get('/joinALeague/:message', authMain.isLoggedIn, function (req, res) {
+router.get('/joinALeague/:message', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
     msUserControl.getJoinALeague(req, res, req.params.message);
 });
