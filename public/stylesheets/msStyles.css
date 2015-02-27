@@ -19,7 +19,7 @@
 }
 
 .ms-text-yellow {
-    color: #656565;
+    color: #FFD912;
 }
 
 .ms-background-orange {
@@ -43,7 +43,7 @@
 }
 
 .ms-background-yellow {
-    background-color: #656565;
+    background-color: #FFD912;
 }
 
 .ms-font-bold {
@@ -61,11 +61,54 @@
     font-weight: bold;
 }
 
-.ms-left-nav {
-    position: absolute;
-    down: 10%;
+.footer {
+    background-color: rgba(255,217,18,0.5)
 }
 
+.btn-ms-orange {
+    color: #ffffff;
+    background-color: #F05928;
+    border-color: #F05928;
+    border-radius: 50px;
+}
 
+.btn-ms-orange:hover,
+.btn-ms-orange:focus,
+.btn-ms-orange:active,
+.btn-ms-orange.active,
+.open .dropdown-toggle.btn-ms-orange {
+    color: #ffffff;
+    background-color: #F05928;
+    border-color: #F05928;
+    border-radius: 50px;
+}
 
+.btn-ms-orange:active,
+.btn-ms-orange.active,
+.open .dropdown-toggle.btn-ms-orange {
+    background-image: none;
+}
 
+.btn-ms-orange.disabled,
+.btn-ms-orange[disabled],
+fieldset[disabled] .btn-ms-orange,
+.btn-ms-orange.disabled:hover,
+.btn-ms-orange[disabled]:hover,
+fieldset[disabled] .btn-ms-orange:hover,
+.btn-ms-orange.disabled:focus,
+.btn-ms-orange[disabled]:focus,
+fieldset[disabled] .btn-ms-orange:focus,
+.btn-ms-orange.disabled:active,
+.btn-ms-orange[disabled]:active,
+fieldset[disabled] .btn-ms-orange:active,
+.btn-ms-orange.disabled.active,
+.btn-ms-orange[disabled].active,
+fieldset[disabled] .btn-ms-orange.active {
+    background-color: #F05928;
+    border-color: #F05928;
+}
+
+.btn-ms-orange .badge {
+    color: #F05928;
+    background-color: #ffffff;
+}

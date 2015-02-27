@@ -1,0 +1,25 @@
+#ms-navbar-angle-line-test-yellow {
+    -webkit-transform: skewY(-2.5deg);
+    -moz-transform: skewY(-2.5deg);
+    -ms-transform: skewY(-2.5deg);
+    -o-transform: skewY(-2.5deg);
+    transform: skewY(-2.5deg);
+    -moz-box-shadow:    inset  0  10px 10px -10px #696868;
+    -webkit-box-shadow: inset  0  10px 10px -10px #696868;
+    box-shadow:         inset  0  10px 10px -10px #696868;
+    min-height: 15px;
+    background-color: #FFD912;
+    margin-top: -40px;
+}
+#ms-navbar-angle-line-test-orange {
+    -webkit-transform: skewY(-2.5deg);
+    -moz-transform: skewY(-2.5deg);
+    -ms-transform: skewY(-2.5deg);
+    -o-transform: skewY(-2.5deg);
+    transform: skewY(-2.5deg);
+    -moz-box-shadow:    inset  0  10px 10px -10px #696868;
+    -webkit-box-shadow: inset  0  10px 10px -10px #696868;
+    box-shadow:         inset  0  10px 10px -10px #696868;
+    min-height: 15px;
+    background-color: #F05928;
+}
