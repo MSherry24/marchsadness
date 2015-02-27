@@ -1,12 +1,36 @@
 var express = require('express');
 var router = express.Router();
-
+var passport = require('passport');
+var msModel = require('../models/marchSadnessModel');
+var blog = require('../models/blogModel');
 /* GET home page. */
-router.get('/', function (req, res) {
+//router.get('/', function (req, res) {
+//    "use strict";
+//    res.render('index', {
+//        user: req.user,
+//        title: 'Failure League'
+//    });
+//});
+
+router.get('/', function(req, res) {
     "use strict";
-    res.render('index', {
-        user: req.user,
-        title: 'Failure League'
+    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(2).exec(function (err, topTeams) {
+        if (err) {
+            console.log(err);
+        }
+        blog.BlogPost.find({}).limit(5).sort({timestamp: -1}).exec(function (err, blogPosts) {
+            if (err) {
+                console.log(err);
+            }
+            res.render('marchsadness/marchsadnesshome',
+                {
+                    title: 'March Sadness',
+                    user: req.user,
+                    topTeams: topTeams,
+                    blogPosts: blogPosts,
+                    message: req.flash('TeamDoesNotExist')
+                });
+        });
     });
 });
 

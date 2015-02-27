@@ -1,57 +1,41 @@
-nav(class="navbar navbar-inverse navbar-fixed-top")
-    div(class="container")
-        div.navbar.navbar-fixed-top
-            div.navbar-inner
-                div.container
-                    ul.nav.navbar-nav
-                        li.active
-                            a.navbar-brand(href="/") Failure League
+div(class="container")
+    div
+        div.navbar-inner
+            div.container
+                ul.nav.navbar-nav.ms-left-nav
+                    li
+                        a(href="/")
+                            img(src='../images/logo.png')
+                    li
+                        a.ms-text-black(href="/about") About
+                    li
+                        a.ms-text-black(href="/blog") Blog
+                    li
+                        a.ms-text-black(href="/marchsadness/Rules") Rules
+                ul.nav.navbar-nav.pull-right
+                    if (user && user.isAdmin)
                         li.dropdown
-                            a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false") March Sadness
+                            a.dropdown-toggle.ms-text-black(href="#", data-toggle="dropdown", role="button", aria-expanded="false") Admin
                                 span.caret
                             ul.dropdown-menu(role="menu")
                                 li
-                                    a(href="/marchsadness") Home
+                                    a(href="/marchsadness/admin") Home
                                 li
-                                    a(href="/marchsadness/Rules") Rules
-                                if (user)
-                                    li
-                                        a(href="/marchsadness/viewMyTeams") View My Teams
-                                    li
-                                        a(href="/marchsadness/createnewteam") Create New Team
-                                    li
-                                        a(href="/marchsadness/viewMyLeagues") View My Leagues
-                                    li
-                                        a(href="/marchsadness/createnewleague") Create New League
-                                    li
-                                        a(href="/marchsadness/joinALeague") Join A League
-                    ul.nav.navbar-nav.pull-right
-                        if (user && user.isAdmin)
-                            li.dropdown
-                                a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false") Admin
-                                    span.caret
-                                ul.dropdown-menu(role="menu")
-                                    li
-                                        a(href="/marchsadness/admin") Home
-                                    li
-                                        a(href="/marchsadness/admin/updateNames") Update Names
-                                    li
-                                        a(href="/marchsadness/admin/updateTeamScores") Update Scores
-                                    li
-                                        a(href="/marchsadness/admin/markRoundsAsStarted") Mark Rounds as Started
-                                    li
-                                        a(href="/marchsadness/admin/manageBlog") Manage Blog
-                                    li
-                                        a(href="/marchsadness/admin/blogPost") New Blog Post
-                        if (user)
-                            li
-                                a(href="/users/profile") Profile
+                                    a(href="/marchsadness/admin/updateNames") Update Names
+                                li
+                                    a(href="/marchsadness/admin/updateTeamScores") Update Scores
+                                li
+                                    a(href="/marchsadness/admin/markRoundsAsStarted") Mark Rounds as Started
+                                li
+                                    a(href="/marchsadness/admin/manageBlog") Manage Blog
+                                li
+                                    a(href="/marchsadness/admin/blogPost") New Blog Post
+                    if (user)
                         li
-                            a(href="/contact") Contact Us
-                        if (user)
-                            li
-                                a(href="/users/logout") Logout
-                        if (!user)
-                            li
-                                a(href="/users/login") Login Here
-<!--/.nav-collapse -->
+                            a.ms-text-black(href="/users/profile") Profile
+                    if (user)
+                        li
+                            a.ms-text-black(href="/users/logout") Logout
+                    if (!user)
+                        li
+                            a.ms-text-black(href="/users/login") Login Here
