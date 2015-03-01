@@ -57,3 +57,9 @@
 .ms-navbar-right {
     padding-right: 100px;
 }
+
+.ms-navbar-icon {
+    width: 25px;
+    height: 25px;
+    margin-top:12px;
+}

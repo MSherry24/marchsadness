@@ -1,0 +1,13 @@
+extends layout
+block content
+    div.container
+        div.row
+            h1= error.status + ' ' + message
+        div.row
+            h3 We dropped the ball.
+            p Not sure how you ended up here. Make sure the url you entered is correct and try again.
+            p If you think this page should exist, but it doesn't, <u><a href="/contact">contact us</a></u> and let us know.
+        div.row
+            img(src="../../images/404.gif")
+        br
+        br

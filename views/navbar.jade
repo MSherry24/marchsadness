@@ -6,12 +6,8 @@ div.ms-navbar-container
             div.ms-navbar
                 div.container-fluid
                     div.navbar-header
-                        if (user)
-                            a(href="/marchsadness/index")
-                                img(src='../../images/logo.png').ms-logo
-                        else
-                            a(href="/")
-                                img(src='../../images/logo.png').ms-logo
+                        a(href="/")
+                            img(src='../../images/logo.png').ms-logo
                     div.collapse.navbar-collapse
                         ul.nav.navbar-nav
                             li.navbar-brand(style="margin-top: 2%")
@@ -25,8 +21,12 @@ div.ms-navbar-container
                                 li.navbar-brand
                                     a(href="/marchsadness/admin") Admin
                             if (user)
-                                li.navbar-brand
-                                    a.ms-text-black(href="/users/profile") Profile
+                                li
+                                    a(href="/marchsadness/index")
+                                        img(src='../../images/basketballIcon.png').ms-navbar-icon
+                                li
+                                    a(href="/users/profile")
+                                        img(src='../../images/gearIcon.png').ms-navbar-icon
                             if (user)
                                 li.navbar-brand
                                     a.ms-text-black(href="/users/logout") Logout
