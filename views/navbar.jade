@@ -6,8 +6,12 @@ div.ms-navbar-container
             div.ms-navbar
                 div.container-fluid
                     div.navbar-header
-                        a(href="/")
-                            img(src='../images/logo.png').ms-logo
+                        if (user)
+                            a(href="/marchsadness/index")
+                                img(src='../images/logo.png').ms-logo
+                        else
+                            a(href="/")
+                                img(src='../images/logo.png').ms-logo
                     div.collapse.navbar-collapse
                         ul.nav.navbar-nav
                             li.navbar-brand(style="margin-top: 2%")
