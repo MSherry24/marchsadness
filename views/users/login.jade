@@ -1,23 +1,22 @@
 extends ../layout
 block content
-   div(class="jumbotron")
-      div(class="container")
-          div.col-sm-6.col-sm-offset-3
-              h1
-                  span.fa.fa-sign-in Login
-              <!-- show any messages that come back with authentication -->
-              if (message.length > 0)
-                  div.alert.alert-danger= message
-              <!-- LOGIN FORM -->
-              form(action="/users/login", method="post")
-                  div.form-group
-                      label Email
-                      input(type="text", class="form-control", name="email")
-                  div.form-group
-                      label Password
-                      input(type="password", class="form-control", name="password")
-                  button( type="submit", class="btn btn-warning btn-lg") Login
-              hr
-              p Forgot your password? <a href="/users/forgotPassword">Reset Password</a>
-              p Need an account? <a href="/users/signup">Signup</a>
-              p Or go <a href="/marchsadness">home</a>.
+    div(class="container")
+        div.col-sm-6.col-sm-offset-3
+            h1
+                span.fa.fa-sign-in Login
+            <!-- show any messages that come back with authentication -->
+            if (message.length > 0)
+                div.alert.alert-danger= message
+            <!-- LOGIN FORM -->
+            form(action="/users/login", method="post")
+                div.form-group
+                    label Email
+                    input(type="text", class="form-control", name="email")
+                div.form-group
+                    label Password
+                    input(type="password", class="form-control", name="password")
+                button.btn.btn-ms-orange.btn-lg( type="submit") Login
+            br
+            p Forgot your password? <a href="/users/forgotPassword">Reset Password</a>
+            p Need an account? <a href="/users/signup">Signup</a>
+            p Or go <a href="/marchsadness">home</a>.
