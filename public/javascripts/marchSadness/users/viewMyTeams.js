@@ -10,7 +10,7 @@ var deleteTeam = function () {
     "use strict";
     var route;
     if (confirm("Delete this team?")) {
-        route = '/marchsadness/deleteteam/' + event.target.value;
+        route = '/marchsadness/deleteteam/' + event.target.getAttribute('value');
         $.post(route, function () {
             window.location.reload(true);
         });

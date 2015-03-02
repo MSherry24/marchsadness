@@ -39,7 +39,7 @@ exports.createNewTeam = function(req, res) {
         if (err) {
             console.log('err:' + err);
         } else {
-            res.status(200).redirect("/marchsadness/viewmyteams");
+            res.redirect('back');
         }
     });
 };

@@ -1,6 +1,8 @@
 //
    Created by Mike on 2/16/2015.
 div.footer.push
+    br
+    br
     div.container
         div.row
             p
@@ -13,4 +15,13 @@ div.footer.push
                 span
                     a(href='marchsadness/rules') RULES
                 span= " | "
+                span
+                    a(href='contact') CONTACT
+                span= " | "
+                if (user)
+                    span
+                        a(href='users/logout') LOGOUT
+                else
+                    span
+                        a(href='users/login') LOGIN
         p © Failure League Inc. 2015

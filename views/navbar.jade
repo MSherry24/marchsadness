@@ -10,11 +10,11 @@ div.ms-navbar-container
                             img(src='../../images/logo.png').ms-logo
                     div.collapse.navbar-collapse
                         ul.nav.navbar-nav
-                            li.navbar-brand(style="margin-top: 2%")
+                            li#about.navbar-brand(style="margin-top: 2%")
                                 a.ms-text-black(href="/about") About
-                            li.navbar-brand(style="margin-top: 2%")
-                                a.ms-text-black(href="/blog") Blog
-                            li.navbar-brand(style="margin-top: 2%")
+                            li#blog.navbar-brand(style="margin-top: 2%")
+                                a.ms-text-black(href="/blog") Blogs
+                            li#rules.navbar-brand(style="margin-top: 2%")
                                 a.ms-text-black(href="/marchsadness/Rules") Rules
                         ul.nav.navbar-nav.pull-right.ms-navbar-right
                             if (user && user.isAdmin)
