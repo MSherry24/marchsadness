@@ -1,25 +1,29 @@
 extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/addTeamToLeague.js")
-    div(class="container")
-        div.text-center
-            br
-            h2
-                span.fa.fa-lock= 'Add a team to ' + league.name
-        div.container
-            div.row
-                div.table-responsive
-                    table.table.table-striped
-                        thead
-                            tr
-                                th Team
-                        tbody
-                            each team in teams
-                                tr
-                                    td.h3= team.name
-                                    td
-                                        if (team.leagues.indexOf(league._id) === -1)
-                                            button.btn.btn-default.btn-sm.btn-success.AddTeam(value= league._id + '/' + team._id) Add This Team
-                                        else
-                                            p Already a Member
-
+    h2
+        span.ms-font-bold
+            u Choose a Ballot To Add
+    div.row
+        div.table-responsive
+            table.table
+                tbody.ms-grey-line-top
+                    each ballot in ballots
+                        tr.h3.ms-grey-line
+                            td
+                                span= ballot.name
+                            td= "Score: " + ballot.totalScore
+                            td
+                                if (ballot.leagues.indexOf(league._id) === -1)
+                                    button.btn.btn-sm.btn-ms-orange.AddTeam.ms-font-bold(value= league._id + '/' + ballot._id) +
+        div
+            div.col-xs-3
+                span
+                    button#showCreateBallot.btn.btn-sm.btn-ms-orange.ms-font-bold +
+                span.ms-font-bold= "   Create a New Ballot"
+            div#newTeamForm.col-xs-3
+                form
+                    span.form-group
+                        input#teamName(type="text", class="form-control", name="teamname")
+            div.col-xs-3
+                button#createBallot.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") Submit

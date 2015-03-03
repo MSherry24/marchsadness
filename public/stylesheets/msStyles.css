@@ -141,16 +141,15 @@ fieldset[disabled] .btn-ms-orange.active {
 }
 
 .ms-grey-line {
-    border-bottom: #656565 solid 3px;
+    border-bottom: #656565 solid 1px;
 }
 
 .ms-grey-line-top {
-    border-top: #656565 solid 3px;
+    border-top: #656565 solid 1px;
 }
-
 .teamViewIcon {
-    width: 25px;
-    height: 30px;
+    width: 44px;
+    height: 40px;
     margin-right: 15px;
 }
 
@@ -166,9 +165,6 @@ fieldset[disabled] .btn-ms-orange.active {
 
 .ms-leftnav-buffer {
     min-height: 10px;
-}
-
-.ms-leftnav-buffer {
     padding-right: 15px;
 }
 
@@ -178,4 +174,9 @@ fieldset[disabled] .btn-ms-orange.active {
 
 .more-gutter {
     padding-right: 50px;
+}
+
+.ms-text-input {
+    border: #656565 solid 1px;
+    border-radius: 0px;
 }

@@ -15,7 +15,7 @@ exports.createNewTeam = function(req, res) {
     newTeam = new msModel.UserTeam(
         {
             owner: req.user._id,
-            name: req.body.teamname,
+            name: req.body.teamname || req.params.teamname,
             totalScore: 0,
             scores: {
                 round1: 0,
@@ -232,7 +232,7 @@ exports.createNewLeague = function (req, res) {
         leagues: req.userLeagues
     });
     newLeague.save(function() {
-        res.status(200).redirect('/marchsadness');
+        res.status(200).redirect('/marchsadness/newLeagueConfirm/' + newLeague._id);
     })
 };
 

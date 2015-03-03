@@ -1,0 +1,12 @@
+extends marchsadnesslayout
+block content
+    div.row.ms-font-bold
+        h2
+            u Start a League
+        h3 Thanks for starting a league!
+        h3= "Your league ID is: " + leagueId
+    div.row.ms-font-bold
+        h3 Send this code and the password to your friends so they can join.
+        h3 Your code is always available on your league homepage in case you forget it.
+    div.row
+        button.btn.btn-ms-orange(onClick='location.href = "/marchsadness/viewSingleLeague/' + leagueId + '";') View League Page

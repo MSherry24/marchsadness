@@ -287,6 +287,16 @@ router.post('/createnewleague', authMain.isLoggedIn, function (req, res) {
     msUserControl.createNewLeague(req, res);
 });
 
+router.get('/newLeagueConfirm/:leagueId', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
+    "use strict";
+    res.render('marchsadness/newLeagueConfirm', {
+        user: req.user,
+        ballots: req.userBallots,
+        leagues: req.userLeagues,
+        leagueId: req.params.leagueId
+    });
+});
+
 /*=================================
  * View a March Sadness League
  *=================================*/

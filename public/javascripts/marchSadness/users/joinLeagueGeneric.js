@@ -22,4 +22,6 @@ var joinLeague = function () {
 
 $(document).ready(function () {
     $('#submit').on('click', joinLeague);
+    $("#leagueId").watermark("League ID");
+    $("#leaguePassword").watermark("League Password");
 });
