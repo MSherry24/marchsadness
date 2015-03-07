@@ -203,8 +203,8 @@ fieldset[disabled] .btn-ms-orange.active {
 }
 
 .ms-single-team-table {
-    width:90%;
     margin: 0 auto;
+    width: 90%;
     background-color:white;
     padding: 20px;
     z-index: 10;

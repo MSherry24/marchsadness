@@ -21,21 +21,22 @@ var setTabBackgrounds = function () {
             $(tab).addClass("ms-background-light-gray");
             $(tab).removeClass("ms-background-white");
             $(tab).removeClass("ms-background-yellow");
+        } else if ($(tab).hasClass("activeRound")) {
+            $(tab).addClass("ms-background-white");
+            $(tab).removeClass("ms-background-light-gray");
+            $(tab).removeClass("ms-background-yellow");
         } else {
             $(tab).addClass("ms-background-yellow");
             $(tab).removeClass("ms-background-white");
             $(tab).removeClass("ms-background-light-gray");
         }
     });
-    if (event.target) {
-        $(event.target).closest('a').addClass("ms-background-white");
-        $(event.target).closest('a').removeClass("ms-background-light-gray");
-        $(event.target).closest('a').removeClass("ms-background-yellow");
-    } else {
-        $("#r1tab-a").addClass("ms-background-white");
-        $("#r1tab-a").removeClass("ms-background-light-gray");
-        $("#r1tab-a").removeClass("ms-background-yellow");
-    }
+};
+
+var editBallot = function () {
+    "use strict";
+    var teamId = $("#editBallotButton").val();
+    window.location = '/marchsadness/makeTeamSelections/' + teamId;
 };
 
 $(document).ready(function () {
@@ -43,4 +44,5 @@ $(document).ready(function () {
     $("#tabs").tabs();
     setTabBackgrounds();
     $('.ms-single-team-table-tab').on("click", setTabBackgrounds);
+    $("#editBallotButton").on("click", editBallot);
 });

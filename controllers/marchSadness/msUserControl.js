@@ -112,7 +112,7 @@ exports.getViewSingleTeam = function (req, res, teamId) {
     "use strict";
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
         if (err) {
-            console.log('that team does not exist');
+            //console.log('that team does not exist');
             req.flash('Error', 'There has been an error with your request');
             res.render('marchsadness/index', {
                 message: req.flash('Error'),
@@ -160,12 +160,7 @@ exports.getViewSingleTeam = function (req, res, teamId) {
  *=================================*/
 exports.getMakeTeamSelections = function (req, res, teamId) {
     "use strict";
-    msModel.msTeam.find({}, function (err, msTeams) {
-        var allTourneyTeams;
-        allTourneyTeams = {};
-        msTeams.map(function (team) {
-            allTourneyTeams[team.region + team.seed] = team;
-        });
+    msModel.UserTeam.findOne({"_id": teamId}, function (err, team) {
         if (err) {
             req.flash('Error', 'There has been an error with your request');
             res.render('marchsadness/index', {
@@ -175,8 +170,7 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
                 leagues: req.userLeagues
             });
         }
-
-        msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
+        msModel.UserTeam.findOne({"_id": teamId}, function (err, team) {
             if (err) {
                 req.flash('Error', 'There has been an error with your request');
                 res.render('marchsadness/index', {
@@ -195,27 +189,99 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
                     leagues: req.userLeagues
                 });
             } else {
-                msModel.MsConfig.findOne({}, function(err, config) {
-                    if (!err && config !== null) {
-                        res.render('marchsadness/user/makeTeamSelections', {
-                            config: config,
-                            msTeamsString: JSON.stringify(allTourneyTeams),
-                            msTeams: allTourneyTeams,
-                            teamString: JSON.stringify(team),
-                            team: team,
-                            user: req.user,
-                            owner: team.owner[0].id,
-                            ballots: req.userBallots,
-                            leagues: req.userLeagues
+                User.findById(team.owner[0], function (err, owner) {
+                    msModel.MsConfig.findOne({}, function (err, config) {
+                        msModel.msTeam.find({}, function (err, msTeams) {
+                            var allTourneyTeams;
+                            allTourneyTeams = {};
+                            msTeams.map(function (msTeam) {
+                                allTourneyTeams[msTeam._id] = msTeam;
+                            });
+                            if (!err && config !== null) {
+                                res.render('marchsadness/user/makeTeamSelections', {
+                                    config: config,
+                                    msTeamsString: JSON.stringify(allTourneyTeams),
+                                    msTeams: allTourneyTeams,
+                                    teamString: JSON.stringify(team),
+                                    team: team,
+                                    user: req.user,
+                                    owner: team.owner[0].id,
+                                    userIsOwner: req.user._id.id === owner._id.id,
+                                    ballots: req.userBallots,
+                                    leagues: req.userLeagues
+                                });
+                            } else {
+
+                                res.status(500).end();
+                            }
                         });
-                    } else {
-                        res.status(500).end();
-                    }
-                });
+                    });
+                })
             }
         });
     });
 };
+//exports.getMakeTeamSelections = function (req, res, teamId) {
+//    "use strict";
+//    msModel.msTeam.find({}, function (err, msTeams) {
+//        var allTourneyTeams;
+//        allTourneyTeams = {};
+//        msTeams.map(function (team) {
+//            allTourneyTeams[team.region + team.seed] = team;
+//        });
+//        if (err) {
+//            req.flash('Error', 'There has been an error with your request');
+//            res.render('marchsadness/index', {
+//                message: req.flash('Error'),
+//                user: req.user,
+//                ballots: req.userBallots,
+//                leagues: req.userLeagues
+//            });
+//        }
+//
+//        msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
+//            if (err) {
+//                req.flash('Error', 'There has been an error with your request');
+//                res.render('marchsadness/index', {
+//                    message: req.flash('Error'),
+//                    user: req.user,
+//                    ballots: req.userBallots,
+//                    leagues: req.userLeagues
+//                });
+//            } else if (team === null) {
+//                console.log('that team does not exist');
+//                req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
+//                res.render('marchsadness/index', {
+//                    message: req.flash('TeamDoesNotExist'),
+//                    user: req.user,
+//                    ballots: req.userBallots,
+//                    leagues: req.userLeagues
+//                });
+//            } else {
+//                msModel.MsConfig.findOne({}, function(err, config) {
+//                    User.findById(team.owner[0], function (err, owner) {
+//                        if (!err && config !== null) {
+//                            res.render('marchsadness/user/makeTeamSelections', {
+//                                config: config,
+//                                msTeamsString: JSON.stringify(allTourneyTeams),
+//                                msTeams: allTourneyTeams,
+//                                teamString: JSON.stringify(team),
+//                                team: team,
+//                                user: req.user,
+//                                owner: team.owner[0].id,
+//                                userIsOwner: req.user._id.id === owner._id.id,
+//                                ballots: req.userBallots,
+//                                leagues: req.userLeagues
+//                            });
+//                        } else {
+//                            res.status(500).end();
+//                        }
+//                    });
+//                });
+//            }
+//        });
+//    });
+//};
 
 /*=================================
  * Create New League
