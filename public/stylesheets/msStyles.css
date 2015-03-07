@@ -59,6 +59,10 @@ body::after {
     background-color: #999999;
 }
 
+.ms-background-even-lighter-gray {
+    background-color: #cccccc;
+}
+
 .ms-background-black {
     background-color: #000000;
 }
@@ -68,15 +72,28 @@ body::after {
 }
 
 .ms-font-bold {
-    font-family: 'Roboto', sans-serif;
     font-weight: 700;
 }
 
 .ms-font-normal {
-    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.ms-font-light {
     font-weight: 300;
 }
 
+.ms-font-size-30 {
+    font-size: 30px;
+}
+
+.ms-font-size-20 {
+    font-size: 20px;
+}
+
+.ms-font-size-14 {
+    font-size: 14px;
+}
 
 .ms-font-title {
     font-family: 'Corben', Georgia, Times, serif;
@@ -179,4 +196,59 @@ fieldset[disabled] .btn-ms-orange.active {
 .ms-text-input {
     border: #656565 solid 1px;
     border-radius: 0px;
+}
+
+.ms-tagline {
+    width: 100%
+}
+
+.ms-single-team-table {
+    width:90%;
+    margin: 0 auto;
+    background-color:white;
+    padding: 20px;
+    z-index: 10;
+}
+
+.ms-single-team-table-tab {
+    border-top: #656565 solid 1px;
+}
+
+.ms-single-team-table td, th {
+    padding: 10px;
+}
+
+#tabs {
+    background: transparent;
+    border: none;
+}
+
+#roundTabs {
+    background: transparent;
+    border: none;
+    margin-top: 10px;
+    border-bottom: #999999 solid 1px;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding: 0px;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    border: none;
+}
+
+#sadnessScore {
+    margin-top: 35px;
+    margin-right: 50px;
+}
+
+.ms-single-team-table tr {
+    height: 70px;
+}
+
+.tab-content {
+    background-color: #ffffff;
+    border: #656565 solid;
+    border-width: 0px 0px 1px 0px;
 }

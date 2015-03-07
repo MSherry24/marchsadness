@@ -8,7 +8,7 @@ html
         <meta name="author" content="">
         link(rel="icon", href="../../favicon.ico")
         link(href="http://fonts.googleapis.com/css?family=Corben:bold", rel="stylesheet", type="text/css")
-        link(href="http://fonts.googleapis.com/css?family=Roboto:700", rel="stylesheet", type="text/css")
+        link(href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700,300,400' rel='stylesheet' type='text/css')
         link(rel='stylesheet', href='/stylesheets/msStyles.css')
         <!-- Bootstrap -->
         link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap.css')
@@ -36,7 +36,7 @@ html
                 if (message && message.length > 0)
                     div.alert.alert-warning= message
         if(user)
-            div.container
+            div.container.ms-font-normal
                 div.row
                     div.col-sm-2.more-gutter
                         include leftNav

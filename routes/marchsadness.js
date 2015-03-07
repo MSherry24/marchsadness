@@ -10,6 +10,34 @@ var msAdminControl = require('../controllers/marchSadness/msAdmin');
 var msUserControl = require('../controllers/marchSadness/msUserControl');
 var authMain = require('../controllers/auth/authMain');
 
+router.get('/rules', function(req, res) {
+    res.render('marchsadness/rules',
+        {
+            user : req.user
+        });
+});
+
+router.get('/about', function(req, res) {
+    res.render('marchsadness/about',
+        {
+            user : req.user
+        });
+});
+
+router.get('/blog', function(req, res) {
+    blog.BlogPost.find({}).limit(5).sort({timestamp: -1}).exec(function (err, blogPosts) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('marchsadness/blogview',
+            {
+                blogPosts: blogPosts,
+                user : req.user
+            });
+    });
+});
+
+
 /********************************************** ADMIN CODE ***************************************/
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -34,12 +62,7 @@ router.get('/', function(req, res) {
     });
 });
 
-router.get('/rules', function(req, res) {
-    res.render('marchsadness/rules',
-        {
-            user : req.user
-        });
-});
+
 
 /*=================================
  * Render the March Sadness Admin Page

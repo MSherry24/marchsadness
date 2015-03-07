@@ -4,10 +4,12 @@
     -ms-transform: skewY(-2deg);
     -o-transform: skewY(-2deg);
     transform: skewY(-2deg);
+    background-color: #ffffff;
 }
 
-.ms-navbar-container {
-    background-color: #ffffff;
+.ms-navbar-width-limit {
+    max-width: 738px;
+    float: left;
 }
 
 .ms-navbar {
@@ -16,6 +18,9 @@
     -ms-transform: skewY(2deg);
     -o-transform: skewY(2deg);
     transform: skewY(2deg);
+    background: #ffffff;
+    margin-bottom:20px;
+    width: 100%;
 }
 
 #ms-navbar-angle-line-test-yellow {
@@ -44,21 +49,29 @@
     background-color: #F05928;
 }
 
-.navbar-inner {
-    min-width: 1000px;
-}
-
-.ms-logo {
-    padding-left: 100px;
-    padding-right: 25px;
-    margin-top: 15px;
-}
-
 .ms-navbar-right {
-    padding-right: 100px;
+    padding: 0px 100px;
+    display:inline-block;
+    overflow:hidden;
+    float:right;
 }
 
 .ms-navbar-icon {
     width: 45px;
     height: 45px;
 }
+
+.ms-navbar-inner-container {
+    white-space: nowrap;
+    min-width: 1000px;
+}
+
+.ms-navbar-cell {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+.ms-navbar-logo {
+    display: inline-block;
+}
+
