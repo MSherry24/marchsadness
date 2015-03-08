@@ -270,11 +270,11 @@ router.post("/deleteteam/:team", authMain.isLoggedIn, function (req, res) {
 });
 
 /*=================================
- * Add a March Sadness Team
+ * Save Ballot Picks for a single March Sadness Team
  *=================================*/
-router.post('/addPick/:team', authMain.isLoggedIn, function (req, res) {
+router.post('/saveBallot/:team', authMain.isLoggedIn, function (req, res) {
     "use strict";
-    msUserControl.addPick(req, res, req.params.team);
+    msUserControl.saveBallot(req, res, req.params.team);
 });
 
 /*=================================

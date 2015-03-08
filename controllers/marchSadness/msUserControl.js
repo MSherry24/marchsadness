@@ -70,9 +70,9 @@ exports.deleteTeam = function (req, res, teamId) {
 };
 
 /*=================================
- * Add a Selected Team to a March Sadness Team
+ * Save Changes to a March Sadness Ballot
  *=================================*/
-exports.addPick = function (req, res, teamId) {
+exports.saveBallot = function (req, res, teamId) {
     "use strict";
     msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
         if (err) {
@@ -83,24 +83,26 @@ exports.addPick = function (req, res, teamId) {
         } else {
             msModel.msTeam.find({}, function (err, msTeam) {
                 var allMsTeams = {};
-                msTeam.map(function(x) {
+                msTeam.map(function (x) {
                    allMsTeams[x._id] = x;
                 });
-                ['1','2','3','4','5','6'].map(function(i) {
-                    team.rounds['round' + i + 'picks'] = [];
-                    req.body['round' + i + 'picks'].map(function(x) {
-                        if(x.id !== '') {
-                            team.rounds['round' + i + 'picks'].push(allMsTeams[x.id]);
-                        }
-                    });
+                ['1','2','3','4','5','6'].map(function (i) {
+                    if (req.body['round' + i + 'picks']) {
+                        team.rounds['round' + i + 'picks'] = [];
+                        req.body['round' + i + 'picks'].map(function (x) {
+                            if (x && x[0] && x[0].id !== '') {
+                                team.rounds['round' + i + 'picks'].push(allMsTeams[x[0].id]);
+                            }
+                        });
+                    }
                 });
-                team.save(function(err) {
+                team.save(function (err) {
                     if (err) {
                         console.log('error appending to team' + err);
                     }
                     res.status(200).end();
-                })
-            })
+                });
+            });
         }
     });
 };

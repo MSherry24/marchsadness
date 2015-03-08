@@ -67,6 +67,7 @@ $(document).ready(function () {
     $("#cancelEditButton").on("click", cancelEditBallot);
     $("#cancelEditButton").hide();
     $("#saveAllChangesButton").hide();
-    $("#saveAllChangesButton").css("margin-left", "15px");
+    $("#saveAllChangesButton").css("margin-right", "15px");
 
 });
+

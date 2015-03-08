@@ -5,6 +5,7 @@ $(document).ready(function () {
 });
 
 function makePicksViewModel() {
+    "use strict";
     var self = this,
         key,
         removeIndex,
@@ -84,26 +85,26 @@ function makePicksViewModel() {
     self.selectedTeams = {};
 
     var dontUpdateList = {
-        'round1pick1' : self.round1pick1options,
-        'round1pick2' : self.round1pick2options,
-        'round1pick3' : self.round1pick3options,
-        'round1pick4' : self.round1pick4options,
-        'round1pick5' : self.round1pick5options,
-        'round1pick6' : self.round1pick6options,
-        'round2pick1' : self.round2pick1options,
-        'round2pick2' : self.round2pick2options,
-        'round2pick3' : self.round2pick3options,
-        'round2pick4' : self.round2pick4options,
-        'round2pick5' : self.round2pick5options,
-        'round2pick6' : self.round2pick6options,
-        'round3pick1' : self.round3pick1options,
-        'round3pick2' : self.round3pick2options,
-        'round3pick3' : self.round3pick3options,
-        'round4pick1' : self.round4pick1options,
-        'round4pick2' : self.round4pick2options,
-        'round4pick3' : self.round4pick3options,
-        'round5pick1' : self.round5pick1options,
-        'round6pick1' : self.round6pick1options
+        'round1pick1': self.round1pick1options,
+        'round1pick2': self.round1pick2options,
+        'round1pick3': self.round1pick3options,
+        'round1pick4': self.round1pick4options,
+        'round1pick5': self.round1pick5options,
+        'round1pick6': self.round1pick6options,
+        'round2pick1': self.round2pick1options,
+        'round2pick2': self.round2pick2options,
+        'round2pick3': self.round2pick3options,
+        'round2pick4': self.round2pick4options,
+        'round2pick5': self.round2pick5options,
+        'round2pick6': self.round2pick6options,
+        'round3pick1': self.round3pick1options,
+        'round3pick2': self.round3pick2options,
+        'round3pick3': self.round3pick3options,
+        'round4pick1': self.round4pick1options,
+        'round4pick2': self.round4pick2options,
+        'round4pick3': self.round4pick3options,
+        'round5pick1': self.round5pick1options,
+        'round6pick1': self.round6pick1options
     };
 
     var updateOtherLists = function (value, addOrDelete, selectedList) {
@@ -163,26 +164,147 @@ function makePicksViewModel() {
     //    console.log('selected round' + selectedRound);
     //};
 
-    //self.saveChanges = function() {
-    //    var route, payload;
-    //    route = '/marchsadness/addPick/' + team._id;
-    //    payload = {
-    //        round1picks: self.round1picks(),
-    //        round2picks: self.round2picks(),
-    //        round3picks: self.round3picks(),
-    //        round4picks: self.round4picks(),
-    //        round5picks: self.round5picks(),
-    //        round6picks: self.round6picks()
-    //    };
-    //    $('#save').hide();
-    //    $('#saving').show();
-    //    $.post(route, payload, function () {
-    //        setTimeout(function () {
-    //            $('#save').show();
-    //            $('#saving').hide();
-    //        }, 1500);
-    //    });
-    //};
+    var flattenPicks = function () {
+        var payload = {
+            round1picks: [],
+            round2picks: [],
+            round3picks: [],
+            round4picks: [],
+            round5picks: [],
+            round6picks: []
+        };
+        if (self.round1pick1() && !self.round1pick1()[0]) {
+            self.round1pick1 = [self.round1pick1()];
+            payload.round1picks.push(self.round1pick1);
+        } else {
+            payload.round1picks.push(self.round1pick1());
+        }
+        if (self.round1pick2() && !self.round1pick2()[0]) {
+            self.round1pick2 = [self.round1pick2()];
+            payload.round1picks.push(self.round1pick2);
+        } else {
+            payload.round1picks.push(self.round1pick2());
+        }
+        if (self.round1pick3() && !self.round1pick3()[0]) {
+            self.round1pick3 = [self.round1pick3()];
+            payload.round1picks.push(self.round1pick3);
+        } else {
+            payload.round1picks.push(self.round1pick3());
+        }
+        if (self.round1pick4() && !self.round1pick4()[0]) {
+            self.round1pick4 = [self.round1pick4()];
+            payload.round1picks.push(self.round1pick4);
+        } else {
+            payload.round1picks.push(self.round1pick4());
+        }
+        if (self.round1pick5() && !self.round1pick5()[0]) {
+            self.round1pick5 = [self.round1pick5()];
+            payload.round1picks.push(self.round1pick5);
+        } else {
+            payload.round1picks.push(self.round1pick5());
+        }
+        if (self.round1pick6() && !self.round1pick6()[0]) {
+            self.round1pick6 = [self.round1pick6()];
+            payload.round1picks.push(self.round1pick6);
+        } else {
+            payload.round1picks.push(self.round1pick6());
+        }
+        if (self.round2pick1() && !self.round2pick1()[0]) {
+            self.round2pick1 = [self.round2pick1()];
+            payload.round2picks.push(self.round2pick1);
+        } else {
+            payload.round2picks.push(self.round2pick1());
+        }
+        if (self.round2pick2() && !self.round2pick2()[0]) {
+            self.round2pick2 = [self.round2pick2()];
+            payload.round2picks.push(self.round2pick2);
+        } else {
+            payload.round2picks.push(self.round2pick2());
+        }
+        if (self.round2pick3() && !self.round2pick3()[0]) {
+            self.round2pick3 = [self.round2pick3()];
+            payload.round2picks.push(self.round2pick3);
+        } else {
+            payload.round2picks.push(self.round2pick3());
+        }
+        if (self.round2pick4() && !self.round2pick4()[0]) {
+            self.round2pick4 = [self.round2pick4()];
+            payload.round2picks.push(self.round2pick4);
+        } else {
+            payload.round2picks.push(self.round2pick4());
+        }
+        if (self.round2pick5() && !self.round2pick5()[0]) {
+            self.round2pick5 = [self.round2pick5()];
+            payload.round2picks.push(self.round2pick5);
+        } else {
+            payload.round2picks.push(self.round2pick5());
+        }
+        if (self.round2pick6() && !self.round2pick6()[0]) {
+            self.round2pick6 = [self.round2pick6()];
+            payload.round2picks.push(self.round2pick6);
+        } else {
+            payload.round2picks.push(self.round2pick6());
+        }
+        if (self.round3pick1() && !self.round3pick1()[0]) {
+            self.round3pick1 = [self.round3pick1()];
+            payload.round3picks.push(self.round3pick1);
+        } else {
+            payload.round3picks.push(self.round3pick1());
+        }
+        if (self.round3pick2() && !self.round3pick2()[0]) {
+            self.round3pick2 = [self.round3pick2()];
+            payload.round3picks.push(self.round3pick2);
+        } else {
+            payload.round3picks.push(self.round3pick2());
+        }
+        if (self.round3pick3() && !self.round3pick3()[0]) {
+            self.round3pick3 = [self.round3pick3()];
+            payload.round3picks.push(self.round3pick3);
+        } else {
+            payload.round3picks.push(self.round3pick3());
+        }
+        if (self.round4pick1() && !self.round4pick1()[0]) {
+            self.round4pick1 = [self.round4pick1()];
+            payload.round4picks.push(self.round4pick1);
+        } else {
+            payload.round4picks.push(self.round4pick1());
+        }
+        if (self.round4pick2() && !self.round4pick2()[0]) {
+            self.round4pick2 = [self.round4pick2()];
+            payload.round4picks.push(self.round4pick2);
+        } else {
+            payload.round4picks.push(self.round4pick2());
+        }
+        if (self.round4pick3() && !self.round4pick3()[0]) {
+            self.round4pick3 = [self.round4pick3()];
+            payload.round4picks.push(self.round4pick3);
+        } else {
+            payload.round4picks.push(self.round4pick3());
+        }
+        if (self.round5pick1() && !self.round5pick1()[0]) {
+            self.round5pick1 = [self.round5pick1()];
+            payload.round5picks.push(self.round5pick1);
+        } else {
+            payload.round5picks.push(self.round5pick1());
+        }
+        if (self.round6pick1() && !self.round6pick1()[0]) {
+            self.round6pick1 = [self.round6pick1()];
+            payload.round6picks.push(self.round6pick1);
+        } else {
+            payload.round6picks.push(self.round6pick1());
+        }
+        return payload;
+    };
+
+    self.saveBallot = function () {
+        var route, payload;
+        route = '/marchsadness/saveBallot/' + team._id;
+        payload = flattenPicks();
+        $('#saveAllChangesButton').addClass("disabled").html("Saving");
+        $.post(route, payload, function () {
+            window.location.reload(true);
+        });
+    };
 
     function NcaaTeamViewModel(teamName, teamId, seed, notSelected, eliminated) {
         var self = this;
@@ -210,267 +332,267 @@ function makePicksViewModel() {
     }
 
     self.round1pick1.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round1pick1');
         }
     }, null, "beforeChange");
 
     self.round1pick1.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round1pick1');
         }
         sortLists();
     });
 
     self.round1pick2.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round1pick2');
         }
     }, null, "beforeChange");
 
     self.round1pick2.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round1pick2');
         }
         sortLists();
     });
 
     self.round1pick3.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round1pick3');
         }
     }, null, "beforeChange");
 
     self.round1pick3.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round1pick3');
         }
         sortLists();
     });
 
     self.round1pick4.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round1pick4');
         }
     }, null, "beforeChange");
 
     self.round1pick4.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round1pick4');
         }
         sortLists();
     });
 
     self.round1pick5.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round1pick5');
         }
     }, null, "beforeChange");
 
     self.round1pick5.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round1pick5');
         }
         sortLists();
     });
 
     self.round1pick6.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round1pick6');
         }
     }, null, "beforeChange");
 
     self.round1pick6.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round1pick6');
         }
         sortLists();
     });
 
     self.round2pick1.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round2pick1');
         }
     }, null, "beforeChange");
 
     self.round2pick1.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round2pick1');
         }
         sortLists();
     });
 
     self.round2pick2.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round2pick2');
         }
     }, null, "beforeChange");
 
     self.round2pick2.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round2pick2');
         }
         sortLists();
     });
 
     self.round2pick3.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round2pick3');
         }
     }, null, "beforeChange");
 
     self.round2pick3.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round2pick3');
         }
         sortLists();
     });
 
     self.round2pick4.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round2pick4');
         }
     }, null, "beforeChange");
 
     self.round2pick4.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round2pick4');
         }
         sortLists();
     });
 
     self.round2pick5.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round2pick5');
         }
     }, null, "beforeChange");
 
     self.round2pick5.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round2pick5');
         }
         sortLists();
     });
 
     self.round2pick6.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round2pick6');
         }
     }, null, "beforeChange");
 
     self.round2pick6.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round2pick6');
         }
         sortLists();
     });
 
     self.round3pick1.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round3pick1');
         }
     }, null, "beforeChange");
 
     self.round3pick1.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round3pick1');
         }
         sortLists();
     });
 
     self.round3pick2.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round3pick2');
         }
     }, null, "beforeChange");
 
     self.round3pick2.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round3pick2');
         }
         sortLists();
     });
 
     self.round3pick3.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round3pick3');
         }
     }, null, "beforeChange");
 
     self.round3pick3.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round3pick3');
         }
         sortLists();
     });
 
     self.round4pick1.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round4pick1');
         }
     }, null, "beforeChange");
 
     self.round4pick1.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round4pick1');
         }
         sortLists();
     });
 
     self.round4pick2.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round4pick2');
         }
     }, null, "beforeChange");
 
     self.round4pick2.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round4pick2');
         }
         sortLists();
     });
 
     self.round4pick3.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round4pick3');
         }
     }, null, "beforeChange");
 
     self.round4pick3.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round4pick3');
         }
         sortLists();
     });
 
     self.round5pick1.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round5pick1');
         }
     }, null, "beforeChange");
 
     self.round5pick1.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round5pick1');
         }
         sortLists();
     });
 
     self.round6pick1.subscribe(function (oldValue) {
-        if(oldValue && oldValue[0].name !== 'Make a Selection') {
+        if (oldValue && oldValue[0].name !== 'Make a Selection') {
             updateOtherLists(oldValue[0], 'add', 'round6pick1');
         }
     }, null, "beforeChange");
 
     self.round6pick1.subscribe(function (newValue) {
-        if(newValue[0].name !== 'Make a Selection') {
+        if (newValue[0].name !== 'Make a Selection') {
             updateOtherLists(newValue[0], 'delete', 'round6pick1');
         }
         sortLists();
     });
 }
 
-var setPicklistValues = function() {
+var setPicklistValues = function () {
     $('#round1pick1').val($('#r1p1name').attr('value'));
     $('#round1pick2').val($('#r1p2name').attr('value'));
     $('#round1pick3').val($('#r1p3name').attr('value'));
