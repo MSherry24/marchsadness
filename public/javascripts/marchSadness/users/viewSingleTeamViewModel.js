@@ -1,6 +1,7 @@
 $(document).ready(function () {
     ko.applyBindings(new makePicksViewModel());
     setPicklistValues();
+    $('.teamSelectView').hide();
 });
 
 function makePicksViewModel() {

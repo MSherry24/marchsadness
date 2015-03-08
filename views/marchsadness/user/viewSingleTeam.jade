@@ -76,32 +76,37 @@ block content
                                     if (round === 1 || round === 2)
                                         each pickRow in [1,2,3,4,5,6]
                                             tr
-                                                if (team.rounds['round'+round+'picks'][pickRow])
-                                                    td.ms-grey-line= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].teamName
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missed3
-                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missed2
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missedFT
-                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].score
-                                                else
-                                                    td.ms-grey-line
-                                                        select(id="round"+round+"pick"+pickRow, data-bind="options: round"+round+"pick"+pickRow+"options, optionsText: 'name', value='id', selectedOptions: round"+round+"pick"+pickRow)
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
-                                                    td.ms-grey-line.text-center= ''
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
-                                                    td.ms-grey-line.text-center= ''
-                                    else if (round === 3 || round === 4)
-                                        each pickRow in [1,2,3]
-                                            tr(data-bind="afterRender: setPicklistValues")
                                                 if (team.rounds['round'+round+'picks'][pickRow-1])
-                                                    td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
-                                                        select(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                    td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
+                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed2
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missedFT
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].score
                                                 else
                                                     td.ms-grey-line
-                                                        select(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', value='id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
+                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', value='id', selectedOptions: round" + round + "pick" + pickRow)
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
+                                                    td.ms-grey-line.text-center= ''
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
+                                                    td.ms-grey-line.text-center= ''
+                                    else if (round === 3 || round === 4)
+                                        each pickRow in [1,2,3]
+                                            tr
+                                                if (team.rounds['round'+round+'picks'][pickRow-1])
+                                                    td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
+                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
+                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed2
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missedFT
+                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].score
+                                                else
+                                                    td.ms-grey-line
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
+                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', value='id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
@@ -109,14 +114,18 @@ block content
                                     else if (round === 5 || round === 6)
                                         each pickRow in [1]
                                             tr
-                                                if (team.rounds['round'+round+'picks'][pickRow])
-                                                    td.ms-grey-line= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].teamName
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missed3
-                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missed2
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missedFT
-                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].score
+                                                if (team.rounds['round'+round+'picks'][pickRow-1])
+                                                    td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
+                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
+                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed2
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missedFT
+                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].score
                                                 else
-                                                    td.ms-grey-line= ''
+                                                    td.ms-grey-line
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
+                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', value='id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
@@ -127,6 +136,8 @@ block content
                                         td.text-center= ''
                                         td.text-center= ''
                                         td.text-center.ms-font-size-20.ms-font-normal= "Round Score: " + team.scores['round' + round]
-        button#editBallotButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14(value= team._id) Edit Picks
+        button#editBallotButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 Edit Picks
+        button#cancelEditButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 Cancel Edit
+        button#saveAllChangesButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14(value= team._id) Save All Changes
         br
         br

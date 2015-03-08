@@ -43,16 +43,30 @@ var setTabBackgrounds = function () {
 
 var editBallot = function () {
     "use strict";
-    var teamId = $("#editBallotButton").val();
-    window.location = '/marchsadness/makeTeamSelections/' + teamId;
+    $('.teamTextView').hide();
+    $("#editBallotButton").hide();
+    $('.teamSelectView').show();
+    $("#cancelEditButton").show();
+    $("#saveAllChangesButton").show();
 };
 
-
+var cancelEditBallot = function () {
+    "use strict";
+    $('.teamSelectView').hide();
+    $("#cancelEditButton").hide();
+    $("#saveAllChangesButton").hide();
+    $('.teamTextView').show();
+    $("#editBallotButton").show();
+};
 
 $(document).ready(function () {
     $('#UpdateTeam').on('click', updateTeam);
     $("#tabs").tabs();
     setTabBackgrounds();
     $("#editBallotButton").on("click", editBallot);
-    //setPicklistValues();
+    $("#cancelEditButton").on("click", cancelEditBallot);
+    $("#cancelEditButton").hide();
+    $("#saveAllChangesButton").hide();
+    $("#saveAllChangesButton").css("margin-left", "15px");
+
 });
