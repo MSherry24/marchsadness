@@ -11,6 +11,11 @@ body::after {
     z-index: -1;
 }
 
+html {
+    font-family: 'Roboto-condensed', sans-serif;
+    font-weight: 400;
+}
+
 .ms-text-orange {
     color: #F05928;
 }
@@ -60,7 +65,7 @@ body::after {
 }
 
 .ms-background-even-lighter-gray {
-    background-color: #cccccc;
+    background-color: #f2f2f2;
 }
 
 .ms-background-black {
