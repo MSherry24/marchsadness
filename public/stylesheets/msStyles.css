@@ -246,3 +246,11 @@ fieldset[disabled] .btn-ms-orange.active {
 .ms-single-team-table tr {
     height: 70px;
 }
+
+.ms-leftnav-body {
+    padding: 0px 15px;
+}
+
+.ms-leftnav-title {
+    margin: 0px -15px;
+}

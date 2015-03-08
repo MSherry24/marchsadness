@@ -50,10 +50,17 @@
 }
 
 .ms-navbar-right {
-    padding: 0px 100px;
+     padding: 0px;
+     display:inline-block;
+     overflow:hidden;
+     float:right;
+ }
+
+.ms-navbar-left {
+    padding: 0px;
     display:inline-block;
     overflow:hidden;
-    float:right;
+    float:left;
 }
 
 .ms-navbar-icon {
@@ -64,6 +71,9 @@
 .ms-navbar-inner-container {
     white-space: nowrap;
     min-width: 1000px;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .ms-navbar-cell {

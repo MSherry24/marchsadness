@@ -7,16 +7,16 @@ div.footer.push
         div.row
             p
                 span
-                    a(href='marchsadness/about') ABOUT
+                    a(href='/marchsadness/about') ABOUT
                 span= " | "
                 span
-                    a(href='marchsadness/blog') BLOG
+                    a(href='/marchsadness/blog') BLOG
                 span= " | "
                 span
-                    a(href='marchsadness/rules') RULES
+                    a(href='/marchsadness/rules') RULES
                 span= " | "
                 span
-                    a(href='contact') CONTACT
+                    a(href='/contact') CONTACT
                 span= " | "
                 if (user)
                     span
@@ -24,4 +24,5 @@ div.footer.push
                 else
                     span
                         a(href='users/login') LOGIN
-        p © Failure League Inc. 2015
+        div.row
+            p © Failure League Inc. 2015

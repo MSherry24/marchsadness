@@ -4,15 +4,15 @@ div.ms-navbar-container
     div.ms-navbar-skew.ms-background-white
         div.ms-navbar
             div.container.ms-navbar-inner-container
-                div.h3.ms-font-bold.ms-navbar-cell
+                div.h3.ms-font-bold.ms-navbar-left
                     div.ms-navbar-logo
                         a(href="/")
                             img(src='../../images/logo.png').ms-logo
-                    div.ms-navbar-cell#about(style="margin-top: 2%")
+                    div.ms-navbar-cell#about
                         a.ms-text-black(href="/marchsadness/about") About
-                    div.ms-navbar-cell#blog(style="margin-top: 2%")
+                    div.ms-navbar-cell#blog
                         a.ms-text-black(href="/marchsadness/blog") Blogs
-                    div.ms-navbar-cell#rules(style="margin-top: 2%")
+                    div.ms-navbar-cell#rules
                         a.ms-text-black(href="/marchsadness/Rules") Rules
                 div.h3.ms-font-bold.ms-navbar-cell.ms-navbar-right
                     if (user && user.isAdmin)

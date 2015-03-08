@@ -1,11 +1,12 @@
 //
    Created by Mike on 2/23/2015.
 script(src="../../javascripts/marchSadness/leftNav.js")
-div.continter.ms-text-white.text-center.ms-leftnav-container.ms-wrap-text
-    div.row.ms-background-light-gray
+div.ms-text-white.text-center.ms-leftnav-container.ms-wrap-text
+    div.row.ms-background-light-gray.ms-leftnav-body
         div.ms-leftnav-buffer
         div.ms-background-gray.ms-leftnav-title
-            h4.text-center BALLOTS
+            a(href="/marchsadness/index")
+                h4.text-center BALLOTS
         if (ballots.length > 0)
             for ballot, index in ballots
                 br
@@ -22,7 +23,7 @@ div.continter.ms-text-white.text-center.ms-leftnav-container.ms-wrap-text
             button.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") Submit
         div.ms-leftnav-buffer
     br
-    div.row.ms-background-light-gray
+    div.row.ms-background-light-gray.ms-leftnav-body
         div.ms-leftnav-buffer
         div.ms-background-gray.ms-leftnav-title
             h4 LEAGUES
