@@ -11,7 +11,7 @@ div.ms-footer-push
                 each ballot, index in ballots
                     tr.h3.ms-grey-line
                         td
-                            span= ballot.name
+                            a(href="/marchsadness/viewSingleTeam/" + ballot._id)= ballot.name
                         td= "Score: " + ballot.totalScore
                         td
                             span
