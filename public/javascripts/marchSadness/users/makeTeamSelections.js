@@ -186,4 +186,3 @@ function seedComparator(a, b) {
     if (a.seed > b.seed) { return 1; }
     return 0;
 }
-

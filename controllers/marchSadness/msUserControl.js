@@ -131,10 +131,10 @@ exports.getViewSingleTeam = function (req, res, teamId) {
                 });
         } else {
             User.findById(team.owner[0], function (err, owner) {
-                msModel.MsConfig.findOne({}, function(err, config) {
+                msModel.MsConfig.findOne({}, function (err, config) {
                     msModel.msTeam.find({}, function (err, msTeams) {
-                        var allTourneyTeams;
-                        allTourneyTeams = {};
+                        var allTourneyTeams = {};
+                        msTeams.sort(teamSort);
                         msTeams.map(function (msTeam) {
                             allTourneyTeams[msTeam._id] = msTeam;
                         });
@@ -142,7 +142,10 @@ exports.getViewSingleTeam = function (req, res, teamId) {
                             config: config,
                             user: req.user,
                             team: team,
+                            teamString: JSON.stringify(team),
                             allTourneyTeams: allTourneyTeams,
+                            msTeamsString: JSON.stringify(allTourneyTeams),
+                            msTeams: msTeams,
                             owner: owner,
                             userIsOwner: req.user._id.id === owner._id.id,
                             ballots: req.userBallots,
@@ -462,4 +465,14 @@ exports.postJoinLeague = function (req, res, leagueId) {
             res.json({message: 'wrongpassword'});
         }
     })
+};
+
+var teamSort = function (a, b) {
+    if (a.teamName < b.teamName) {
+        return -1;
+    }
+    if (a.teamName > b.teamName) {
+        return 1;
+    }
+    return 0;
 };

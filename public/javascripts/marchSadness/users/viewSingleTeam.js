@@ -47,9 +47,12 @@ var editBallot = function () {
     window.location = '/marchsadness/makeTeamSelections/' + teamId;
 };
 
+
+
 $(document).ready(function () {
     $('#UpdateTeam').on('click', updateTeam);
     $("#tabs").tabs();
     setTabBackgrounds();
     $("#editBallotButton").on("click", editBallot);
+    //setPicklistValues();
 });

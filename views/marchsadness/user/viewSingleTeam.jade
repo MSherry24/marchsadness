@@ -1,6 +1,9 @@
 extends ../marchsadnesslayout
 block content
+    script(type="text/javascript")!= "var team = " + teamString + "; var msTeams = " + msTeamsString + ";"
+    script(src="../../javascripts/knockout-v3.2.0.js")
     script(src="../../javascripts/marchSadness/users/viewSingleTeam.js")
+    script(src="../../javascripts/marchSadness/users/viewSingleTeamViewModel.js")
     script(src="../../javascripts/jquery-ui-1.11.3.custom/jquery-ui.min.js")
     link(rel="stylesheet", href="../../javascripts/jquery-ui-1.11.3.custom/jquery-ui.min.css")
     div.row
@@ -80,22 +83,25 @@ block content
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missedFT
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].score
                                                 else
-                                                    td.ms-grey-line= ''
+                                                    td.ms-grey-line
+                                                        select(id="round"+round+"pick"+pickRow, data-bind="options: round"+round+"pick"+pickRow+"options, optionsText: 'name', value='id', selectedOptions: round"+round+"pick"+pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                     else if (round === 3 || round === 4)
                                         each pickRow in [1,2,3]
-                                            tr
-                                                if (team.rounds['round'+round+'picks'][pickRow])
-                                                    td.ms-grey-line= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].teamName
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missed3
-                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missed2
-                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].missedFT
-                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow]].scores['round'+round].score
+                                            tr(data-bind="afterRender: setPicklistValues")
+                                                if (team.rounds['round'+round+'picks'][pickRow-1])
+                                                    td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
+                                                        select(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
+                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed2
+                                                    td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missedFT
+                                                    td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].score
                                                 else
-                                                    td.ms-grey-line= ''
+                                                    td.ms-grey-line
+                                                        select(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', value='id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
