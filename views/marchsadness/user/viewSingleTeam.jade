@@ -12,58 +12,64 @@ block content
         h1#sadnessScore.pull-right.ms-font-size-20.ms-font-normal= "Sadness Score: " + team.totalScore
         div#tabs
             ul#roundTabs.ms-font-size-14.text-center
-                if (!config.roundStarted.round1)
-                    li#r1tab.ms-single-team-table-tab
-                        a#r1tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round1", role="tab", data-toggle="tab")= 'Round 1 '
-                            div.round-start-date.ms-font-light= (config.roundStarted.round1 ? '(Locked)' : '3/19, 3/20')
-                else
-                    li#r1tab.ms-single-team-table-tab
-                        a#r1tab-a.ms-background-white.ms-font-bold(href="#Round1", role="tab", data-toggle="tab")= 'Round 1 '
-                            div.round-start-date.ms-font-light= (config.roundStarted.round1 ? '(Locked)' : '3/19, 3/20')
-                if (config.roundStarted.round1 && !config.roundStarted.round2)
-                    li#r2tab.ms-single-team-table-tab
-                        a#r2tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round2", role="tab", data-toggle="tab")= 'Round 2'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round2 ? '(Locked)' : '3/21, 3/22')
-                else
-                    li#r2tab.ms-single-team-table-tab
-                        a#r2tab-a.ms-background-white.ms-font-bold(href="#Round2", role="tab", data-toggle="tab")= 'Round 2'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round2 ? '(Locked)' : '3/21, 3/22')
-                if (config.roundStarted.round2 && !config.roundStarted.round3)
-                    li#r3tab.ms-single-team-table-tab
-                        a#r3tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round3", role="tab", data-toggle="tab")= 'Round 3'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round3 ? '(Locked)' : '3/26, 3/27')
-                else
-                    li#r3tab.ms-single-team-table-tab
-                        a#r3tab-a.ms-background-white.ms-font-bold(href="#Round3", role="tab", data-toggle="tab")= 'Round 3'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round3 ? '(Locked)' : '3/26, 3/27')
-                if (config.roundStarted.round3 && !config.roundStarted.round4)
-                    li#r4tab.ms-single-team-table-tab
-                        a#r4tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round4", role="tab", data-toggle="tab")= 'Round 4'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round4 ? '(Locked)' : '3/28, 3/29')
-                else
-                    li#r4tab.ms-single-team-table-tab
-                        a#r4tab-a.ms-background-white.ms-font-bold(href="#Round4", role="tab", data-toggle="tab")= 'Round 4'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round4 ? '(Locked)' : '3/28, 3/29')
-                if (config.roundStarted.round4 && !config.roundStarted.round5)
-                    li#r5tab.ms-single-team-table-tab
-                        a#r5tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round5", role="tab", data-toggle="tab")= 'Round 5'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round5 ? '(Locked)' : '4/4')
-                else
-                    li#r5tab.ms-single-team-table-tab
-                        a#r5tab-a.ms-background-white.ms-font-bold(href="#Round5", role="tab", data-toggle="tab")= 'Round 5'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round5 ? '(Locked)' : '4/4')
-                if (config.roundStarted.round5 && !config.roundStarted.round6)
-                    li#r6tab.ms-single-team-table-tab
-                        a#r6tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round6", role="tab", data-toggle="tab")= 'Round 6'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round6 ? '(Locked)' : '4/6')
-                else
-                    li#r6tab.ms-single-team-table-tab
-                        a#r6tab-a.ms-background-white.ms-font-bold(href="#Round6", role="tab", data-toggle="tab")= 'Round 6'
-                            div.round-start-date.ms-font-light= (config.roundStarted.round6 ? '(Locked)' : '4/6')
+                if(userIsOwner || config.roundStarted['round1'])
+                    if (!config.roundStarted.round1)
+                        li#r1tab.ms-single-team-table-tab
+                            a#r1tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round1", role="tab", data-toggle="tab")= 'Round 1 '
+                                div.round-start-date.ms-font-light= (config.roundStarted.round1 ? '(Locked)' : '3/19, 3/20')
+                    else
+                        li#r1tab.ms-single-team-table-tab
+                            a#r1tab-a.ms-background-white.ms-font-bold(href="#Round1", role="tab", data-toggle="tab")= 'Round 1 '
+                                div.round-start-date.ms-font-light= (config.roundStarted.round1 ? '(Locked)' : '3/19, 3/20')
+                if(userIsOwner || config.roundStarted['round2'])
+                    if (config.roundStarted.round1 && !config.roundStarted.round2)
+                        li#r2tab.ms-single-team-table-tab
+                            a#r2tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round2", role="tab", data-toggle="tab")= 'Round 2'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round2 ? '(Locked)' : '3/21, 3/22')
+                    else
+                        li#r2tab.ms-single-team-table-tab
+                            a#r2tab-a.ms-background-white.ms-font-bold(href="#Round2", role="tab", data-toggle="tab")= 'Round 2'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round2 ? '(Locked)' : '3/21, 3/22')
+                if(userIsOwner || config.roundStarted['round3'])
+                    if (config.roundStarted.round2 && !config.roundStarted.round3)
+                        li#r3tab.ms-single-team-table-tab
+                            a#r3tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round3", role="tab", data-toggle="tab")= 'Round 3'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round3 ? '(Locked)' : '3/26, 3/27')
+                    else
+                        li#r3tab.ms-single-team-table-tab
+                            a#r3tab-a.ms-background-white.ms-font-bold(href="#Round3", role="tab", data-toggle="tab")= 'Round 3'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round3 ? '(Locked)' : '3/26, 3/27')
+                if(userIsOwner || config.roundStarted['round4'])
+                    if (config.roundStarted.round3 && !config.roundStarted.round4)
+                        li#r4tab.ms-single-team-table-tab
+                            a#r4tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round4", role="tab", data-toggle="tab")= 'Round 4'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round4 ? '(Locked)' : '3/28, 3/29')
+                    else
+                        li#r4tab.ms-single-team-table-tab
+                            a#r4tab-a.ms-background-white.ms-font-bold(href="#Round4", role="tab", data-toggle="tab")= 'Round 4'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round4 ? '(Locked)' : '3/28, 3/29')
+                if(userIsOwner || config.roundStarted['round5'])
+                    if (config.roundStarted.round4 && !config.roundStarted.round5)
+                        li#r5tab.ms-single-team-table-tab
+                            a#r5tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round5", role="tab", data-toggle="tab")= 'Round 5'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round5 ? '(Locked)' : '4/4')
+                    else
+                        li#r5tab.ms-single-team-table-tab
+                            a#r5tab-a.ms-background-white.ms-font-bold(href="#Round5", role="tab", data-toggle="tab")= 'Round 5'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round5 ? '(Locked)' : '4/4')
+                if(userIsOwner || config.roundStarted['round6'])
+                    if (config.roundStarted.round5 && !config.roundStarted.round6)
+                        li#r6tab.ms-single-team-table-tab
+                            a#r6tab-a.ms-background-white.ms-font-bold.activeRound(href="#Round6", role="tab", data-toggle="tab")= 'Round 6'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round6 ? '(Locked)' : '4/6')
+                    else
+                        li#r6tab.ms-single-team-table-tab
+                            a#r6tab-a.ms-background-white.ms-font-bold(href="#Round6", role="tab", data-toggle="tab")= 'Round 6'
+                                div.round-start-date.ms-font-light= (config.roundStarted.round6 ? '(Locked)' : '4/6')
             each round, index in [1,2,3,4,5,6]
-                div.tab-content(id="Round-table"+round)
-                    div.tab-pane(id="Round"+round, class=(round === 1 ? "active" : ""))
-                        if(userIsOwner || config.roundStarted['round'+round])
+                if(userIsOwner || config.roundStarted['round'+round])
+                    div.tab-content(id="Round-table"+round)
+                        div.tab-pane(id="Round"+round, class=(round === 1 ? "active" : ""))
                             table.ms-single-team-table
                                 thead
                                     tr(id="tableHeaderR" + round)
@@ -79,7 +85,10 @@ block content
                                                 if (team.rounds['round'+round+'picks'][pickRow-1])
                                                     td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
                                                         div.teamTextView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
-                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        if (config.roundStarted['round'+round])
+                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        else
+                                                            select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed2
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missedFT
@@ -87,7 +96,10 @@ block content
                                                 else
                                                     td.ms-grey-line
                                                         div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
-                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        if (config.roundStarted['round'+round])
+                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        else
+                                                            select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
@@ -98,7 +110,10 @@ block content
                                                 if (team.rounds['round'+round+'picks'][pickRow-1])
                                                     td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
                                                         div.teamTextView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
-                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        if (config.roundStarted['round'+round])
+                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        else
+                                                            select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed2
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missedFT
@@ -106,7 +121,10 @@ block content
                                                 else
                                                     td.ms-grey-line
                                                         div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
-                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        if (config.roundStarted['round'+round])
+                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        else
+                                                            select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
@@ -117,7 +135,10 @@ block content
                                                 if (team.rounds['round'+round+'picks'][pickRow-1])
                                                     td.ms-grey-line(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
                                                         div.teamTextView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
-                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        if (config.roundStarted['round'+round])
+                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        else
+                                                            select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed2
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missedFT
@@ -125,7 +146,10 @@ block content
                                                 else
                                                     td.ms-grey-line
                                                         div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
-                                                        select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        if (config.roundStarted['round'+round])
+                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                        else
+                                                            select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
                                                     td.ms-grey-line.text-center= ''
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray= ''
