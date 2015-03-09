@@ -1,10 +1,8 @@
 //
    Created by Mike on 2/15/2015.
-div.container
-    each post, index in blogPosts
-        div.row
-            h1= post.title
-            div
-                b= "By: " + post.author
-                p= post.timestamp
-            div!= post.body
+each post, index in blogPosts
+    p.ms-font-size-20= post.title
+    p
+        b= "By: " + post.author
+    p= post.timestamp
+    p!= post.body
