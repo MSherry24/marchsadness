@@ -160,8 +160,9 @@ block content
                                         td.text-center= ''
                                         td.text-center= ''
                                         td.text-center.ms-font-size-20.ms-font-normal= "Round Score: " + team.scores['round' + round]
-        button#editBallotButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 Edit Picks
-        button#saveAllChangesButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14(value= team._id, data-bind="click: saveBallot") Save All Changes
-        button#cancelEditButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 Cancel Edit
+        if (userIsOwner)
+            button#editBallotButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 Edit Picks
+            button#saveAllChangesButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14(value= team._id, data-bind="click: saveBallot") Save All Changes
+            button#cancelEditButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 Cancel Edit
         br
         br

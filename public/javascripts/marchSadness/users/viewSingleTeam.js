@@ -8,8 +8,7 @@ var updateTeam = function () {
 
 var setTabBackgrounds = function () {
     "use strict";
-    var targetId,
-        classToAdd,
+    var classToAdd,
         tabs = [
             '#r1tab-a',
             '#r2tab-a',
@@ -19,25 +18,27 @@ var setTabBackgrounds = function () {
             '#r6tab-a'
         ];
     tabs.map(function (tab) {
-        if ($(tab).html().indexOf("(Locked)") !== -1) {
-            $(tab).addClass("ms-background-light-gray");
-            $(tab).removeClass("ms-background-white");
-            $(tab).removeClass("ms-background-yellow");
-            classToAdd = "ms-background-light-gray";
-        } else if ($(tab).hasClass("activeRound")) {
-            $(tab).addClass("ms-background-white");
-            $(tab).removeClass("ms-background-light-gray");
-            $(tab).removeClass("ms-background-yellow");
-            classToAdd = "ms-background-white";
-        } else {
-            $(tab).addClass("ms-background-yellow");
-            $(tab).removeClass("ms-background-white");
-            $(tab).removeClass("ms-background-light-gray");
-            classToAdd = "ms-background-yellow";
+        if ($(tab).html()) {
+            if ($(tab).html().indexOf("(Locked)") !== -1) {
+                $(tab).addClass("ms-background-light-gray");
+                $(tab).removeClass("ms-background-white");
+                $(tab).removeClass("ms-background-yellow");
+                classToAdd = "ms-background-light-gray";
+            } else if ($(tab).hasClass("activeRound")) {
+                $(tab).addClass("ms-background-white");
+                $(tab).removeClass("ms-background-light-gray");
+                $(tab).removeClass("ms-background-yellow");
+                classToAdd = "ms-background-white";
+            } else {
+                $(tab).addClass("ms-background-yellow");
+                $(tab).removeClass("ms-background-white");
+                $(tab).removeClass("ms-background-light-gray");
+                classToAdd = "ms-background-yellow";
+            }
+            $("#tableHeaderR" + tab[2]).addClass(classToAdd);
+            $("#tableFooter" + tab[2]).addClass(classToAdd);
+            $("#Round-table" + tab[2]).addClass(classToAdd);
         }
-        $("#tableHeaderR" + tab[2]).addClass(classToAdd);
-        $("#tableFooter" + tab[2]).addClass(classToAdd);
-        $("#Round-table" + tab[2]).addClass(classToAdd);
     });
 };
 
