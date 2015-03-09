@@ -95,7 +95,7 @@ block content
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].score
                                                 else
                                                     td.ms-grey-line
-                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Edit to Pick a Team
                                                         if (config.roundStarted['round'+round])
                                                             select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                         else
@@ -120,7 +120,7 @@ block content
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].score
                                                 else
                                                     td.ms-grey-line
-                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Edit to Pick a Team
                                                         if (config.roundStarted['round'+round])
                                                             select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                         else
@@ -145,7 +145,7 @@ block content
                                                     td.ms-grey-line.text-center= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].score
                                                 else
                                                     td.ms-grey-line
-                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Make a Selection
+                                                        div.teamTextView(id="round" + round + "pick" + pickRow + "text") Edit to Pick a Team
                                                         if (config.roundStarted['round'+round])
                                                             select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                         else

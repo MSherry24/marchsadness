@@ -125,7 +125,7 @@ function makePicksViewModel() {
         }
     };
 
-    tbdTeam = new NcaaTeamViewModel('Make a Selection', '', '', true, false);
+    tbdTeam = new NcaaTeamViewModel('Pick a Team', '', '', true, false);
     self.selectOptions.push(tbdTeam);
     self.allNcaaTeamsMap.TBD = tbdTeam;
 
@@ -216,17 +216,17 @@ function makePicksViewModel() {
     }
 
     function teamNameComparitor(a, b) {
-        if (a.name > b.name || b.name === "Make a Selection") {
+        if (a.name > b.name || b.name === "Pick a Team") {
             return 1;
         }
-        if (a.name < b.name || a.name === "Make a Selection") {
+        if (a.name < b.name || a.name === "Pick a Team") {
             return -1;
         }
         return 0;
     }
 
     var checkIfValidUpdate = function (value, action, pick) {
-        if (value && value[0] && self.allNcaaTeamsMap[value[0]].name !== 'Make a Selection') {
+        if (value && value[0] && self.allNcaaTeamsMap[value[0]].name !== 'Pick a Team') {
             updateOtherLists(value[0], action, pick);
         }
     };
