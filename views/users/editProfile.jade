@@ -8,7 +8,7 @@ block content
             h1
                 span.fa.fa-anchor Profile Page
                 div.row
-                    a.btn.btn-default(href="/users/profile") Back
+                    a.btn.btn-ms-orange(href="/users/profile") Back
 
         div.row
             <!-- LOCAL INFORMATION -->
@@ -30,5 +30,5 @@ block content
                                 input#oktoemail(type="checkbox", name="oktoemail", checked=(user.okToEmail ? "checked" : undefined))
                                 span= ' Yes'
                             br
-                            a#saveChanges.btn.btn-default.btn-primary(type="submit") Save Changes
-                            a#saveChangesDisabled.btn.btn-default.btn-primary.disabled Saving
+                            a#saveChanges.btn.btn-ms-orange(type="submit") Save Changes
+                            a#saveChangesDisabled.btn.btn-ms-orange.disabled Saving
