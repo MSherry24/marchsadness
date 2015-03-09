@@ -11,6 +11,10 @@ body::after {
     z-index: -1;
 }
 
+a:hover {
+    color: #F05928;
+}
+
 html {
     font-family: 'Roboto-condensed', sans-serif;
     font-weight: 400;
