@@ -2,5 +2,5 @@
  * Created by Mike on 3/1/2015.
  */
 $(document).ready(function () {
-    $('#rules').css('text-decoration', 'underline');
+    $('#rules').children().addClass('ms-text-orange').removeClass("ms-text-black");
 });

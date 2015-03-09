@@ -19,6 +19,7 @@ div.ms-navbar-container
                         div.ms-navbar-cell
                             a(href="/marchsadness/admin") Admin
                     if (user)
+                        div.ms-navbar-cell.ms-font-normal.ms-font-size-20= "What Up, " + user.firstName
                         div.ms-navbar-cell
                             a(href="/marchsadness/index")
                                 img(src='../../images/basketballIcon.png').ms-navbar-icon
