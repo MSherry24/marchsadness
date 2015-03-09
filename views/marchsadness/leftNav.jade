@@ -18,7 +18,7 @@ div.ms-text-white.text-center.ms-leftnav-container.ms-wrap-text
         button#showCreateTeam.btn.btn-ms-orange(type="submit", value="Create a Ballot") +
         form#newTeamForm(action="/marchsadness/createnewteam", method="post")
             div.form-group
-                label Team Name
+                label Ballot Name
                 input(type="text", class="form-control", name="teamname")
             button.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") Submit
         div.ms-leftnav-buffer
