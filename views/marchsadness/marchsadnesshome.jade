@@ -11,12 +11,15 @@ block content
                     div Win points each round.
                     div Embrace failure.
                 br
-                if (user)
-                    a(href="/marchsadness/joinaleague")
-                        button.btn.btn-ms-orange JOIN A LEAGUE
+                if (true)
+                    button.btn.btn-ms-orange.disabled REGISTRATION OPENS MARCH 16
                 else
-                    a(href="/users/signup")
-                        button.btn.btn-ms-orange PLAY NOW
+                    if (user)
+                        a(href="/marchsadness/joinaleague")
+                            button.btn.btn-ms-orange JOIN A LEAGUE
+                    else
+                        a(href="/users/signup")
+                            button.btn.btn-ms-orange PLAY NOW
             div.col-xs-6
                 div
                     img(src='../images/sadguy.png').ms-logo

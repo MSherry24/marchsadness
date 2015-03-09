@@ -26,11 +26,12 @@ div.ms-navbar-container
                         div.ms-navbar-cell
                             a(href="/users/profile")
                                 img(src='../../images/gearIcon.png').ms-navbar-icon
-                    if (user)
-                        div.ms-navbar-cell
-                            a.ms-text-black(href="/users/logout") Logout
-                    if (!user)
-                        div.ms-navbar-cell
-                            a.ms-text-black(href="/users/login") Login Here
+                    if (false)
+                        if (user)
+                            div.ms-navbar-cell
+                                a.ms-text-black(href="/users/logout") Logout
+                        if (!user)
+                            div.ms-navbar-cell
+                                a.ms-text-black(href="/users/login") Login Here
 div#ms-navbar-angle-line-test-yellow= ""
 div#ms-navbar-angle-line-test-orange= ""
