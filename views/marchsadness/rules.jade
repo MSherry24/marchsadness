@@ -1,115 +1,102 @@
 extends ../layout
 block content
     script(src="../../javascripts/marchsadness/rules.js")
-    div.container
-        div.row.h1.text-center Playing March Sadness
-        div.row
-            p March Sadness is an alternate take on the classic NCAA tournament bracket. Instead of filling out an entire bracket, you fill out a ballot (i.e. you pick a number of teams for each round of the tournament), and then earn points when the teams on your ballot miss shots. If you have the most points at the end of the tournament, you win!
-            p In the first two rounds, you pick six teams per round. Each missed 3-point shot earns you 1 point, each missed 2-point shot earns you 2 points, and each missed free throw earns you 3 points.
-            p In rounds 3 and 4, you pick three teams per round. Each missed 3-point shot earns you 2 points, each missed 2-point shot earns you 4 points, and each missed free throw earns you 6 points.
-            p In the final two rounds, you pick only one team per round. Each missed 3-point shot earns you 3 points, each missed 2-point shot earns you 6 points, and each missed free throw earns you 9 points.
-            p <b>No team can appear on your ballot twice</b>. Once teams are locked in for a round, you cannot use them in later rounds, so make sure to leave some teams that you expect to be around at the end.
-            p <b>Picks are locked at the beginning of each round</b>. If one of your picks for a later round is eliminated from the tournament, no problem! Just remove them from your ballot and pick a new team before the next round starts.
-        div.row
-            h2.text-center Using the Site
-            div.col-sm-12
-                p.h3 Step 1: Create a Ballot
-                    div.container
-                        div.row
-                            ul
-                                li Go to the <a href='/marchsadness/createnewteam'>team creation page</a>, enter a team name, and click "Submit". It's as easy as that.
-                p.h3 Step 2: Make Your Picks
-                    div.container
-                        div.row
-                            ul
-                                li Each round, you select eligible NCAA teams to represent your team.
-                                li A team is ineligible for selection if you have selected them in a previous round or if they have been eliminated from the tournament.
-                        div.row
-                            div.col-sm-8
-                                table.table
-                                    thead
-                                        tr
-                                            th
-                                            th.text-center Round 1
-                                            th.text-center Round 2
-                                            th.text-center Round 3
-                                            th.text-center Round 4
-                                            th.text-center Round 5
-                                            th.text-center Round 6
-                                    tbody
-                                        tr
-                                            td # of Teams You Select
-                                            td.text-center 6
-                                            td.text-center 6
-                                            td.text-center 3
-                                            td.text-center 3
-                                            td.text-center 1
-                                            td.text-center 1
-                p.h3 Step 3: Score Points
-                    div.container
-                        div.row
-                            ul
-                                li The teams you select each round earn your team points by missing shots.
-                                li The value of a missed shot depends on the type of shot, and the round of the tournament.
-                        div.row
-                            div.col-sm-9
-                                table.table
-                                    thead
-                                        tr
-                                            th Missed Shot Type
-                                            th.text-center Round 1
-                                            th.text-center Round 2
-                                            th.text-center Round 3
-                                            th.text-center Round 4
-                                            th.text-center Round 5
-                                            th.text-center Round 6
-                                    tbody
-                                        tr
-                                            td 3 Point Shot
-                                            td.text-center 1 pt
-                                            td.text-center 1 pt
-                                            td.text-center 2 pts
-                                            td.text-center 2 pts
-                                            td.text-center 3 pts
-                                            td.text-center 3 pts
-                                        tr
-                                            td 2 Point Shot
-                                            td.text-center 2 pts
-                                            td.text-center 2 pts
-                                            td.text-center 4 pts
-                                            td.text-center 4 pts
-                                            td.text-center 6 pts
-                                            td.text-center 6 pts
-                                        tr
-                                            td Free Throw
-                                            td.text-center 3 pts
-                                            td.text-center 3 pts
-                                            td.text-center 6 pts
-                                            td.text-center 6 pts
-                                            td.text-center 9 pts
-                                            td.text-center 9 pts
-        div.row.h1.text-center Creating and Joining Leagues
-        div.row
-            div.container
-                div.row
-                    p.h3 Step 1: Create a New League
-                div.row
-                    div.col-xs-12
-                        p To create a league, visit the <a href="/marchsadness/createnewleague">League Creation</a> page.
-                div.row
-                    p.h3 Step 2: Add Your Team
-                div.row
-                    div.col-xs-12
-                        p On the League Page, click the "Add your team to this league" button, choose which team you want to add to the league, and click "Add This Team".
-                div.row
-                    p.h3 Step 3: Invite Other Players
-                div.row
-                    div.col-xs-12
-                        p If you are the league owner, the league page will display an ID number. Send the ID number and the league password you chose to other players you would like to have in your league.
-                div.row
-                    p.h3 Step 4: Join Other Leagues
-                div.row
-                    div.col-xs-12
-                        p After a league owner sends you their league ID and password, go to the <a href="/marchsadness/joinALeague">Join a League</a> page, enter the id and password, and click "Join".  Add a team to the league by following the instructions in step 2.
+    div.container.ms-font-normal
+        p.ms-font-size-30 PLAYING MARCH SADNESS
+        p March Sadness is an alternate take on the classic NCAA tournament bracket. Instead of filling out an entire bracket, you fill out a ballot (i.e. you pick a number of teams for each round of the tournament), and then earn points when the teams on your ballot miss shots. If you have the most points at the end of the tournament, you win!
+        p In the first two rounds, you pick six teams per round. Each missed 3-point shot earns you 1 point, each missed 2-point shot earns you 2 points, and each missed free throw earns you 3 points.
+        p In rounds 3 and 4, you pick three teams per round. Each missed 3-point shot earns you 2 points, each missed 2-point shot earns you 4 points, and each missed free throw earns you 6 points.
+        p In the final two rounds, you pick only one team per round. Each missed 3-point shot earns you 3 points, each missed 2-point shot earns you 6 points, and each missed free throw earns you 9 points.
+        p <b>No team can appear on your ballot twice</b>. Once teams are locked in for a round, you cannot use them in later rounds, so make sure to leave some teams that you expect to be around at the end.
+        p <b>Picks are locked at the beginning of each round</b>. If one of your picks for a later round is eliminated from the tournament, no problem! Just remove them from your ballot and pick a new team before the next round starts.
+        p.ms-font-size-30 USING THE SITE
+        p.col-sm-12
+            p.ms-font-size-20 Step 1: Create a Ballot
+                div.container
+                    div.row
+                        ul
+                            li Go to the <a href='/marchsadness/index'>your dashboard</a>, click the + sign in your ballots list, enter a ballot name, and click the submit button. It's as easy as that.
+            p.ms-font-size-20 Step 2: Fill Out Your Ballot
+                div.container
+                    div.row
+                        ul
+                            li Click on a Ballot Name from the dashboard to go to the detailed view.
+                            li Click "Edit Picks" at the bottom of the page.
+                            li When in edit mode, use the drop down lists to pick your teams.
+                            li Click the "Save All Changes" to submit your picks. (You can change your picks for each round up until that round's first game starts).
+                            li A team is ineligible for selection if you have selected them in a previous round or if they have been eliminated from the tournament.
+                    div.row
+                        div.col-sm-8
+                            table.table(style="border: gray solid 1px")
+                                thead
+                                    tr
+                                        th
+                                        th.text-center Round 1
+                                        th.text-center Round 2
+                                        th.text-center Round 3
+                                        th.text-center Round 4
+                                        th.text-center Round 5
+                                        th.text-center Round 6
+                                tbody
+                                    tr
+                                        td # of Teams You Select
+                                        td.text-center 6
+                                        td.text-center 6
+                                        td.text-center 3
+                                        td.text-center 3
+                                        td.text-center 1
+                                        td.text-center 1
+            p.ms-font-size-20 Step 3: Score Points
+                div.container
+                    div.row
+                        ul
+                            li The teams you select each round earn your team points by missing shots.
+                            li The value of a missed shot depends on the type of shot, and the round of the tournament.
+                    div.row
+                        div.col-sm-9
+                            table.table(style="border: gray solid 1px")
+                                thead
+                                    tr
+                                        th Missed Shot Type
+                                        th.text-center Round 1
+                                        th.text-center Round 2
+                                        th.text-center Round 3
+                                        th.text-center Round 4
+                                        th.text-center Round 5
+                                        th.text-center Round 6
+                                tbody
+                                    tr
+                                        td 3 Point Shot
+                                        td.text-center 1 pt
+                                        td.text-center 1 pt
+                                        td.text-center 2 pts
+                                        td.text-center 2 pts
+                                        td.text-center 3 pts
+                                        td.text-center 3 pts
+                                    tr
+                                        td 2 Point Shot
+                                        td.text-center 2 pts
+                                        td.text-center 2 pts
+                                        td.text-center 4 pts
+                                        td.text-center 4 pts
+                                        td.text-center 6 pts
+                                        td.text-center 6 pts
+                                    tr
+                                        td Free Throw
+                                        td.text-center 3 pts
+                                        td.text-center 3 pts
+                                        td.text-center 6 pts
+                                        td.text-center 6 pts
+                                        td.text-center 9 pts
+                                        td.text-center 9 pts
+        P.ms-font-size-30 CREATING AND JOINING LEAGUES
+        p.ms-font-size-20 Step 1: Create a New League
+        p To create a league, visit the <a href="/marchsadness/createnewleague">League Creation</a> page.
+        p.ms-font-size-20 Step 2: Add Your Team
+        p On the League Page, click the "Add your team to this league" button, choose which team you want to add to the league, and click the + button.
+        p.ms-font-size-20 Step 3: Invite Other Players
+        p If you are the league owner, the league page will display an ID number. Invite other players by sending them the ID number and your league password.
+        p.ms-font-size-20 Step 4: Join Other Leagues
+        p After a league owner sends you their league ID and password, go to the <a href="/marchsadness/joinALeague">Join a League</a> page, enter the id and password, and click "Join".  Add a team to the league by following the instructions in step 2.
     br
     br
