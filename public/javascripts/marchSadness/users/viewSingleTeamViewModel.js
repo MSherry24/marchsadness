@@ -111,7 +111,7 @@ function makePicksViewModel() {
         if (addOrDelete === 'delete') {
             allOptionLists.map(function (thisList) {
                 if (dontUpdateList[selectedList] !== thisList) {
-                    removeIndex = findWithAttr(thisList(), 'id', value.id);
+                    removeIndex = findWithAttr(thisList(), 'id', value);
                     thisList.splice(removeIndex, 1);
                 }
             })
@@ -119,7 +119,7 @@ function makePicksViewModel() {
         else {
             allOptionLists.map(function (thisList) {
                 if (dontUpdateList[selectedList] !== thisList) {
-                    thisList.push(value);
+                    thisList.push(self.allNcaaTeamsMap[value]);
                 }
             })
         }
@@ -147,13 +147,11 @@ function makePicksViewModel() {
         pickIndex = 1;
         team.rounds['round' + i + 'picks'].map(function (x) {
             // set ko observable variable
-            self['round' + i + 'pick' + pickIndex](self.allNcaaTeamsMap[x]);
-            // push to observable round array
-            self['round' + i + 'picks'].push(self.allNcaaTeamsMap[x]);
+            self['round' + i + 'pick' + pickIndex]([self.allNcaaTeamsMap[x].id]);
             // set not selected to false
             self.allNcaaTeamsMap[x].notSelected(false);
             // remove team from other team's individual lists
-            updateOtherLists(self.allNcaaTeamsMap[x], 'delete', 'round' + i + 'pick' + pickIndex);
+            updateOtherLists(self.allNcaaTeamsMap[x].id, 'delete', 'round' + i + 'pick' + pickIndex);
             pickIndex += 1;
         });
     });
@@ -331,265 +329,43 @@ function makePicksViewModel() {
         return 0;
     }
 
-    self.round1pick1.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round1pick1');
+    var checkIfValidUpdate = function (value, action, pick) {
+        if (value && value[0] && self.allNcaaTeamsMap[value[0]].name !== 'Make a Selection') {
+            updateOtherLists(value[0], action, pick);
         }
-    }, null, "beforeChange");
+    };
 
-    self.round1pick1.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round1pick1');
-        }
-        sortLists();
-    });
+    [
+        'round1pick1',
+        'round1pick2',
+        'round1pick3',
+        'round1pick4',
+        'round1pick5',
+        'round1pick6',
+        'round2pick1',
+        'round2pick2',
+        'round2pick3',
+        'round2pick4',
+        'round2pick5',
+        'round2pick6',
+        'round3pick1',
+        'round3pick2',
+        'round3pick3',
+        'round4pick1',
+        'round4pick2',
+        'round4pick3',
+        'round5pick1',
+        'round6pick1'
+    ].map(function (key) {
+            self[key].subscribe(function (oldValue) {
+                checkIfValidUpdate(oldValue, 'add', key);
+            }, null, "beforeChange");
 
-    self.round1pick2.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round1pick2');
-        }
-    }, null, "beforeChange");
-
-    self.round1pick2.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round1pick2');
-        }
-        sortLists();
-    });
-
-    self.round1pick3.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round1pick3');
-        }
-    }, null, "beforeChange");
-
-    self.round1pick3.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round1pick3');
-        }
-        sortLists();
-    });
-
-    self.round1pick4.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round1pick4');
-        }
-    }, null, "beforeChange");
-
-    self.round1pick4.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round1pick4');
-        }
-        sortLists();
-    });
-
-    self.round1pick5.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round1pick5');
-        }
-    }, null, "beforeChange");
-
-    self.round1pick5.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round1pick5');
-        }
-        sortLists();
-    });
-
-    self.round1pick6.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round1pick6');
-        }
-    }, null, "beforeChange");
-
-    self.round1pick6.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round1pick6');
-        }
-        sortLists();
-    });
-
-    self.round2pick1.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round2pick1');
-        }
-    }, null, "beforeChange");
-
-    self.round2pick1.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round2pick1');
-        }
-        sortLists();
-    });
-
-    self.round2pick2.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round2pick2');
-        }
-    }, null, "beforeChange");
-
-    self.round2pick2.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round2pick2');
-        }
-        sortLists();
-    });
-
-    self.round2pick3.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round2pick3');
-        }
-    }, null, "beforeChange");
-
-    self.round2pick3.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round2pick3');
-        }
-        sortLists();
-    });
-
-    self.round2pick4.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round2pick4');
-        }
-    }, null, "beforeChange");
-
-    self.round2pick4.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round2pick4');
-        }
-        sortLists();
-    });
-
-    self.round2pick5.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round2pick5');
-        }
-    }, null, "beforeChange");
-
-    self.round2pick5.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round2pick5');
-        }
-        sortLists();
-    });
-
-    self.round2pick6.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round2pick6');
-        }
-    }, null, "beforeChange");
-
-    self.round2pick6.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round2pick6');
-        }
-        sortLists();
-    });
-
-    self.round3pick1.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round3pick1');
-        }
-    }, null, "beforeChange");
-
-    self.round3pick1.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round3pick1');
-        }
-        sortLists();
-    });
-
-    self.round3pick2.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round3pick2');
-        }
-    }, null, "beforeChange");
-
-    self.round3pick2.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round3pick2');
-        }
-        sortLists();
-    });
-
-    self.round3pick3.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round3pick3');
-        }
-    }, null, "beforeChange");
-
-    self.round3pick3.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round3pick3');
-        }
-        sortLists();
-    });
-
-    self.round4pick1.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round4pick1');
-        }
-    }, null, "beforeChange");
-
-    self.round4pick1.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round4pick1');
-        }
-        sortLists();
-    });
-
-    self.round4pick2.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round4pick2');
-        }
-    }, null, "beforeChange");
-
-    self.round4pick2.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round4pick2');
-        }
-        sortLists();
-    });
-
-    self.round4pick3.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round4pick3');
-        }
-    }, null, "beforeChange");
-
-    self.round4pick3.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round4pick3');
-        }
-        sortLists();
-    });
-
-    self.round5pick1.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round5pick1');
-        }
-    }, null, "beforeChange");
-
-    self.round5pick1.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round5pick1');
-        }
-        sortLists();
-    });
-
-    self.round6pick1.subscribe(function (oldValue) {
-        if (oldValue && oldValue[0].name !== 'Make a Selection') {
-            updateOtherLists(oldValue[0], 'add', 'round6pick1');
-        }
-    }, null, "beforeChange");
-
-    self.round6pick1.subscribe(function (newValue) {
-        if (newValue[0].name !== 'Make a Selection') {
-            updateOtherLists(newValue[0], 'delete', 'round6pick1');
-        }
-        sortLists();
-    });
+            self[key].subscribe(function (newValue) {
+                checkIfValidUpdate(newValue, 'delete', key);
+                sortLists();
+            });
+        });
 }
 
 var setPicklistValues = function () {
@@ -616,8 +392,8 @@ var setPicklistValues = function () {
 };
 
 function findWithAttr(array, attr, value) {
-    for(var i = 0; i < array.length; i += 1) {
-        if(array[i][attr] === value) {
+    for (var i = 0; i < array.length; i += 1) {
+        if (array[i][attr] === value) {
             return i;
         }
     }
