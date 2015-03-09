@@ -86,12 +86,12 @@ exports.saveBallot = function (req, res, teamId) {
                 msTeam.map(function (x) {
                    allMsTeams[x._id] = x;
                 });
-                ['1','2','3','4','5','6'].map(function (i) {
+                ['1', '2', '3', '4', '5', '6'].map(function (i) {
                     if (req.body['round' + i + 'picks']) {
                         team.rounds['round' + i + 'picks'] = [];
                         req.body['round' + i + 'picks'].map(function (x) {
-                            if (x && x[0] && x[0].id !== '') {
-                                team.rounds['round' + i + 'picks'].push(allMsTeams[x[0].id]);
+                            if (x && x !== '') {
+                                team.rounds['round' + i + 'picks'].push(allMsTeams[x]);
                             }
                         });
                     }

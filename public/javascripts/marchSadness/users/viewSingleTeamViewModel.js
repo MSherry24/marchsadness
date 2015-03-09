@@ -297,7 +297,41 @@ function makePicksViewModel() {
     self.saveBallot = function () {
         var route, payload;
         route = '/marchsadness/saveBallot/' + team._id;
-        payload = flattenPicks();
+        //payload = flattenPicks();
+        payload = {
+            round1picks: [
+                $("#round1pick1").val() === "" ? "" : $("#round1pick1").val(),
+                $("#round1pick2").val() === "" ? "" : $("#round1pick2").val(),
+                $("#round1pick3").val() === "" ? "" : $("#round1pick3").val(),
+                $("#round1pick4").val() === "" ? "" : $("#round1pick4").val(),
+                $("#round1pick5").val() === "" ? "" : $("#round1pick5").val(),
+                $("#round1pick6").val() === "" ? "" : $("#round1pick6").val()
+            ],
+            round2picks: [
+                $("#round2pick1").val() === "" ? "" : $("#round2pick1").val(),
+                $("#round2pick2").val() === "" ? "" : $("#round2pick2").val(),
+                $("#round2pick3").val() === "" ? "" : $("#round2pick3").val(),
+                $("#round2pick4").val() === "" ? "" : $("#round2pick4").val(),
+                $("#round2pick5").val() === "" ? "" : $("#round2pick5").val(),
+                $("#round2pick6").val() === "" ? "" : $("#round2pick6").val()
+            ],
+            round3picks: [
+                $("#round3pick1").val() === "" ? "" : $("#round3pick1").val(),
+                $("#round3pick2").val() === "" ? "" : $("#round3pick2").val(),
+                $("#round3pick3").val() === "" ? "" : $("#round3pick3").val()
+            ],
+            round4picks: [
+                $("#round4pick1").val() === "" ? "" : $("#round4pick1").val(),
+                $("#round4pick2").val() === "" ? "" : $("#round4pick2").val(),
+                $("#round4pick3").val() === "" ? "" : $("#round4pick3").val()
+            ],
+            round5picks: [
+                $("#round5pick1").val() === "" ? "" : $("#round5pick1").val()
+            ],
+            round6picks: [
+                $("#round6pick1").val() === "" ? "" : $("#round6pick1").val()
+            ]
+        };
         $('#saveAllChangesButton').addClass("disabled").html("Saving");
         $.post(route, payload, function () {
             window.location.reload(true);
