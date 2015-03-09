@@ -15,6 +15,10 @@ a:hover {
     color: #F05928;
 }
 
+a .ms-text-white:hover {
+    color: #F05928;
+}
+
 html {
     font-family: 'Roboto-condensed', sans-serif;
     font-weight: 400;
@@ -227,6 +231,31 @@ fieldset[disabled] .btn-ms-orange.active {
     padding: 10px;
 }
 
+.ms-single-team-table tr {
+    height: 70px;
+}
+
+.ms-single-league-table {
+    width: 100%;
+    background-color:white;
+    border-left: #fff solid 40px;
+    border-right: #fff solid 40px;
+    border-bottom: #fff solid 40px;
+    z-index: 10;
+}
+
+.ms-single-league-table-tab {
+    border-top: #656565 solid 1px;
+}
+
+.ms-single-league-table td, th {
+    padding: 10px;
+}
+
+.ms-single-league-table tr {
+    height: 70px;
+}
+
 #tabs {
     background: transparent;
     border: none;
@@ -252,14 +281,14 @@ fieldset[disabled] .btn-ms-orange.active {
     margin-right: 50px;
 }
 
-.ms-single-team-table tr {
-    height: 70px;
-}
-
 .ms-leftnav-body {
     padding: 0px 15px;
 }
 
 .ms-leftnav-title {
     margin: 0px -15px;
+}
+
+.ms-leauge-table-container {
+    padding: 40px;
 }

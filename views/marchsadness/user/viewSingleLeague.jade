@@ -1,49 +1,45 @@
 extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/viewSingleTeam.js")
-    div.text-center
-        br
-        h1
-            span.h1.fa.fa-lock= league.name
-        if (inLeague)
-            a(href="/marchsadness/addTeamToLeague/" + league._id, class="btn btn-default btn-primary")
-                span.fa.fa-user Add your team to this league
-        br
-        if (leagueManager)
-            br
-            span.h4='To invite other players to join this league, give them the password and this id: ' + league._id
-            br
-            br
+    div.ms-font-size-30.pull-left= league.name
+    if (leagueManager)
+        div.ms-text-light-gray.pull-right.ms-font-size-20='League ID: ' + league._id
     if (!inLeague)
         div.row.text-center
             p.text-center You must be a league member to view this page.
-            a.btn.btn-default.btn-primary(href="/marchsadness/joinLeague/" + league._id)
+            a.btn.btn-default.btn-ms-orange(href="/marchsadness/joinLeague/" + league._id)
                 span.fa.fa-user.text-center Join This League
     else
-        div.row
-            div.table-responsive
-                table.table.table-striped
-                    thead
-                        tr
-                            th.text-center Rank
-                            th.text-center Team
-                            th.text-right Round 1
-                            th.text-right Round 2
-                            th.text-right Round 3
-                            th.text-right Round 4
-                            th.text-right Round 5
-                            th.text-right Round 6
-                            th.text-right Total
-                    tbody
-                        each team, i in teams
-                            tr
-                                td.text-center= i + 1
-                                td.text-center
-                                    a(href="/marchsadness/viewsingleteam/" + team._id)= team.name
-                                td.text-right= team.scores.round1
-                                td.text-right= team.scores.round2
-                                td.text-right= team.scores.round3
-                                td.text-right= team.scores.round4
-                                td.text-right= team.scores.round5
-                                td.text-right= team.scores.round6
-                                td.text-right= team.totalScore
+        br
+        br
+        br
+        div.league-table-container
+            table.ms-single-league-table
+                thead
+                    tr.tableHeader
+                        th.ms-grey-line RANK/BALLOT
+                        th.ms-grey-line.text-center R1
+                        th.ms-grey-line.text-center R2
+                        th.ms-grey-line.text-center R3
+                        th.ms-grey-line.text-center R4
+                        th.ms-grey-line.text-center R5
+                        th.ms-grey-line.text-center R6
+                        th.ms-grey-line.text-center TOTAL
+                tbody
+                    each team, i in teams
+                        tr.ms-font-bold.ms-font-size-20
+                            td.ms-grey-line
+                                a(href="/marchsadness/viewsingleteam/" + team._id)= (i+1) + "/" + team.name
+                                div.ms-font-size-14.ms-text-gray= leagueOwnerIdToFirstName[team.owner]
+                            td.ms-grey-line.text-center.ms-background-even-lighter-grayt= team.scores.round1
+                            td.ms-grey-line.text-center= team.scores.round1
+                            td.ms-grey-line.text-center.ms-background-even-lighter-gray= team.scores.round2
+                            td.ms-grey-line.text-center= team.scores.round3
+                            td.ms-grey-line.text-center.ms-background-even-lighter-gray= team.scores.round4
+                            td.ms-grey-line.text-center= team.scores.round5
+                            td.ms-grey-line.text-center.ms-background-even-lighter-gray= team.scores.round6
+                            td.ms-grey-line.text-center= team.totalScore
+        if (inLeague)
+            br
+            a(href="/marchsadness/addTeamToLeague/" + league._id)
+                button.btn.btn-ms-orange Add your team to this league

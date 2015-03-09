@@ -317,10 +317,11 @@ exports.createNewLeague = function (req, res) {
  *=================================*/
 exports.getViewSingleLeague = function (req, res, leagueId, message) {
     "use strict";
-    var inLeague, leagueManager;
-    msModel.MsLeague.findOne({"_id" : leagueId}, function (err, league) {
+    var inLeague, leagueManager, leagueOwnerIdToFirstName;
+    msModel.MsLeague.findOne({"_id": leagueId}, function (err, league) {
         inLeague = league.memberTeamOwners.indexOf(req.user._id) !== -1;
         leagueManager = league.manager.indexOf(req.user._id) !== -1;
+
         if (err) {
             console.log('that league does not exist');
             req.flash('Error', 'There has been an error with your request');
@@ -349,21 +350,29 @@ exports.getViewSingleLeague = function (req, res, leagueId, message) {
                     req.flash('wrongpassword', 'The league password you entered is incorrect.');
                 }
                 userTeams.sort(teamScoreComparitor).reverse();
-                res.render('marchsadness/user/viewSingleLeague', {
-                    message: req.flash('wrongpassword'),
-                    user: req.user,
-                    league: league,
-                    inLeague: inLeague,
-                    leagueManager: leagueManager,
-                    teams: userTeams,
-                    ballots: req.userBallots,
-                    leagues: req.userLeagues
+                User.find({"_id": { $in: league.memberTeamOwners } }, function (err, teamOwners) {
+                    if (!err && teamOwners) {
+                        leagueOwnerIdToFirstName = {};
+                        teamOwners.map(function (owner) {
+                            leagueOwnerIdToFirstName[owner._id] = owner.firstName;
+                        });
+                        res.render('marchsadness/user/viewSingleLeague', {
+                            message: req.flash('wrongpassword'),
+                            user: req.user,
+                            league: league,
+                            inLeague: inLeague,
+                            leagueManager: leagueManager,
+                            teams: userTeams,
+                            ballots: req.userBallots,
+                            leagues: req.userLeagues,
+                            leagueOwnerIdToFirstName: leagueOwnerIdToFirstName
+                        });
+                    }
                 });
             });
-
         }
     });
-};
+}
 
 var teamScoreComparitor = function(a,b) {
     if (a.totalScore < b.totalScore) {return -1}
