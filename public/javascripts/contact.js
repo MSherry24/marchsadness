@@ -3,7 +3,7 @@
  */
 var save = function () {
     "use strict";
-    var messageTypeSelected = $('#dropdownMenu1').val($(event.target).attr('value')),
+    var messageTypeSelected = $('#dropdownMenu1').val(),
         payload = {};
     if (messageTypeSelected === '1') {
         payload.messageType = 'Bug';
