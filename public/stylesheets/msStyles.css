@@ -292,3 +292,7 @@ fieldset[disabled] .btn-ms-orange.active {
 .ms-leauge-table-container {
     padding: 40px;
 }
+
+.ms-footer-icon {
+    width: 50px;
+}
