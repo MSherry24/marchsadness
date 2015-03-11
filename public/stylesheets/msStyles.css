@@ -13,6 +13,7 @@ body::after {
 
 a:hover {
     color: #F05928;
+	text-decoration: none;
 }
 
 a .ms-text-white:hover {
@@ -85,10 +86,18 @@ html {
 }
 
 .ms-font-bold {
+	font-family: 'Rambla', sans-serif;
     font-weight: 700;
+}
+    
+.ms-font-italic {
+	font-family: 'Rambla', sans-serif;
+	font-style: italic;
+	font-weight: 400;
 }
 
 .ms-font-normal {
+	font-family: 'Rambla', sans-serif;
     font-weight: 400;
 }
 
@@ -130,6 +139,9 @@ html {
 }
 
 .btn-ms-orange:hover,
+{
+	background-color: #656565;
+}
 .btn-ms-orange:focus,
 .btn-ms-orange:active,
 .btn-ms-orange.active,
@@ -256,6 +268,17 @@ fieldset[disabled] .btn-ms-orange.active {
     height: 70px;
 }
 
+.ms-text-width {
+	width: 800px;
+}
+
+.ms-colwidth-lite {
+	width: 55%;
+	padding: 0px;
+	margin-left: 0px;
+	
+	}
+
 #tabs {
     background: transparent;
     border: none;
@@ -291,4 +314,27 @@ fieldset[disabled] .btn-ms-orange.active {
 
 .ms-leauge-table-container {
     padding: 40px;
+}
+
+.ms-ballotname-padding
+{
+	padding: 10px;
+	padding-bottom: 0px;
+}
+
+.ms-ballotname-margin
+{
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+
+.ms-ballotinput-margin
+{
+	margin-top: 15px;
+}
+
+.ms-nospace{
+	padding: 0px;
+	margin: 0px;
+	
 }

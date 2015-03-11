@@ -1,14 +1,11 @@
 extends layout
 block content
     script(type="text/javascript", src="../javascripts/contact.js")
-    div.container
-        div.page-header.text-center
-            h1
-                span.fa.fa-anchor Contact Us
-        div.row
-            p What is the purpose of your message?
+    div.container.ms-col-width
+        p.ms-font-size-30.ms-font-bold Contact Us
+        p.ms-font-size-20 What is the purpose of your message?
             div.dropdown
-                button.btn.btn-default.dropdown-toggle(type="button", id="dropdownMenu1", data-toggle="dropdown", aria-expanded="true")= "Make a Selection  "
+                button.btn.btn-default.dropdown-toggle.ms-font-normal(type="button", id="dropdownMenu1", data-toggle="dropdown", aria-expanded="true")= "Make a Selection  "
                     span.caret
                 ul(class="dropdown-menu", role="menu", aria-labelledby="dropdownMenu1")
                     li(role="presentation")
@@ -16,23 +13,18 @@ block content
                             div(value='1') Report a Bug
                     li(role="presentation")
                         a.dropdown-select(value='2', role="menuitem", tabindex="-1", href="#")
-                            div(value='2') Customer Support
+                            div(value='2') Support
                     li(role="presentation")
                         a.dropdown-select(value='3', role="menuitem", tabindex="-1", href="#")
                             div(value='3') Make a Suggestion
                     li(role="presentation")
                         a.dropdown-select(value='4', role="menuitem", tabindex="-1", href="#")
                             div(value='4') Just Say Hello
-        br
-        div.row
+            br
             form
                 div.form-group
-                    label(for="email") Your Email Address
-                    input(type="email")#email.form-control
+                    input(type="email" value= "Your Email Address")#email.form-control.ms-font-size-14
                 div.form-group
-                    label(for="textArea") Your Message
-                    textarea#message.form-control(rows="10")
-            div.text-center
-                button#submitButton.btn.btn-ms-orange(type="submit") Send Message
-        br
-
+                    textarea#message.form-control(rows="10").ms-font-size-14 Your Message
+                button#submitButton.btn.btn-ms-orange(type="submit").ms-fontsize-14 SEND MESSAGE
+        

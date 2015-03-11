@@ -1,14 +1,15 @@
 script(src="../../javascripts/marchSadness/users/viewMyTeams.js")
 div.ms-font-size-30.ms-font-bold BALLOTS
+br
 div.ms-footer-push
     div.table-responsive.ms-font-normal
         table.table
             tbody.ms-grey-line-top
                 each ballot, index in ballots
-                    tr.h3.ms-grey-line
+                    tr.ms-grey-line
                         td
-                            a(href="/marchsadness/viewSingleTeam/" + ballot._id)= ballot.name
-                        td= "Score: " + ballot.totalScore
+                            a(href="/marchsadness/viewSingleTeam/" + ballot._id).ms-font-size-20.ms-font-bold= ballot.name
+                        td.ms-font-size-20= "Score: " + ballot.totalScore
                         td
                             span
                                 a(href="/marchsadness/viewSingleTeam/" + ballot._id)

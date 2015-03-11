@@ -10,17 +10,14 @@ div.ms-text-white.text-center.ms-leftnav-container.ms-wrap-text
         if (ballots.length > 0)
             for ballot, index in ballots
                 br
-                div
-                    a(href="/marchsadness/viewSingleTeam/" + ballot._id).ms-text-white= ballot.name
+                p.ms-nospace
+                    a(href="/marchsadness/viewSingleTeam/" + ballot._id).ms-text-white.ms-font-normal.ms-font-size-20= ballot.name    
         else
-            div Create a Ballot
-        br
-        button#showCreateTeam.btn.btn-ms-orange(type="submit", value="Create a Ballot") +
+        button#showCreateTeam.btn.btn-ms-orange.ms-font-size-14.ms-ballotname-margin(type="submit", value="Create a Ballot") ADD NEW BALLOT
         form#newTeamForm(action="/marchsadness/createnewteam", method="post")
             div.form-group
-                label Ballot Name
-                input(type="text", class="form-control", name="teamname")
-            button.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") Submit
+                input.ms-font-size-14.ms-font-normal.ms-ballotinput-margin(type="text", class="form-control", name="teamname" value="Name Your Ballot")
+            button.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") SUBMIT
         div.ms-leftnav-buffer
     br
     div.row.ms-background-light-gray.ms-leftnav-body
@@ -31,12 +28,11 @@ div.ms-text-white.text-center.ms-leftnav-container.ms-wrap-text
             for league, index in leagues
                 br
                 div
-                    a(href="/marchsadness/viewSingleLeague/" + league._id).ms-text-white= league.name
+                    a(href="/marchsadness/viewSingleLeague/" + league._id).ms-text-white.ms-font-size-20.ms-font-normal= league.name
         br
-        input.btn.btn-ms-orange(type="submit", value="Create a League", onclick="window.location='/marchsadness/createnewleague';")
+        input.btn.btn-ms-orange.ms-ballotname-margin(type="submit", value="CREATE LEAGUE", onclick="window.location='/marchsadness/createnewleague';")
         br
-        br
-        input.btn.btn-ms-orange(type="submit", value="Join a League", onclick="window.location='/marchsadness/joinaleague';")
+        input.btn.btn-ms-orange(type="submit", value="JOIN LEAGUE", onclick="window.location='/marchsadness/joinaleague';")
         div.ms-leftnav-buffer
     br
     br

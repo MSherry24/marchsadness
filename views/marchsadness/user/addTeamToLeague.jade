@@ -1,26 +1,23 @@
 extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/addTeamToLeague.js")
-    h2
-        span.ms-font-bold
-            u Choose a Ballot To Add
+    div.ms-font-size-30.ms-font-bold CHOOSE A BALLOT TO ADD
+    br
     div.row
         div.table-responsive
-            table.table
+            table.table.ms-font-normal
                 tbody.ms-grey-line-top
                     each ballot in ballots
-                        tr.h3.ms-grey-line
+                        tr.ms-grey-line
                             td
-                                span= ballot.name
-                            td= "Score: " + ballot.totalScore
+                                span.ms-font-size-20.ms-font-bold= ballot.name
+                            td.ms-font-size-20= "Score: " + ballot.totalScore
                             td
                                 if (ballot.leagues.indexOf(league._id) === -1)
-                                    button.btn.btn-sm.btn-ms-orange.AddTeam.ms-font-bold(value= league._id + '/' + ballot._id) +
+                                    button.btn.btn-sm.btn-ms-orange.AddTeam.ms-font-bold(value= league._id + '/' + ballot._id) ADD
         div
-            div.col-xs-3
-                span
-                    button#showCreateBallot.btn.btn-sm.btn-ms-orange.ms-font-bold +
-                span.ms-font-bold= "   Create a New Ballot"
+                    button#showCreateBallot.btn.btn-sm.btn-ms-orange.ms-font-bold ADD 
+                    p.ms-font-bold.ms-font-size-14= "CREATE A NEW BALLOT"
             div#newTeamForm.col-xs-3
                 form
                     span.form-group

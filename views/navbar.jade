@@ -9,17 +9,17 @@ div.ms-navbar-container
                         a(href="/")
                             img(src='../../images/logo.png').ms-logo
                     div.ms-navbar-cell#about
-                        a.ms-text-black(href="/marchsadness/about") About
+                        a.ms-text-black.ms-font-size-20(href="/marchsadness/about") ABOUT
                     div.ms-navbar-cell#blog
-                        a.ms-text-black(href="/marchsadness/blog") Blog
+                        a.ms-text-black.ms-font-size-20(href="/marchsadness/blog") BLOG
                     div.ms-navbar-cell#rules
-                        a.ms-text-black(href="/marchsadness/Rules") Rules
+                        a.ms-text-black.ms-font-size-20(href="/marchsadness/Rules") RULES
                 div.h3.ms-font-bold.ms-navbar-cell.ms-navbar-right
                     if (user && user.isAdmin)
-                        div.ms-navbar-cell
-                            a(href="/marchsadness/admin") Admin
+                        div.ms-navbar-cell.ms-font-size-20
+                            a(href="/marchsadness/admin") ADMIN
                     if (user)
-                        div.ms-navbar-cell.ms-font-normal.ms-font-size-20= "What Up, " + user.firstName
+                        div.ms-navbar-cell.ms-font-italic.ms-font-size-20.ms-text-gray= "What Up, " + user.firstName
                         div.ms-navbar-cell
                             a(href="/marchsadness/index")
                                 img(src='../../images/basketballIcon.png').ms-navbar-icon
@@ -29,9 +29,9 @@ div.ms-navbar-container
                     if (false)
                         if (user)
                             div.ms-navbar-cell
-                                a.ms-text-black(href="/users/logout") Logout
+                                a.ms-text-black(href="/users/logout") LOGOUT
                         if (!user)
                             div.ms-navbar-cell
-                                a.ms-text-black(href="/users/login") Login Here
+                                a.ms-text-black(href="/users/login") LOGIN HERE
 div#ms-navbar-angle-line-test-yellow= ""
 div#ms-navbar-angle-line-test-orange= ""

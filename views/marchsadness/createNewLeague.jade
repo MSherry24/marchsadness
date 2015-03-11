@@ -1,21 +1,15 @@
 extends marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/createNewLeague.js")
-    div.row.ms-font-bold
-        div.col-xs-1
-        div.col-xs-11
-            h2
-                u Start a League
-            h3 Invite your friends to the sadness.  Picka league name and password,
-            h3 then send it to everyone you know.
-    div.row.ms-font-bold
-        div.col-xs-1
-        div.col-xs-4
-            form#newTeamForm(action="/marchsadness/createnewleague", method="post")
+    div.container
+        p.ms-font-size-30.ms-font-bold START A LEAGUE
+        p.ms-font-size-20.ms-font-bold Invite your friends to the sadness. Pick a league name and password, then send it to everyone you know.
+    div.row.ms-colwidth-lite
+            br
+            form#newTeamForm(action="/marchsadness/createnewleague", method="post")  
                 div.form-group
                     input#leagueName(type="text", class="form-control", name="leaguename")
                 div.form-group
                     input#leaguePassword(type="text", class="form-control", name="password")
-                button( type="submit", class="btn btn-ms-orange" onClick="window.location='/marchsadness/index';") Start
-            hr
-        div.col-xs-8
+                button( type="submit", class="btn btn-ms-orange" onClick="window.location='/marchsadness/index';") START LEAGUE
+        
