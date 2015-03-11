@@ -237,10 +237,15 @@ router.post('/admin/deletePost', authMain.isAdmin, function (req, res) {
  *=================================*/
 router.get('/index', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
     "use strict";
+    var leagueMap = {};
+    req.userLeagues.map( function(league) {
+        leagueMap[league._id] = league.name;
+    });
     res.render('marchsadness/user/index', {
         user: req.user,
         leagues: req.userLeagues,
-        ballots: req.userBallots
+        ballots: req.userBallots,
+        leagueMap: leagueMap
     });
 });
 
