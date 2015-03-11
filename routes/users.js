@@ -152,7 +152,7 @@ router.post('/forgotPassword', function (req, res) {
                     console.log('user not updated');
                     res.status(500).redirect("/users/login");
                 } else {
-                    emailBody.push('To reset your password, click this link: http://failureleague.com/users/resetPassword/');
+                    emailBody.push('To reset your password, click this link: http://marchsadness.com/users/resetPassword/');
                     emailBody.push(user._id + '/');
                     emailBody.push(verificationKey);
 
