@@ -86,21 +86,25 @@ exports.saveBallot = function (req, res, teamId) {
                 msTeam.map(function (x) {
                    allMsTeams[x._id] = x;
                 });
-                ['1', '2', '3', '4', '5', '6'].map(function (i) {
-                    if (req.body['round' + i + 'picks']) {
-                        team.rounds['round' + i + 'picks'] = [];
-                        req.body['round' + i + 'picks'].map(function (x) {
-                            if (x && x !== '') {
-                                team.rounds['round' + i + 'picks'].push(allMsTeams[x]);
+                msModel.MsConfig.findOne({}, function (err, config) {
+                    ['1', '2', '3', '4', '5', '6'].map(function (i) {
+                        if (!config.roundStarted["round" + i]) {
+                            if (req.body['round' + i + 'picks']) {
+                                team.rounds['round' + i + 'picks'] = [];
+                                req.body['round' + i + 'picks'].map(function (x) {
+                                    if (x && x !== '') {
+                                        team.rounds['round' + i + 'picks'].push(allMsTeams[x]);
+                                    }
+                                });
                             }
-                        });
-                    }
-                });
-                team.save(function (err) {
-                    if (err) {
-                        console.log('error appending to team' + err);
-                    }
-                    res.status(200).end();
+                        }
+                    });
+                    team.save(function (err) {
+                        if (err) {
+                            console.log('error appending to team' + err);
+                        }
+                        res.status(200).end();
+                    });
                 });
             });
         }
@@ -226,67 +230,6 @@ exports.getMakeTeamSelections = function (req, res, teamId) {
         });
     });
 };
-//exports.getMakeTeamSelections = function (req, res, teamId) {
-//    "use strict";
-//    msModel.msTeam.find({}, function (err, msTeams) {
-//        var allTourneyTeams;
-//        allTourneyTeams = {};
-//        msTeams.map(function (team) {
-//            allTourneyTeams[team.region + team.seed] = team;
-//        });
-//        if (err) {
-//            req.flash('Error', 'There has been an error with your request');
-//            res.render('marchsadness/index', {
-//                message: req.flash('Error'),
-//                user: req.user,
-//                ballots: req.userBallots,
-//                leagues: req.userLeagues
-//            });
-//        }
-//
-//        msModel.UserTeam.findOne({"_id" : teamId}, function (err, team) {
-//            if (err) {
-//                req.flash('Error', 'There has been an error with your request');
-//                res.render('marchsadness/index', {
-//                    message: req.flash('Error'),
-//                    user: req.user,
-//                    ballots: req.userBallots,
-//                    leagues: req.userLeagues
-//                });
-//            } else if (team === null) {
-//                console.log('that team does not exist');
-//                req.flash('TeamDoesNotExist', 'The team you requested does not exist.');
-//                res.render('marchsadness/index', {
-//                    message: req.flash('TeamDoesNotExist'),
-//                    user: req.user,
-//                    ballots: req.userBallots,
-//                    leagues: req.userLeagues
-//                });
-//            } else {
-//                msModel.MsConfig.findOne({}, function(err, config) {
-//                    User.findById(team.owner[0], function (err, owner) {
-//                        if (!err && config !== null) {
-//                            res.render('marchsadness/user/makeTeamSelections', {
-//                                config: config,
-//                                msTeamsString: JSON.stringify(allTourneyTeams),
-//                                msTeams: allTourneyTeams,
-//                                teamString: JSON.stringify(team),
-//                                team: team,
-//                                user: req.user,
-//                                owner: team.owner[0].id,
-//                                userIsOwner: req.user._id.id === owner._id.id,
-//                                ballots: req.userBallots,
-//                                leagues: req.userLeagues
-//                            });
-//                        } else {
-//                            res.status(500).end();
-//                        }
-//                    });
-//                });
-//            }
-//        });
-//    });
-//};
 
 /*=================================
  * Create New League

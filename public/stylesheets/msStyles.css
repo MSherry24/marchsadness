@@ -369,4 +369,12 @@ fieldset[disabled] .btn-ms-orange.active {
 	line-height: 1.5;
 }
 
+.ms-create-ballot-width {
+    width: 300px;
+}
+
+.ms-inline-block {
+    display: inline-block;
+    padding-right: 15px;
+}
 

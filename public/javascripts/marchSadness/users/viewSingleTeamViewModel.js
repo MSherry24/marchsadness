@@ -83,6 +83,16 @@ function makePicksViewModel() {
     self.selectOptions = ko.observableArray([]);
     self.allNcaaTeamsMap = {};
     self.selectedTeams = {};
+    self.alreadyPickedTeams = {};
+
+    ['1', '2', '3', '4', '5', '6'].map(function (i) {
+        pickIndex = 1;
+        team.rounds['round' + i + 'picks'].map(function (x) {
+            // set ko observable variable
+            self.alreadyPickedTeams[x] = true;
+            pickIndex += 1;
+        });
+    });
 
     var dontUpdateList = {
         'round1pick1': self.round1pick1options,
@@ -131,6 +141,7 @@ function makePicksViewModel() {
 
     // create master options list
     for (key in msTeams) {
+        if (!msTeams[key].eliminated || self.alreadyPickedTeams[key])
         self.selectOptions.push(new NcaaTeamViewModel(msTeams[key].teamName, msTeams[key]._id, msTeams[key].seed, true, msTeams[key].eliminated));
         self.allNcaaTeamsMap[key] = self.selectOptions()[self.selectOptions().length - 1];
     }

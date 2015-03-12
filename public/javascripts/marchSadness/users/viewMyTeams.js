@@ -4,6 +4,11 @@
 $(document).ready(function () {
     "use strict";
     $('.deleteTeam').on('click', deleteTeam);
+    $('#newBallotForm').hide();
+    $('#showNewBallot').on('click', function () {
+        $('#newBallotForm').show();
+        $('#startNewBallot').hide();
+    });
 });
 
 var deleteTeam = function () {

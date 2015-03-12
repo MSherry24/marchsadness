@@ -4,14 +4,6 @@ var passport = require('passport');
 var msModel = require('../models/marchSadnessModel');
 var blog = require('../models/blogModel');
 var smtpTransport = require('nodemailer-smtp-transport');
-/* GET home page. */
-//router.get('/', function (req, res) {
-//    "use strict";
-//    res.render('index', {
-//        user: req.user,
-//        title: 'Failure League'
-//    });
-//});
 
 router.get('/', function(req, res) {
     "use strict";
