@@ -44,6 +44,7 @@
       "iconv-lite": "0.4.4",
       "media-typer": "*",
       "type-is": "1.5.1",
-      "qs": "2.2.4"
+      "qs": "2.2.4",
+      "nodemailer-smtp-transport": "1.0.2"
   }
 }

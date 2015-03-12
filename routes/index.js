@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var msModel = require('../models/marchSadnessModel');
 var blog = require('../models/blogModel');
+var smtpTransport = require('nodemailer-smtp-transport');
 /* GET home page. */
 //router.get('/', function (req, res) {
 //    "use strict";
@@ -45,13 +46,13 @@ router.get('/contact', function (req, res) {
 router.post('/contact', function (req, res) {
     "use strict";
     var nodemailer = require('nodemailer'),
-        transporter = nodemailer.createTransport({
+        transporter = nodemailer.createTransport(smtpTransport({
             service: 'gmail',
             auth: {
                 user: 'failureleaguegame@gmail.com',
                 pass: 'kyleorton'
             }
-        });
+        }));
     transporter.sendMail({
         from: 'failureleaguegame+' + req.body.messageType + '@gmail.com',
         to: 'failureleaguegame+' + req.body.messageType + '@gmail.com',

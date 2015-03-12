@@ -4,6 +4,7 @@ var passport = require('passport');
 var authMain = require('../controllers/auth/authMain');
 var userModel = require('../models/usermodel');
 
+
 /* GET users listing. */
 router.get('/', authMain.isLoggedIn, function(req, res) {
     res.render('users/profile', {
@@ -127,13 +128,14 @@ router.post('/forgotPassword', function (req, res) {
     "use strict";
     var emailAddress = req.body.email,
         nodemailer = require('nodemailer'),
-        transporter = nodemailer.createTransport({
+        smtpTransport = require('nodemailer-smtp-transport'),
+        transporter = nodemailer.createTransport(smtpTransport({
             service: 'gmail',
             auth: {
                 user: 'failureleaguegame@gmail.com',
                 pass: 'kyleorton'
             }
-        }),
+        })),
         emailBody = [],
         verificationKey = Math.random().toString(36).replace(/[^a-z]+/g, '');
     userModel.update({"local.email": emailAddress}, {"passwordReset": verificationKey}, function (err, userUpdated) {
@@ -180,13 +182,13 @@ router.post('/resetPassword', function (req, res) {
     userModel.findOne({"_id" : req.body.userId}, function (err, user) {
         if (err) {
             console.log(err);
-            res.status(500).redirect("/users/login");
+            res.status(500).end();
         } else if (!user) {
             console.log('user not updated');
-            res.status(500).redirect("/users/login");
+            res.status(500).end();
         } else if (user.passwordReset !== req.body.verification) {
             console.log('user not updated');
-            res.status(500).redirect("/users/login");
+            res.status(500).end();
         } else {
             userModel.update(
                 {
@@ -202,10 +204,10 @@ router.post('/resetPassword', function (req, res) {
                     if (err || !updated) {
                         console.log(err);
                         req.flash('errorReset', 'Err 002: There was an error resetting your password.  Please contact us if you are unable to reset your password');
-                        res.status(500).redirect("/users/login");
+                        res.status(500).end();
                     } else {
                         req.flash();
-                        res.status(200).redirect("/users/login");
+                        res.status(200).end();
                     }
                 }
             );

@@ -9,7 +9,7 @@ var save = function () {
     payload.password = $('#newPassword').val();
     $('#submitButton').addClass('disabled');
     $('#submitButton').html('Saving');
-    $.post('/users/resetPassword', payload, function() {
+    $.post('/users/resetPassword', payload, function () {
         window.location.replace("/users/login");
     });
 };
