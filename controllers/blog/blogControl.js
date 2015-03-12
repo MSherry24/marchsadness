@@ -15,10 +15,14 @@ var getTimeStamp = function () {
         minute;
     date.setHours(date.getHours() - 6);
     month = date.getMonth() + 1;
+    month = month.length === 1 ? "0" + month : month;
     day = date.getDate();
+    day = day.length === 1 ? "0" + day : day;
     year = date.getFullYear();
     hour = date.getHours();
+    hour = hour.length === 1 ? "0" + hour : hour;
     minute = date.getMinutes();
+    minute = minute.length === 1 ? "0" + minute : minute;
     if (minute < 10) {
         minute = '0' + minute;
     }

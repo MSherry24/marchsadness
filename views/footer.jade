@@ -4,8 +4,8 @@ div.footer.push
     br
     br
     div.container
-        div.row
-            p.ms-font-size-14.ms-font-bold
+        div.row.pull-left
+            div.ms-font-size-14.ms-font-bold
                 span
                     a(href='/marchsadness/about') ABOUT
                 span= "  |  "
@@ -25,4 +25,12 @@ div.footer.push
                     else
                         span
                             a(href='users/login') LOGIN
-            p.ms-font-size-14 © Failure League Inc. 2015
+            div.ms-font-size-14 © Failure League Inc. 2015
+        div.row.pull-right
+            span
+                a(href="https://twitter.com/failureleague")
+                    img.ms-footer-icon(src="../../../images/twitterIcon.png")
+            span
+                a(href="https://tumblr.com/failureleagueblog")
+                    img.ms-footer-icon(src="../../../images/tumblrIcon.png")
+

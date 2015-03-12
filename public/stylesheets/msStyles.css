@@ -241,10 +241,18 @@ fieldset[disabled] .btn-ms-orange.active {
 
 .ms-single-team-table td, th {
     padding: 10px;
+    height: 55px;
+}
+
+.ms-single-team-table th {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;	
 }
 
 .ms-single-team-table tr {
-    height: 70px;
+    height: 40px;
 }
 
 .ms-single-league-table {
@@ -264,8 +272,17 @@ fieldset[disabled] .btn-ms-orange.active {
     padding: 10px;
 }
 
+.ms-single-league-table th {
+
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 20px;	
+}
+
+
 .ms-single-league-table tr {
-    height: 70px;
+    height: 40px;
 }
 
 .ms-text-width {
@@ -301,7 +318,7 @@ fieldset[disabled] .btn-ms-orange.active {
 
 #sadnessScore {
     margin-top: 35px;
-    margin-right: 50px;
+    margin-right: 85px;
 }
 
 .ms-leftnav-body {
@@ -315,6 +332,7 @@ fieldset[disabled] .btn-ms-orange.active {
 .ms-leauge-table-container {
     padding: 40px;
 }
+
 
 .ms-ballotname-padding
 {
@@ -336,5 +354,19 @@ fieldset[disabled] .btn-ms-orange.active {
 .ms-nospace{
 	padding: 0px;
 	margin: 0px;
-	
 }
+
+.ms-footer-icon {
+    width: 50px;
+}
+
+#subhead {
+	line-height: .2;
+}
+
+#bodyleading {
+	
+	line-height: 1.5;
+}
+
+

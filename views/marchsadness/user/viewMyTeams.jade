@@ -9,6 +9,12 @@ div.ms-footer-push
                     tr.ms-grey-line
                         td
                             a(href="/marchsadness/viewSingleTeam/" + ballot._id).ms-font-size-20.ms-font-bold= ballot.name
+                            div
+                            each league, i in ballot.leagues
+                                span
+                                    a.ms-text-light-gray.ms-font-size-14(href="/marchsadness/viewSingleLeague/" + league)= leagueMap[league]
+                                    if (i + 1 !== ballot.leagues.length)
+                                        span.ms-text-light-gray.ms-font-size-14= ", "
                         td.ms-font-size-20= "Score: " + ballot.totalScore
                         td
                             span

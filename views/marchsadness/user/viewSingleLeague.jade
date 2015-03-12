@@ -1,14 +1,14 @@
 extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/viewSingleTeam.js")
-    div.ms-font-size-30.pull-left= league.name
+    div.ms-font-size-30.ms-font-bold.pull-left= league.name
     if (leagueManager)
-        div.ms-text-light-gray.pull-right.ms-font-size-20='League ID: ' + league._id
+        div.ms-text-light-gray.pull-right.ms-font-size-20.ms-font-italic='League ID: ' + league._id
     if (!inLeague)
-        div.row.text-center
-            p.text-center You must be a league member to view this page.
+        div
+            p.ms-font-size-30.ms-font-bold.pull-left You must be a league member to view this page.
             a.btn.btn-default.btn-ms-orange(href="/marchsadness/joinLeague/" + league._id)
-                span.fa.fa-user.text-center Join This League
+                span.fa.fa-user.text-center JOIN THIS LEAGUE
     else
         br
         br
@@ -16,30 +16,29 @@ block content
         div.league-table-container
             table.ms-single-league-table
                 thead
-                    tr.tableHeader
-                        th.ms-grey-line RANK/BALLOT
-                        th.ms-grey-line.text-center R1
-                        th.ms-grey-line.text-center R2
-                        th.ms-grey-line.text-center R3
-                        th.ms-grey-line.text-center R4
-                        th.ms-grey-line.text-center R5
-                        th.ms-grey-line.text-center R6
-                        th.ms-grey-line.text-center TOTAL
+                    tr
+                        th.ms-grey-line.ms-font-normal RANK/BALLOT
+                        th.ms-grey-line.text-center.ms-font-normal R1
+                        th.ms-grey-line.text-center.ms-font-normal R2
+                        th.ms-grey-line.text-center.ms-font-normal R3
+                        th.ms-grey-line.text-center.ms-font-normal R4
+                        th.ms-grey-line.text-center.ms-font-normal R5
+                        th.ms-grey-line.text-center.ms-font-normal R6
+                        th.ms-grey-line.text-center.ms-font-normal TOTAL
                 tbody
                     each team, i in teams
                         tr.ms-font-bold.ms-font-size-20
                             td.ms-grey-line
                                 a(href="/marchsadness/viewsingleteam/" + team._id)= (i+1) + "/" + team.name
-                                div.ms-font-size-14.ms-text-gray= leagueOwnerIdToFirstName[team.owner]
-                            td.ms-grey-line.text-center.ms-background-even-lighter-grayt= team.scores.round1
-                            td.ms-grey-line.text-center= team.scores.round1
-                            td.ms-grey-line.text-center.ms-background-even-lighter-gray= team.scores.round2
-                            td.ms-grey-line.text-center= team.scores.round3
-                            td.ms-grey-line.text-center.ms-background-even-lighter-gray= team.scores.round4
-                            td.ms-grey-line.text-center= team.scores.round5
-                            td.ms-grey-line.text-center.ms-background-even-lighter-gray= team.scores.round6
-                            td.ms-grey-line.text-center= team.totalScore
+                                div.ms-font-size-14.ms-text-gray.ms-font-normal= leagueOwnerIdToFirstName[team.owner]
+                            td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal= team.scores.round1
+                            td.ms-grey-line.text-center.ms-font-normal= team.scores.round2
+                            td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal= team.scores.round3
+                            td.ms-grey-line.text-center.ms-font-normal= team.scores.round4
+                            td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal= team.scores.round5
+                            td.ms-grey-line.text-center.ms-font-normal= team.scores.round6
+                            td.ms-grey-line.text-center.ms-font-bold= team.totalScore
         if (inLeague)
             br
             a(href="/marchsadness/addTeamToLeague/" + league._id)
-                button.btn.btn-ms-orange Add your team to this league
+                button.btn.btn-ms-orange ADD A BALLOT TO THIS LEAGUE
