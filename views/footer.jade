@@ -5,27 +5,27 @@ div.footer.push
     br
     div.container
         div.row.pull-left
-            div
+            div.ms-font-size-14.ms-font-bold
                 span
                     a(href='/marchsadness/about') ABOUT
-                span= " | "
+                span= "  |  "
                 span
                     a(href='/marchsadness/blog') BLOG
-                span= " | "
+                span= "  |  "
                 span
                     a(href='/marchsadness/rules') RULES
-                span= " | "
+                span= "  |  "
                 span
                     a(href='/contact') CONTACT
                 if(false)
-                    span= " | "
+                    span= "  |  "
                     if (user)
                         span
                             a(href='users/logout') LOGOUT
                     else
                         span
                             a(href='users/login') LOGIN
-            div © Failure League Inc. 2015
+            div.ms-font-size-14 © Failure League Inc. 2015
         div.row.pull-right
             span
                 a(href="https://twitter.com/failureleague")
@@ -33,3 +33,4 @@ div.footer.push
             span
                 a(href="https://tumblr.com/failureleagueblog")
                     img.ms-footer-icon(src="../../../images/tumblrIcon.png")
+

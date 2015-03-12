@@ -1,15 +1,14 @@
 extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/viewMyTeams.js")
-    div(class="container")
+    div.container
         div.row
-            h1
                 span.fa.fa-lock Ballots
             a(href="/marchsadness/viewmyteams", class="btn btn-default")
                 span(class="fa fa-user") View My Teams
         if (team.owner.id === user.id)
-            h2= team.name
-            h3= 'Total Score = ' + team.totalScore
+            p.ms-font-size-20= team.name
+            p.ms-font-size-20= 'Total Score = ' + team.totalScore
             div.table-responsive
                 table.table
                     thead
@@ -19,7 +18,7 @@ block content
                             th Score
                     tbody
                         each round, index in team.rounds
-                            tr.h3
+                            tr.ms-font-normal
                                 td= index
                                 td= round.team1.teamName
                                 td

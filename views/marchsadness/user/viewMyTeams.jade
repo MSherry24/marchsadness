@@ -1,20 +1,21 @@
 script(src="../../javascripts/marchSadness/users/viewMyTeams.js")
 div.ms-font-size-30.ms-font-bold BALLOTS
+br
 div.ms-footer-push
     div.table-responsive.ms-font-normal
         table.table
             tbody.ms-grey-line-top
                 each ballot, index in ballots
-                    tr.h3.ms-grey-line
+                    tr.ms-grey-line
                         td
-                            a(href="/marchsadness/viewSingleTeam/" + ballot._id)= ballot.name
+                            a(href="/marchsadness/viewSingleTeam/" + ballot._id).ms-font-size-20.ms-font-bold= ballot.name
                             div
                             each league, i in ballot.leagues
                                 span
-                                    a.ms-text-light-gray.ms-font-size-20(href="/marchsadness/viewSingleLeague/" + league)= leagueMap[league]
+                                    a.ms-text-light-gray.ms-font-size-14(href="/marchsadness/viewSingleLeague/" + league)= leagueMap[league]
                                     if (i + 1 !== ballot.leagues.length)
-                                        span.ms-text-light-gray.ms-font-size-20= ", "
-                        td= "Score: " + ballot.totalScore
+                                        span.ms-text-light-gray.ms-font-size-14= ", "
+                        td.ms-font-size-20= "Score: " + ballot.totalScore
                         td
                             span
                                 a(href="/marchsadness/viewSingleTeam/" + ballot._id)

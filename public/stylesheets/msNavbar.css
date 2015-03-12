@@ -9,6 +9,21 @@
     background-color: #ffffff;
 }
 
+#about { 
+	vertical-align: top;
+	margin-top: 15px;
+}
+
+#blog { 
+	vertical-align: top;
+	margin-top: 15px;
+	}
+	
+#rules {
+	vertical-align: top; 
+	margin-top: 15px;
+	}
+
 .ms-navbar-width-limit {
     max-width: 738px;
     float: left;

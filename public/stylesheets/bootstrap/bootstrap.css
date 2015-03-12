@@ -184,7 +184,7 @@ table {
 }
 td,
 th {
-  padding: 0;
+  padding: 10px;
 }
 /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
 @media print {
@@ -1379,8 +1379,8 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -2058,7 +2058,7 @@ th {
   text-align: left;
 }
 .table {
-  width: 100%;
+  width: 80%;
   max-width: 100%;
   margin-bottom: 20px;
 }
@@ -2068,9 +2068,10 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
-  line-height: 1.42857143;
-  vertical-align: top;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 1;
+  vertical-align: middle;
   border-top: 1px solid #656565;
 }
 .table > thead > tr > th {

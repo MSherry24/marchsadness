@@ -1,12 +1,13 @@
 extends layout
 block content
-    div.container
+    div.container.ms-font-normal.ms-col-width
+        div.row.ms-font-size-30.ms-font-bold= error.status + ' ' + message
         div.row
-            h1= error.status + ' ' + message
-        div.row
-            h3 We dropped the ball.
-            p Not sure how you ended up here. Make sure the url you entered is correct and try again.
-            p If you think this page should exist, but it doesn't, <u><a href="/contact">contact us</a></u> and let us know.
+            p.ms-font-size-20.ms-font-bold We dropped the ball.
+            p.ms-font-size-20 Not sure how you ended up here. Make sure the url you entered is correct and try again.
+            p.ms-font-size-20 If you think this page should exist, but it doesn't, <b><a href="/contact">contact us</a></b> and let us know.
+            br
+            br
         div.row
             img(src="../../images/404.gif")
         br

@@ -1,8 +1,11 @@
 //
    Created by Mike on 2/15/2015.
 each post, index in blogPosts
-    p.ms-font-size-20= post.title
-    p
-        b= "By: " + post.author
-    p= post.timestamp
-    p!= post.body
+    p.ms-font-size-20.ms-font-bold#subhead= post.title
+        p.ms-font-size-14.ms-font-italic.ms-text-gray= "By: " + post.author + " | " + post.timestamp
+    div.ms-font-normal.ms-font-size-14.ms-text-width!= post.body
+    br
+    br
+    br
+    br
+    
