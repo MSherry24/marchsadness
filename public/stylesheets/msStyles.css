@@ -289,6 +289,10 @@ fieldset[disabled] .btn-ms-orange.active {
 	width: 800px;
 }
 
+.ms-form-width {
+	width: 300px;
+}
+
 .ms-colwidth-lite {
 	width: 55%;
 	padding: 0px;
@@ -318,7 +322,8 @@ fieldset[disabled] .btn-ms-orange.active {
 
 #sadnessScore {
     margin-top: 35px;
-    margin-right: 85px;
+    margin-right: 15px;
+    margin-bottom: 0px;
 }
 
 .ms-leftnav-body {
