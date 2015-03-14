@@ -1,5 +1,6 @@
 script(src="../../javascripts/marchSadness/users/viewMyTeams.js")
 div.ms-font-size-30.ms-font-bold BALLOTS
+p.ms-font-size-20 You're such a baller! Start a ballot to pick your teams. Don't forget to read the <b><a href="/marchsadness/Rules">rules.</a></b>
 br
 div.ms-footer-push
     div.table-responsive.ms-font-normal
@@ -12,7 +13,7 @@ div.ms-footer-push
                             div
                             each league, i in ballot.leagues
                                 span
-                                    a.ms-text-light-gray.ms-font-size-14(href="/marchsadness/viewSingleLeague/" + league)= leagueMap[league]
+                                    a.ms-text-gray.ms-font-size-14(href="/marchsadness/viewSingleLeague/" + league)= leagueMap[league]
                                     if (i + 1 !== ballot.leagues.length)
                                         span.ms-text-light-gray.ms-font-size-14= ", "
                         td.ms-font-size-20= "Score: " + ballot.totalScore
@@ -24,9 +25,7 @@ div.ms-footer-push
                                 img.deleteTeam.teamViewIcon(src="../../images/trashIcon.png", value= ballot._id)
     div#startNewBallot
         div.ms-inline-block
-            button#showNewBallot.btn.btn-ms-orange.ms-font-size-14(value="Create a Ballot") +
-        div.ms-inline-block
-            div START A NEW BALLOT
+            button#showNewBallot.btn.btn-ms-orange.ms-font-size-14(value="Create a Ballot") START A NEW BALLOT
     form#newBallotForm(action="/marchsadness/createnewteam", method="post")
         div.form-group
             div.ms-inline-block
