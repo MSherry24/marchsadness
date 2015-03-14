@@ -17,9 +17,7 @@ block content
                             td.ms-font-size-20= "Score: " + ballot.totalScore
         div#startNewBallot
             div.ms-inline-block
-                button#showNewBallot.btn.btn-ms-orange.ms-font-size-14(value="Create a Ballot") +
-            div.ms-inline-block
-                div START A NEW BALLOT
+                button#showNewBallot.btn.btn-ms-orange.ms-font-size-14(value="Create a Ballot") START A NEW BALLOT 
         form#newBallotForm(action="/marchsadness/createnewteam", method="post")
             div.form-group
                 div.ms-inline-block

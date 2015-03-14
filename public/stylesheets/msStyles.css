@@ -182,6 +182,44 @@ fieldset[disabled] .btn-ms-orange.active {
     background-color: #ffffff;
 }
 
+
+
+.btn-ms-text {
+    color: #656565;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    border-radius: 0px;
+    margin-left: 4px;
+    padding-left: 0px;
+}
+
+.btn-ms-text:hover,
+{
+	color: #F05928;
+}
+.btn-ms-text:focus,
+.btn-ms-text:active,
+.btn-ms-text.active,
+.open .dropdown-toggle.btn-ms-text {
+    color: #656565;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    border-radius: 0px;
+    margin-left: 4px;
+    padding-left: 0px;
+}
+
+.btn-ms-text:active,
+.btn-ms-text.active,
+.open .dropdown-toggle.btn-ms-text {
+    background-image: none;
+}
+
+
+
+
+
+
 .ms-grey-line {
     border-bottom: #656565 solid 1px;
 }
@@ -389,4 +427,8 @@ fieldset[disabled] .btn-ms-orange.active {
 
 .ms-left-margin-15 {
     margin-left: 15px;
+}
+
+.ms-left-margin-0 {
+    margin-left: 0px;
 }

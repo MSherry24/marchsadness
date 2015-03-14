@@ -1,22 +1,27 @@
 extends ../layout
 block content
-    div(class="container")
-        div
-            h1
+    div.container.ms-footer-push.ms-col-width
+            p.ms-font-size-30.ms-font-bold
                 span.fa.fa-sign-in Login
             <!-- show any messages that come back with authentication -->
             if (message.length > 0)
                 div.alert.alert-danger= message
             <!-- LOGIN FORM -->
             form(action="/users/login", method="post")
-                div.form-group
-                    label Email
+                div.form-group.ms-form-width
+                    label.ms-font-size-20 Email
                     input(type="text", class="form-control", name="email")
-                div.form-group
-                    label Password
+                div.form-group.ms-form-width
+                    label.ms-font-size-20 Password
                     input(type="password", class="form-control", name="password")
-                button.btn.btn-ms-orange.btn-lg( type="submit") Login
-            br
-            p Forgot your password? <a href="/users/forgotPassword">Reset Password</a>
-            p Need an account? <a href="/users/signup">Signup</a>
-            p Or go <a href="/marchsadness">home</a>.
+                br
+                button.btn.btn-ms-orange.ms-text-bold.ms-font-size-14( type="submit") LOGIN
+                br
+                br
+            div.ms-font-italic Forgot your password? <a href="/users/forgotPassword">Reset Password</a>
+            div.ms-font-italic Already have an account? <a href="/users/login">Login</a>
+            div.ms-font-italic Or go <a href="/marchsadness">home</a>.
+                br
+                br
+                br
+                br
