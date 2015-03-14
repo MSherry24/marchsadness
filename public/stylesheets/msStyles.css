@@ -378,3 +378,6 @@ fieldset[disabled] .btn-ms-orange.active {
     padding-right: 15px;
 }
 
+.ms-add-ballot-to-league-button {
+    margin-right: 15px;
+}

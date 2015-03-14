@@ -12,23 +12,11 @@ var addTeam = function () {
 
 };
 
-var createBallot = function() {
-    var url= "/marchsadness/createnewteam";
-    $.post(url,  { "teamname": $('#teamName').val() }, function () {
-        window.location.reload(true);
-    });
-};
-
-var showCreateBallot = function() {
-    $('#teamName').show();
-    $('#createBallot').show();
-};
-
 $(document).ready(function () {
     $('.AddTeam').on('click', addTeam);
-    $('#createBallot').on('click', createBallot);
-    $('#showCreateBallot').on('click', showCreateBallot);
-    $('#teamName').hide();
-    $('#createBallot').hide();
-    $('#teamName').watermark('Ballot Name');
+    $('#newBallotForm').hide();
+    $('#showNewBallot').on('click', function () {
+        $('#newBallotForm').show();
+        $('#startNewBallot').hide();
+    });
 });

@@ -10,17 +10,19 @@ block content
                     each ballot in ballots
                         tr.ms-grey-line
                             td
+                                if (ballot.leagues.indexOf(league._id) === -1)
+                                    span.ms-add-ballot-to-league-button
+                                        button.btn.btn-sm.btn-ms-orange.AddTeam.ms-font-bold(value= league._id + '/' + ballot._id) ADD
                                 span.ms-font-size-20.ms-font-bold= ballot.name
                             td.ms-font-size-20= "Score: " + ballot.totalScore
-                            td
-                                if (ballot.leagues.indexOf(league._id) === -1)
-                                    button.btn.btn-sm.btn-ms-orange.AddTeam.ms-font-bold(value= league._id + '/' + ballot._id) ADD
-        div
-                    button#showCreateBallot.btn.btn-sm.btn-ms-orange.ms-font-bold ADD 
-                    p.ms-font-bold.ms-font-size-14= "CREATE A NEW BALLOT"
-            div#newTeamForm.col-xs-3
-                form
-                    span.form-group
-                        input#teamName(type="text", class="form-control", name="teamname")
-            div.col-xs-3
-                button#createBallot.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") Submit
+        div#startNewBallot
+            div.ms-inline-block
+                button#showNewBallot.btn.btn-ms-orange.ms-font-size-14(value="Create a Ballot") +
+            div.ms-inline-block
+                div START A NEW BALLOT
+        form#newBallotForm(action="/marchsadness/createnewteam", method="post")
+            div.form-group
+                div.ms-inline-block
+                    input.ms-font-size-14.ms-font-normal.ms-create-ballot-width(type="text", class="form-control", name="teamname", value="Name Your Ballot")
+                div.ms-inline-block
+                    button.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") ADD
