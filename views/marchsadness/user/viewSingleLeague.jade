@@ -3,7 +3,7 @@ block content
     script(src="../../javascripts/marchSadness/users/viewSingleLeague.js")
     div.ms-font-size-30.ms-font-bold.pull-left= league.name
     if (leagueManager)
-        div.ms-text-light-gray.pull-right.ms-font-size-20.ms-font-italic='League ID: ' + league._id
+        div.ms-text-gray.pull-right.ms-font-size-20.ms-font-italic='League ID: ' + league._id
     if (!inLeague)
         div
             p.ms-font-size-30.ms-font-bold.pull-left You must be a league member to view this page.
@@ -33,7 +33,7 @@ block content
                                     a(href="/marchsadness/viewsingleteam/" + team._id)= (i+1) + "/" + team.name
                                 if (team.owner[0].id === user._id.id)
                                     span.ms-left-margin-15
-                                        button.btn.btn-ms-orange.deleteTeam(value=team._id, league=league._id) x
+                                        button.btn.btn-ms-text.deleteTeam.mw-font-size-14(value=team._id, league=league._id) REMOVE
                                 div.ms-font-size-14.ms-text-gray.ms-font-normal= leagueOwnerIdToFirstName[team.owner]
                             td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal= team.scores.round1
                             td.ms-grey-line.text-center.ms-font-normal= team.scores.round2

@@ -160,10 +160,15 @@ block content
                                         td.text-center= ''
                                         td.text-center= ''
                                         td.text-center.ms-font-bold.ms-font-size-20= "Total Round Score: " + team.scores['round' + round]
+        br
         if (userIsOwner)
             button#editBallotButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 EDIT ALL PICKS
             button#saveAllChangesButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14(value= team._id, data-bind="click: saveBallot") SAVE ALL CHANGES
             button#cancelEditButton.btn.btn-ms-orange.ms-text-bold.ms-font-size-14 CANCEL
+        br
+        br
+        p.ms-font-size-14 Scores are updated the day after a round is finished.
+        p.ms-font-size-14#subhead KEY - <b>Gray Tabs:</b> Locked Rounds, <b>White Tab:</b> Current Round, <b>Yellow Tabs:</b> Future Rounds.    
         br
         br
         br

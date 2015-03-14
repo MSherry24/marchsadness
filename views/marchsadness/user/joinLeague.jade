@@ -1,11 +1,9 @@
 extends ../marchsadnesslayout
 block content
     script(src="../../javascripts/marchSadness/users/joinLeague.js")
-    div(class="container")
-        div.text-center
-            br
-            h1
-                span.h1.fa.fa-lock= 'Join ' + league.name
+    div.container.ms-footer-push.ms-col-width
+            p.ms-font-size-30.ms-font-bold
+            span.h1.fa.fa-lock= 'Join ' + league.name
         br
         div.container
             div.row
