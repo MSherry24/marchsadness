@@ -17,14 +17,13 @@ div.footer.push
                 span= "  |  "
                 span
                     a(href='/contact') CONTACT
-                if(false)
                     span= "  |  "
-                    if (user)
-                        span
-                            a(href='users/logout') LOGOUT
-                    else
-                        span
-                            a(href='users/login') LOGIN
+                if (user)
+                    span
+                        a(href='/users/logout') LOGOUT
+                else
+                    span
+                        a(href='/users/login') LOGIN
             div.ms-font-size-14 © Failure League Inc. 2015
         div.row.pull-right
             span
