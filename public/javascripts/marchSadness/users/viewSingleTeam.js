@@ -69,6 +69,5 @@ $(document).ready(function () {
     $("#cancelEditButton").hide();
     $("#saveAllChangesButton").hide();
     $("#saveAllChangesButton").css("margin-right", "15px");
-
 });
 

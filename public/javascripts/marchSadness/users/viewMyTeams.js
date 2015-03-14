@@ -14,7 +14,7 @@ $(document).ready(function () {
 var deleteTeam = function () {
     "use strict";
     var route;
-    if (confirm("Delete this team?")) {
+    if (confirm("Delete this ballot?")) {
         route = '/marchsadness/deleteteam/' + event.target.getAttribute('value');
         $.post(route, function () {
             window.location.reload(true);

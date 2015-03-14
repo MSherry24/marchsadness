@@ -430,3 +430,24 @@ var teamSort = function (a, b) {
     }
     return 0;
 };
+
+exports.removeBallotFromLeague = function(req, res, teamId, leagueId) {
+    "use strict";
+    var leagueIndex;
+    msModel.UserTeam.findOne({_id : teamId}, function(err, team) {
+        if (err) {
+            res.status(500).end();
+        }
+        if (req.user._id.id !== team._id) {
+            res.status(500).end();
+        }
+        leagueIndex = team.leagues.indexOf(leagueId);
+        team.leagues.splice(leagueIndex, 1);
+        team.save(function(err) {
+            if (err) {
+                res.status(500).end();
+            }
+            res.status(200).end();
+        });
+    });
+};

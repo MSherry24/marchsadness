@@ -338,6 +338,10 @@ router.get('/viewSingleleague/:leagueId', authMain.isLoggedIn, msModel.getTeamsA
     msUserControl.getViewSingleLeague(req, res, req.params.leagueId);
 });
 
+router.post('/removeBallotFromLeague/:teamId/:leagueId', authMain.isLoggedIn, function (req, res) {
+    msUserControl.removeBallotFromLeague(req, res, req.params.teamId, req.params.leagueId);
+});
+
 /*=================================
  * Add User's team to a league
  *=================================*/
