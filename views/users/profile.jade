@@ -3,27 +3,37 @@
 extends ../layout
 block content
     div.container
-        div.page-header.text-center
-            h1
-                span.fa.fa-anchor Profile Page
-            a.btn.btn-ms-orange(href="/users/profile/edit") Edit
-        div.row
-            <!-- LOCAL INFORMATION -->
-            div.col-sm-6
-                div
-                    h2
-                        span.fa.fa-user User
-                    p
-                        span.h4 First Name:
-                        span= ' ' + user.firstName
-                        br
-                        span.h4 Last Name:
-                        span= ' ' + user.lastName
-                        br
-                        span.h4 Email:
-                        span= ' ' +user.local.email
-                        br
-                        span.h4 Ok To Email:
-                        span= ' ' + (user.okToEmail ? 'Ok!' : "'Fraid Not")
-                        br
-    br
+        p.ms-font-size-30.ms-font-bold#subhead Profile Page
+        p.ms-font-size-20.ms-font-italic.ms-text-gray Hey! It's you!
+        p.ms-font-normal
+            span.ms-font-size-20 First Name:
+            span.ms-font-size-20= ' ' + user.firstName
+            br
+            span.ms-font-size-20 Last Name:
+            span.ms-font-size-20= ' ' + user.lastName
+            br
+            span.ms-font-size-20 Email:
+            span.ms-font-size-20= ' ' +user.local.email
+            br
+            span.ms-font-size-20 Ok To Email?
+            span.ms-font-size-20= ' ' + (user.okToEmail ? 'Ok!' : "'Fraid Not")
+            br
+            br
+        div.a.btn.btn-ms-orange(href="/users/editProfile") EDIT PROFILE
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
