@@ -42,23 +42,11 @@ router.get('/blog', function(req, res) {
 /* GET home page. */
 router.get('/', function(req, res) {
     "use strict";
-    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(2).exec(function (err, topTeams) {
-        if (err) {
-            console.log(err);
-        }
-        blog.BlogPost.find({}).limit(5).sort({timestamp: -1}).exec(function (err, blogPosts) {
-            if (err) {
-                console.log(err);
-            }
-            res.render('marchsadness/marchsadnesshome',
-                {
-                    title: 'March Sadness',
-                    user: req.user,
-                    topTeams: topTeams,
-                    blogPosts: blogPosts,
-                    message: req.flash('TeamDoesNotExist')
-                });
-        });
+    res.render('marchsadness/marchsadnesshome',
+    {
+        title: 'March Sadness',
+        user: req.user,
+        message: req.flash('TeamDoesNotExist')
     });
 });
 
@@ -241,11 +229,17 @@ router.get('/index', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (
     req.userLeagues.map( function(league) {
         leagueMap[league._id] = league.name;
     });
-    res.render('marchsadness/user/index', {
-        user: req.user,
-        leagues: req.userLeagues,
-        ballots: req.userBallots,
-        leagueMap: leagueMap
+    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(2).exec(function (err, topTeams) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('marchsadness/user/index', {
+            user: req.user,
+            leagues: req.userLeagues,
+            ballots: req.userBallots,
+            topTeams: topTeams,
+            leagueMap: leagueMap
+        });
     });
 });
 
