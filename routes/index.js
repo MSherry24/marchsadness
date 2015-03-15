@@ -51,7 +51,7 @@ router.post('/contact', function (req, res) {
         from: 'failureleaguegame+' + req.body.messageType + '@gmail.com',
         to: 'failureleaguegame+' + req.body.messageType + '@gmail.com',
         subject: 'Site Form ' + req.body.messageType,
-        text: 'user Email: ' + req.body.userEmail + 'user message: ' + req.body.message
+        text: 'user Email: ' + req.body.userEmail + '\r\nuser message: ' + req.body.message
     });
     res.status(200).end();
 });

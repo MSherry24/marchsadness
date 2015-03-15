@@ -29,4 +29,6 @@ $(document).ready(function () {
         $('#dropdownMenu1').html(event.target.innerText + '  <span class="caret"</span>');
         $('#dropdownMenu1').val($(event.target).attr('value'));
     });
+    $('#email').watermark('Your Email Address');
+    $('#message').watermark('Your Message');
 });
