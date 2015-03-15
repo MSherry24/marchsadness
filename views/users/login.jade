@@ -2,7 +2,7 @@ extends ../layout
 block content
     div.container.ms-footer-push.ms-col-width
             p.ms-font-size-30.ms-font-bold
-                span.fa.fa-sign-in Login
+                span.fa.fa-sign-in LOGIN
             <!-- show any messages that come back with authentication -->
             if (message.length > 0)
                 div.alert.alert-danger= message
@@ -19,7 +19,7 @@ block content
                 br
                 br
             div.ms-font-italic Forgot your password? <a href="/users/forgotPassword">Reset Password</a>
-            div.ms-font-italic Already have an account? <a href="/users/login">Login</a>
+            div.ms-font-italic Need an account? <a href="/users/signup">Sign Up</a>
             div.ms-font-italic Or go <a href="/marchsadness">home</a>.
                 br
                 br
