@@ -133,7 +133,7 @@ router.post('/forgotPassword', function (req, res) {
             service: 'gmail',
             auth: {
                 user: 'failureleaguegame@gmail.com',
-                pass: 'kyleorton'
+                pass: 'jssrxmxsxdqcrcyx'
             }
         })),
         emailBody = [],

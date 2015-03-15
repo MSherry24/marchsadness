@@ -38,11 +38,13 @@ router.get('/contact', function (req, res) {
 router.post('/contact', function (req, res) {
     "use strict";
     var nodemailer = require('nodemailer'),
-        transporter = nodemailer.createTransport(smtpTransport({
-            service: 'gmail',
+        wellknown = require('nodemailer-wellknown'),
+        transporter;
+    transporter = nodemailer.createTransport(smtpTransport({
+            service: 'Gmail',
             auth: {
                 user: 'failureleaguegame@gmail.com',
-                pass: 'kyleorton'
+                pass: 'jssrxmxsxdqcrcyx'
             }
         }));
     transporter.sendMail({
