@@ -35,6 +35,10 @@ div.ms-text-white.text-center.ms-leftnav-container.ms-wrap-text
         input.btn.btn-ms-orange(type="submit", value="JOIN LEAGUE", onclick="window.location='/marchsadness/joinaleague';")
         div.ms-leftnav-buffer
     br
-    br
     if (topTeams)
         include globalRanks
+    else
+        div
+            a(href="http://www.ncaa.com/interactive-bracket/basketball-men/d1").ms-font-size-14.ms-font-normal Reference NCAA Backet
+    br
+    br

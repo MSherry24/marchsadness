@@ -432,3 +432,7 @@ fieldset[disabled] .btn-ms-orange.active {
 .ms-left-margin-0 {
     margin-left: 0px;
 }
+
+#roundTabs li {
+    padding-bottom: 0px;
+}

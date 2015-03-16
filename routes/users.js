@@ -165,7 +165,7 @@ router.post('/forgotPassword', function (req, res) {
                         text: emailBody.join('')
                     });
                     req.flash();
-                    res.status(200).redirect("/users/login");
+                    res.status(200).redirect('/users/login');
                 }
             });
         }
@@ -207,7 +207,7 @@ router.post('/resetPassword', function (req, res) {
                         res.status(500).end();
                     } else {
                         req.flash();
-                        res.status(200).end();
+                        res.status(200).redirect('/users/login');
                     }
                 }
             );

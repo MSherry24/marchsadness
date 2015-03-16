@@ -86,7 +86,7 @@ block content
                                                     td.ms-grey-line.ms-font-bold.ms-font-size-20(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
                                                         div.teamTextView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
                                                         if (config.roundStarted['round'+round])
-                                                            select.teamSelectView.ms-background-light-gray.ms-font-normal.ms-font-size-20(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                            div.teamSelectView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
                                                         else
                                                             select.teamSelectView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal.ms-font-size-20= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
@@ -97,7 +97,7 @@ block content
                                                     td.ms-grey-line
                                                         div.teamTextView.ms-font-normal.ms-font-size-14.ms-text-gray(id="round" + round + "pick" + pickRow + "text") CLICK EDIT TO PICK TEAMS
                                                         if (config.roundStarted['round'+round])
-                                                            select.teamSelectView.ms-background-light-gray.ms-font-normal.ms-font-size-20(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                            div.teamSelectView.ms-font-normal.ms-font-size-14.ms-text-gray(id="round" + round + "pick" + pickRow + "text") CLICK EDIT TO PICK TEAMS
                                                         else
                                                             select.teamSelectView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal.ms-font-size-20= ''
@@ -111,7 +111,7 @@ block content
                                                     td.ms-grey-line.ms-font-bold.ms-font-size-20(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
                                                         div.teamTextView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
                                                         if (config.roundStarted['round'+round])
-                                                            select.teamSelectView.ms-background-light-gray.ms-font-normal.ms-font-size-20(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                            div.teamSelectView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
                                                         else
                                                             select.teamSelectView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal.ms-font-size-20= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
@@ -122,7 +122,7 @@ block content
                                                     td.ms-grey-line
                                                         div.teamTextView.ms-font-normal.ms-font-size-14.ms-text-gray(id="round" + round + "pick" + pickRow + "text") CLICK EDIT TO PICK TEAMS
                                                         if (config.roundStarted['round'+round])
-                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                            div.teamSelectView.ms-font-normal.ms-font-size-14.ms-text-gray(id="round" + round + "pick" + pickRow + "text") CLICK EDIT TO PICK TEAMS
                                                         else
                                                             select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal.ms-font-size-20= ''
@@ -136,7 +136,7 @@ block content
                                                     td.ms-grey-line.ms-font-bold.ms-font-size-20(id="r"+round+"p"+pickRow+"name", value=allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].id)
                                                         div.teamTextView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
                                                         if (config.roundStarted['round'+round])
-                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                            div.teamSelectView(id="round" + round + "pick" + pickRow + "text")= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].teamName
                                                         else
                                                             select.teamSelectView.ms-font-normal.ms-font-size-20(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal.ms-font-size-20= allTourneyTeams[team.rounds['round'+round+'picks'][pickRow-1]].scores['round'+round].missed3
@@ -147,7 +147,7 @@ block content
                                                     td.ms-grey-line.ms-font-normal.ms-font-size-20
                                                         div.teamTextView.ms-font-normal.ms-font-size-14.ms-text-gray(id="round" + round + "pick" + pickRow + "text") CLICK EDIT TO PICK TEAMS
                                                         if (config.roundStarted['round'+round])
-                                                            select.teamSelectView.ms-background-light-gray(disabled id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
+                                                            div.teamSelectView.ms-font-normal.ms-font-size-14.ms-text-gray(id="round" + round + "pick" + pickRow + "text") CLICK EDIT TO PICK TEAMS
                                                         else
                                                             select.teamSelectView(id="round" + round + "pick" + pickRow, data-bind="options: round" + round + "pick" + pickRow + "options, optionsText: 'name', optionsValue:'id', selectedOptions: round" + round + "pick" + pickRow)
                                                     td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal.ms-font-size-20= ''
