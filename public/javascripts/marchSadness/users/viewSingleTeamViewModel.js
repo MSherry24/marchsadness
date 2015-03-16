@@ -142,7 +142,7 @@ function makePicksViewModel() {
     // create master options list
     for (key in msTeams) {
         if (!msTeams[key].eliminated || self.alreadyPickedTeams[key])
-        self.selectOptions.push(new NcaaTeamViewModel(msTeams[key].teamName, msTeams[key]._id, msTeams[key].seed, true, msTeams[key].eliminated));
+        self.selectOptions.push(new NcaaTeamViewModel(msTeams[key].teamName + " (" + msTeams[key].seed + ")", msTeams[key]._id, msTeams[key].seed, true, msTeams[key].eliminated));
         self.allNcaaTeamsMap[key] = self.selectOptions()[self.selectOptions().length - 1];
     }
 
