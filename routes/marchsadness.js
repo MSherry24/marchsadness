@@ -229,7 +229,7 @@ router.get('/index', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (
     req.userLeagues.map( function(league) {
         leagueMap[league._id] = league.name;
     });
-    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(2).exec(function (err, topTeams) {
+    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(25).exec(function (err, topTeams) {
         if (err) {
             console.log(err);
         }
