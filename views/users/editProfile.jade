@@ -5,27 +5,26 @@ block content
     script(type="text/javascript", src="../../../javascripts/users/editProfile.js")
     div.container
         p.ms-font-size-30.ms-font-bold#subhead Profile Page
+        br
         p.ms-font-normal
             form(role="form", action="/users/profile/edit", method="post")
                 div.form-group
                     label.ms-font-size-20(for="firstName") First Name:
-                    input#firstName.form-control(type="text", name="firstName", value=user.firstName)
+                    input#firstName.form-control.ms-form-width(type="text", name="firstName", value=user.firstName)
                     br
                     label.ms-font-size-20(for="lastName") Last Name:
-                    input#lastName.form-control(type="text", name="lastName", value=user.lastName)
+                    input#lastName.form-control.ms-form-width(type="text", name="lastName", value=user.lastName)
                     br
                     label.ms-font-size-20(for="email") Email:
-                    input#email.form-control(type="email", name="email", value=user.local.email)
+                    input#email.form-control.ms-form-width(type="email", name="email", value=user.local.email)
                     br
                     label.ms-font-size-20(for="email") Can we send you email sometimes?
                     div
                         input#oktoemail(type="checkbox", name="oktoemail", checked=(user.okToEmail ? "checked" : undefined))
                         span= ' Yes'
-                    br
-                    br
-                a.btn.btn-ms-orange(href="/users/profile") Back
                 a#saveChanges.btn.btn-ms-orange(type="submit") Save Changes
                 a#saveChangesDisabled.btn.btn-ms-orange.disabled Saving
+                a.btn.btn-ms-orange.ms-left-margin-15(href="/users/profile") Back
                 br
                 br
                 br

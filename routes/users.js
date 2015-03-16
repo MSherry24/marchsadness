@@ -138,6 +138,7 @@ router.post('/forgotPassword', function (req, res) {
         })),
         emailBody = [],
         verificationKey = Math.random().toString(36).replace(/[^a-z]+/g, '');
+        console.log ("1");
     userModel.update({"local.email": emailAddress}, {"passwordReset": verificationKey}, function (err, userUpdated) {
         if (err) {
             console.log(err);
@@ -146,6 +147,7 @@ router.post('/forgotPassword', function (req, res) {
             console.log('user not found');
             res.status(500).redirect("/users/login");
         } else {
+        	console.log ("2");
             userModel.findOne({"local.email": emailAddress}, function (err, user) {
                 if (err) {
                     console.log(err);
@@ -154,6 +156,7 @@ router.post('/forgotPassword', function (req, res) {
                     console.log('user not updated');
                     res.status(500).redirect("/users/login");
                 } else {
+                	console.log ("3");
                     emailBody.push('To reset your password, click this link: http://marchsadnesstournament.com/users/resetPassword/');
                     emailBody.push(user._id + '/');
                     emailBody.push(verificationKey);
@@ -165,6 +168,7 @@ router.post('/forgotPassword', function (req, res) {
                         text: emailBody.join('')
                     });
                     req.flash();
+                    console.log ("4");
                     res.status(200).redirect("/users/login");
                 }
             });
