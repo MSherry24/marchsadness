@@ -3,12 +3,12 @@
 div.row.ms-background-light-gray.ms-leftnav-body
     div.ms-leftnav-buffer
     div.ms-background-gray.ms-leftnav-title
-        h4 TOP BALLOTS
+        h4 TOP BALLOT SCORES
     if (topTeams.length > 0)
         each team, index in topTeams
             br
             div.text-left
-                span= "#" + (index + 1) + " "
+                span= (index + 1) + "/"  
                 span
                     a(href="/marchsadness/viewSingleTeam/" + team._id).ms-text-white.ms-font-size-14.ms-font-normal=team.name + " "
                 span.pull-right= team.totalScore

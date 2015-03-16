@@ -157,7 +157,6 @@ router.post('/forgotPassword', function (req, res) {
                     emailBody.push('To reset your password, click this link: http://marchsadnesstournament.com/users/resetPassword/');
                     emailBody.push(user._id + '/');
                     emailBody.push(verificationKey);
-
                     transporter.sendMail({
                         from: 'failureleaguegame+passwordreset@gmail.com',
                         to: emailAddress,
