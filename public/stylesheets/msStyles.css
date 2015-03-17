@@ -429,10 +429,18 @@ fieldset[disabled] .btn-ms-orange.active {
     margin-left: 15px;
 }
 
+.ms-right-margin-15 {
+    margin-right: 15px;
+}
+
 .ms-left-margin-0 {
     margin-left: 0px;
 }
 
 #roundTabs li {
     padding-bottom: 0px;
+}
+
+.blog-post-input {
+    width: 100%;
 }

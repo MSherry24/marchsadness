@@ -1,9 +1,17 @@
 //
    Created by Mike on 2/15/2015.
 each post, index in blogPosts
-    p.ms-font-size-20.ms-font-bold#subhead= post.title
-        p.ms-font-size-14.ms-font-italic.ms-text-gray= "By: " + post.author + " | " + post.timestamp
-    div.ms-font-normal.ms-font-size-14.ms-text-width!= post.body
+    a(href="/marchsadness/blog/post/" + post._id)
+        p.ms-font-size-20.ms-font-bold#subhead= post.title
+            p.ms-font-size-14.ms-font-italic.ms-text-gray= "By: " + post.author + " | " + post.timestamp
+    if (showBody)
+        div.ms-font-normal.ms-font-size-14.ms-text-width!= post.body
+        br
+        a(href="/marchsadness/blog")
+            button.btn.btn-ms-orange Back to Blog
+    else
+        if(post.preview)
+            div.ms-font-normal.ms-font-size-14.ms-text-width!= post.preview
     br
     br
     br

@@ -1,30 +1,41 @@
-extends msAdminLayout
+
+extends ../../layout
 block content
-    body
-        link(rel='stylesheet', href='/stylesheets/jquery-te-1.4.0.css')
-        script(src="/javascripts/jquery-te-1.4.0.min.js")
-        script(src="/javascripts/marchSadness/admin/blogPost.js")
-        div(class="jumbotron")
-            div(class="container")
-                div(class="row")
-                    div(class="col-xs-12")
-                        h1.text-center Blog Post
-        div.container
-            div.row
-                h2.col-xs-12
-                    div.row
-                        label= 'Title: '
-                        if (post)
-                            input#title(type="text", value= post.title)
-                        else
-                            input#title(type="text")
-                    div.row
-                    if (post)
-                        input#textarea(value= post.body)
-                    else
-                        input#textarea
-                    div.row.text-right
-                        if (post)
-                            button#SubmitButton.btn.btn-default.btn-primary(value=post._id) Submit
-                        else
-                            button#SubmitButton.btn.btn-default.btn-primary Submit
+    link(rel='stylesheet', href='/../../stylesheets/kendo/kendo.common.min.css')
+    link(rel='stylesheet', href='/../../stylesheets/kendo/kendo.default.min.css')
+    link(rel='stylesheet', href='/../../stylesheets/kendo/kendo.dataviz.min.css')
+    link(rel='stylesheet', href='/../../stylesheets/kendo/kendo.dataviz.default.min.css')
+    link(rel='stylesheet', href='/../../stylesheets/kendo/kendo.dataviz.mobile.min.css')
+    script(src="/../../javascripts/jquery.min.js")
+    script(src='/../../javascripts/kendo.all.min.js')
+    script(src="/javascripts/marchSadness/admin/blogPost.js")
+    div(class="jumbotron")
+        div(class="container")
+            div(class="row")
+                div(class="col-xs-12")
+                    h1.text-center Blog Post
+    div.container
+        form#formBlogPost(name="newPost")
+            div
+                label(for="title") Title
+            div.form-group
+                if (post)
+                    textarea#title.blog-post-input(type="text", rows="3")= post.title
+                else
+                    textarea#title.blog-post-input(type="text", rows="3")
+            div
+                label(for="body") Body
+            div.form-group
+                if (post)
+                    textarea#textarea.form-group(rows="30", placeholder="Body", name="body")= post.body
+                else
+                    textarea#textarea.form-group(rows="30", placeholder="Body", name="body")
+            div
+                label(for="body") Preview
+            div.form-group
+                if (post)
+                    textarea#inputPreview.blog-post-input.form-group(rows="3", placeholder="Preview", name="preview")= post.preview
+                else
+                    textarea#inputPreview.blog-post-input.form-group(rows="3", placeholder="Preview", name="preview")
+            div
+                button#SubmitButton.btn.btn-ms-orange(type="submit") Submit

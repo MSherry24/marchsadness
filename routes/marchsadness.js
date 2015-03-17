@@ -32,7 +32,44 @@ router.get('/blog', function(req, res) {
         res.render('marchsadness/blogview',
             {
                 blogPosts: blogPosts,
-                user : req.user
+                user : req.user,
+                showBody: false,
+                previous: 5,
+                next: ""
+            });
+    });
+});
+
+router.get('/blog/:offset', function(req, res) {
+    blog.BlogPost.find({}).skip(req.params.offset).limit(5).sort({timestamp: -1}).exec(function (err, blogPosts) {
+        var next = (parseInt(req.params.offset) - 5) < 0 ? "" : parseInt(req.params.offset) - 5,
+            previous = blogPosts.length < 5 ? "" : (parseInt(req.params.offset) + 5);;
+        if (err) {
+            console.log(err);
+        }
+        res.render('marchsadness/blogview',
+            {
+                blogPosts: blogPosts,
+                user : req.user,
+                showBody: false,
+                previous: previous,
+                next: next
+            });
+    });
+});
+
+router.get('/blog/post/:postId', function(req, res) {
+    blog.BlogPost.find({_id : req.params.postId}).exec(function (err, blogPosts) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('marchsadness/blogview',
+            {
+                blogPosts: blogPosts,
+                user : req.user,
+                showBody: true,
+                previous: "",
+                next: ""
             });
     });
 });
@@ -229,7 +266,7 @@ router.get('/index', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (
     req.userLeagues.map( function(league) {
         leagueMap[league._id] = league.name;
     });
-    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(25).exec(function (err, topTeams) {
+    msModel.UserTeam.find({}).sort({totalScore: -1}).limit(10).exec(function (err, topTeams) {
         if (err) {
             console.log(err);
         }

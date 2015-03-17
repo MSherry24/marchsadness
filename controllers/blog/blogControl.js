@@ -58,7 +58,8 @@ exports.editPost = function (req, res) {
     "use strict";
     Blog.BlogPost.update({"_id": req.body.postId}, {
         title: req.body.postTitle,
-        body: req.body.postBody
+        body: req.body.postBody,
+        preview: req.body.postPreview
     }, function (err) {
         if (err) {
             console.log(err);
@@ -74,6 +75,7 @@ exports.postNewBlog = function (req, res) {
         author: req.user.firstName,
         title: req.body.postTitle,
         body: req.body.postBody,
+        preview: req.body.postPreview,
         timestamp: getTimeStamp()
     });
     newBlog.save(function (err) {

@@ -2,8 +2,17 @@ extends ../layout
 block content
     script(src="../../javascripts/marchsadness/blog.js")
     div.container
+        a(href="/marchsadness/blog")
             p.ms-font-size-30.ms-font-bold#subhead The March Sadness Blog
-            div.ms-font-size-20.ms-font-italic.ms-text-gray Stories of Lovable Losers
-            br
-            br
-            include blog
+        div.ms-font-size-20.ms-font-italic.ms-text-gray Stories of Lovable Losers
+        if (previous !== "")
+            span.ms-right-margin-15
+                a(href="/marchsadness/blog/" + previous)
+                    button.btn.btn-ms-orange Previous
+        if (next !== "")
+            span
+                a(href="/marchsadness/blog/" + next)
+                    button.btn.btn-ms-orange Next
+        br
+        br
+        include blog
