@@ -323,7 +323,7 @@ exports.getViewSingleLeague = function (req, res, leagueId, message) {
             });
         }
     });
-}
+};
 
 var teamScoreComparitor = function(a,b) {
     if (a.totalScore < b.totalScore) {return -1}
@@ -459,3 +459,34 @@ exports.removeBallotFromLeague = function(req, res, teamId, leagueId) {
         });
     });
 };
+
+/*=================================
+ * View global rankings
+ *=================================*/
+
+exports.getGlobalRankings = function(req, res) {
+    "use strict";
+    var ballotOwnerIdToFirstName = {};
+    msModel.UserTeam.find({}, function (err, allBallots) {
+        if (err) {
+            console.log(err);
+            res.status(500).end();
+        }
+        allBallots.sort(teamScoreComparitor).reverse();
+        User.find({}, function (err, ballotOwners) {
+            if (!err && ballotOwners) {
+                ballotOwners.map(function (owner) {
+                    ballotOwnerIdToFirstName[owner._id] = owner.firstName;
+                });
+                res.render('marchsadness/allBallotRanks', {
+                    user: req.user,
+                    allBallots: allBallots,
+                    ballots: req.userBallots,
+                    leagues: req.userLeagues,
+                    ballotOwnerIdToFirstName: ballotOwnerIdToFirstName
+                });
+            }
+        });
+    });
+};
+

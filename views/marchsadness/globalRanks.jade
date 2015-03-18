@@ -3,7 +3,8 @@
 div.row.ms-background-light-gray.ms-leftnav-body
     div.ms-leftnav-buffer
     div.ms-background-gray.ms-leftnav-title
-        h4 TOP BALLOT SCORES
+        a(href="/marchsadness/globalRankings")
+            h4.text-center.ms-text-white TOP BALLOT SCORES
     if (topTeams.length > 0)
         each team, index in topTeams
             br
