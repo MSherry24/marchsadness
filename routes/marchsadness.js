@@ -25,7 +25,7 @@ router.get('/about', function(req, res) {
 });
 
 router.get('/blog', function(req, res) {
-    blog.BlogPost.find({}).limit(5).sort({timestamp: -1}).exec(function (err, blogPosts) {
+    blog.BlogPost.find({}).limit(5).sort({unixTimeStamp: -1, timeStamp: -1}).exec(function (err, blogPosts) {
         if (err) {
             console.log(err);
         }

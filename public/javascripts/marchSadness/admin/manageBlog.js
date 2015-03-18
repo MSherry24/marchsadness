@@ -1,9 +1,14 @@
-var deletePost = function () {
+var deletePost = function (e) {
     "use strict";
+    var x;
+    if (!e) {
+        e = window.event;
+    }
+    x = e.target || e.srcElement;
     if (confirm("Delete this post?")) {
-        $(event.target).addClass('disabled');
-        $(event.target).html('Deleting');
-        $.post("/marchsadness/admin/deletePost/", {postId: $(event.target).val()},
+        $(x).addClass('disabled');
+        $(x).html('Deleting');
+        $.post("/marchsadness/admin/deletePost/", {postId: $(x).val()},
             function () {
                 window.location.replace("/marchsadness/admin/manageBlog");
             });

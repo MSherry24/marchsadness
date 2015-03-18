@@ -13,7 +13,7 @@ var getTimeStamp = function () {
         year,
         hour,
         minute;
-    date.setHours(date.getHours() - 6);
+    date.setHours(date.getHours() - 5);
     month = date.getMonth() + 1;
     month = month.length === 1 ? "0" + month : month;
     day = date.getDate();
@@ -76,7 +76,8 @@ exports.postNewBlog = function (req, res) {
         title: req.body.postTitle,
         body: req.body.postBody,
         preview: req.body.postPreview,
-        timestamp: getTimeStamp()
+        timestamp: getTimeStamp(),
+        unixTimeStamp: new Date().getTime()
     });
     newBlog.save(function (err) {
         if (err) {

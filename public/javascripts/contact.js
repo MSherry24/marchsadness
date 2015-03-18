@@ -24,10 +24,15 @@ var save = function () {
 };
 
 $(document).ready(function () {
+
     $('#submitButton').on('click', save);
-    $('a.dropdown-select').on('click', function() {
-        $('#dropdownMenu1').html(event.target.innerText + '  <span class="caret"</span>');
-        $('#dropdownMenu1').val($(event.target).attr('value'));
+    $('a.dropdown-select').on('click', function(e) {
+        if (!e) {
+            e = window.event;
+        }
+        x = e.target || e.srcElement;
+        $('#dropdownMenu1').html(x.innerHTML + '  <span class="caret"</span>');
+        $('#dropdownMenu1').val($(x).attr('value'));
     });
     $('#email').watermark('Your Email Address');
     $('#message').watermark('Your Message');

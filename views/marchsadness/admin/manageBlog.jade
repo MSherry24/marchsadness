@@ -16,6 +16,8 @@ block content
                                 th Title
                                 th Author
                                 th Timestamp
+                                th Unix Timestamp
+                                th Delete
                         tbody
                             each post in blogPosts
                                 tr.text-left
@@ -23,5 +25,6 @@ block content
                                         a(href='/marchsadness/admin/blogPost/' + post._id)= post.title
                                     td= post.author
                                     td= post.timestamp
+                                    td= post.unixTimeStamp
                                     td
                                         button.btn.btn-danger(value=post._id) Delete

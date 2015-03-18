@@ -8,7 +8,6 @@ var submitPost = function () {
     req.postTitle = $('#title').val();
     req.postPreview = $('#inputPreview').val();
     req.postId = $("#SubmitButton").val();
-
     req.postBody = req.postBody.replace(/background-color:#ffffff/g, "background-color:transparent");
 
     $("#SubmitButton").addClass('disabled');

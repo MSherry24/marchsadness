@@ -11,11 +11,15 @@ $(document).ready(function () {
     });
 });
 
-var deleteTeam = function () {
+var deleteTeam = function (e) {
     "use strict";
-    var route;
+    var route, x;
+    if (!e) {
+        e = window.event;
+    }
+    x = e.target || e.srcElement;
     if (confirm("Delete this ballot?")) {
-        route = '/marchsadness/deleteteam/' + event.target.getAttribute('value');
+        route = '/marchsadness/deleteteam/' + x.getAttribute('value');
         $.post(route, function () {
             window.location.reload(true);
         });

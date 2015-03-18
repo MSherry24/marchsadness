@@ -1,11 +1,15 @@
 /**
  * Created by Mike on 3/14/2015.
  */
-var deleteTeam = function () {
+var deleteTeam = function (e) {
     "use strict";
-    var route;
+    var route, x;
+    if (!e) {
+        e = window.event;
+    }
+    x = e.target || e.srcElement;
     if (confirm("Remove this ballot from the league?")) {
-        route = '/marchsadness/removeBallotFromLeague/' + event.target.getAttribute('value') + "/" + event.target.getAttribute('league');
+        route = '/marchsadness/removeBallotFromLeague/' + x.getAttribute('value') + "/" + x.getAttribute('league');
         $.ajax({
             url: route,
             type: 'POST',

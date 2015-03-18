@@ -444,3 +444,7 @@ fieldset[disabled] .btn-ms-orange.active {
 .blog-post-input {
     width: 100%;
 }
+
+.orange-border {
+    border: 1px solid #F05928;
+}

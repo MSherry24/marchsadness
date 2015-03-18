@@ -1,11 +1,6 @@
 /**
  * Created by Mike on 1/26/2015.
  */
-var updateTeam = function () {
-    "use strict";
-    window.location.href = "/marchsadness/maketeamselections/" + event.target.value;
-};
-
 var setTabBackgrounds = function () {
     "use strict";
     var classToAdd,
@@ -61,7 +56,6 @@ var cancelEditBallot = function () {
 };
 
 $(document).ready(function () {
-    $('#UpdateTeam').on('click', updateTeam);
     $("#tabs").tabs();
     setTabBackgrounds();
     $("#editBallotButton").on("click", editBallot);

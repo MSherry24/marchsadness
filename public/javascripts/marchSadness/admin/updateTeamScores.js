@@ -1,9 +1,14 @@
 /**
  * Created by MSherry on 1/20/2015.
  */
-var updateTeam = function () {
+var updateTeam = function (e) {
     "use strict";
-    window.location.href = "/marchsadness/admin/updateSingleTeam/" + event.target.value;
+    var x;
+    if (!e) {
+        e = window.event;
+    }
+    x = e.target || e.srcElement;
+    window.location.href = "/marchsadness/admin/updateSingleTeam/" + x.value;
 };
 
 var updateUserScores = function () {

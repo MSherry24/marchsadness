@@ -1,9 +1,13 @@
-var joinLeague = function () {
+var joinLeague = function (e) {
     "use strict";
-    var url, req;
+    var x, req;
+    if (!e) {
+        e = window.event;
+    }
+    x = e.target || e.srcElement;
     req = {};
-    $(event.target).addClass('disabled');
-    $(event.target).html('Saving');
+    $(x).addClass('disabled');
+    $(x).html('Saving');
     req.id = $('#leagueId').val();
     req.password = $('#leaguePassword').val();
     $.post("/marchsadness/joinLeague/" + req.id, req, function (res) {

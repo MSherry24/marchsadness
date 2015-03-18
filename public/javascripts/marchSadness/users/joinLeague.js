@@ -1,12 +1,16 @@
-var joinLeague = function () {
+var joinLeague = function (e) {
     "use strict";
-    var url, req;
+    var url, req, x;
+    if (!e) {
+        e = window.event;
+    }
+    x = e.target || e.srcElement;
     req = {};
-    url = $(event.target).val();
-    $(event.target).addClass('disabled');
-    $(event.target).html('Saving');
+    url = $(x).val();
+    $(x).addClass('disabled');
+    $(x).html('Saving');
     req.password = $('#leaguePassword').val();
-    $.post("/marchsadness/joinLeague/" + event.target.value, req, function (res) {
+    $.post("/marchsadness/joinLeague/" + x.value, req, function (res) {
         if (res && res.message === 'wrongpassword') {
             window.location.href = "/marchsadness/viewSingleLeague/" + url + '/wrongpassword';
         }

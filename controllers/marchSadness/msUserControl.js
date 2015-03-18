@@ -139,11 +139,18 @@ exports.getViewSingleTeam = function (req, res, teamId) {
             User.findById(team.owner[0], function (err, owner) {
                 msModel.MsConfig.findOne({}, function (err, config) {
                     msModel.msTeam.find({}, function (err, msTeams) {
-                        var allTourneyTeams = {};
+                        var allTourneyTeams = {},
+                            roundStarted = [];
                         msTeams.sort(teamSort);
                         msTeams.map(function (msTeam) {
                             allTourneyTeams[msTeam._id] = msTeam;
                         });
+                        roundStarted.push(config.roundStarted.round1);
+                        roundStarted.push(config.roundStarted.round2);
+                        roundStarted.push(config.roundStarted.round3);
+                        roundStarted.push(config.roundStarted.round4);
+                        roundStarted.push(config.roundStarted.round5);
+                        roundStarted.push(config.roundStarted.round6);
                         res.render('marchsadness/user/viewSingleTeam', {
                             config: config,
                             user: req.user,
@@ -155,7 +162,8 @@ exports.getViewSingleTeam = function (req, res, teamId) {
                             owner: owner,
                             userIsOwner: req.user._id.id === owner._id.id,
                             ballots: req.userBallots,
-                            leagues: req.userLeagues
+                            leagues: req.userLeagues,
+                            roundStarted: JSON.stringify(roundStarted)
                         });
                     });
                 });

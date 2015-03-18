@@ -1,10 +1,14 @@
-var addTeam = function () {
+var addTeam = function (e) {
     "use strict";
-    var url;
-    url = $(event.target).val().split('/')[0];
-    $(event.target).addClass('disabled');
-    $(event.target).html('Saving');
-    $.post("/marchsadness/addTeamToLeague/" + event.target.value, function () {
+    var url, x;
+    if (!e) {
+        e = window.event;
+    }
+    x = e.target || e.srcElement;
+    url = $(x).val().split('/')[0];
+    $(x).addClass('disabled');
+    $(x).html('Saving');
+    $.post("/marchsadness/addTeamToLeague/" + x.value, function () {
         setTimeout(function () {
             window.location.href = "/marchsadness/viewSingleLeague/" + url;
         }, 1500);

@@ -1,6 +1,7 @@
 extends ../marchsadnesslayout
 block content
     script(type="text/javascript")!= "var team = " + teamString + "; var msTeams = " + msTeamsString + ";"
+    script(type="text/javascript")!= "var roundStarted = " + roundStarted + ";"
     script(src="../../javascripts/knockout-v3.2.0.js")
     script(src="../../javascripts/marchSadness/users/viewSingleTeam.js")
     script(src="../../javascripts/marchSadness/users/viewSingleTeamViewModel.js")

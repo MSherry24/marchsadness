@@ -7,7 +7,8 @@ var blogPostSchema = new mongoose.Schema({
     title: String,
     body: String,
     preview: String,
-    timestamp: String
+    timestamp: String,
+    unixTimeStamp: String
 });
 
 var BlogPost = mongoose.model('Blog_Post', blogPostSchema);

@@ -163,6 +163,10 @@ function makePicksViewModel() {
             self.allNcaaTeamsMap[x].notSelected(false);
             // remove team from other team's individual lists
             updateOtherLists(self.allNcaaTeamsMap[x].id, 'delete', 'round' + i + 'pick' + pickIndex);
+            if (msTeams[x].eliminated && !roundStarted[i-1]) {
+                $('#round' + i + 'pick' + pickIndex).addClass('orange-border');
+                $('#round' + i + 'pick' + pickIndex + 'text').addClass('orange-border');
+            }
             pickIndex += 1;
         });
     });
