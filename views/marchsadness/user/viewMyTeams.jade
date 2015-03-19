@@ -23,7 +23,7 @@ div.ms-footer-push
                                     img#editTeam.teamViewIcon(src="../../images/pencilIcon.png", value= ballot._id)
                             span
                                 img.deleteTeam.teamViewIcon(src="../../images/trashIcon.png", value= ballot._id)
-    div#startNewBallot
+    span#startNewBallot
         div.ms-inline-block
             button#showNewBallot.btn.btn-ms-orange.ms-font-size-14(value="Create a Ballot") START A NEW BALLOT
     form#newBallotForm(action="/marchsadness/createnewteam", method="post")
@@ -32,3 +32,7 @@ div.ms-footer-push
                 input.ms-font-size-14.ms-font-normal.ms-create-ballot-width(type="text", class="form-control", name="teamname", value="Name Your Ballot")
             div.ms-inline-block
                 button.btn.btn-ms-orange( type="submit", onComplete="window.location.reload(true);") ADD
+    span.ms-inline-block
+        div.ms-inline-block
+            a(href="/marchsadness/globalRankings")
+                button.btn.btn-ms-orange SEE GLOBAL RANKING

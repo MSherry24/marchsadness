@@ -1,0 +1,33 @@
+extends marchsadnesslayout
+block content
+    script(src="../../javascripts/marchSadness/users/allBallotRanks.js")
+    div.ms-font-size-30.ms-font-bold.pull-left= "Global Rankings"
+    br
+    br
+    br
+    div.league-table-container
+        table.ms-single-league-table
+            thead
+                tr
+                    th.ms-grey-line.ms-font-normal RANK/BALLOT
+                    th.ms-grey-line.text-center.ms-font-normal R1
+                    th.ms-grey-line.text-center.ms-font-normal R2
+                    th.ms-grey-line.text-center.ms-font-normal R3
+                    th.ms-grey-line.text-center.ms-font-normal R4
+                    th.ms-grey-line.text-center.ms-font-normal R5
+                    th.ms-grey-line.text-center.ms-font-normal R6
+                    th.ms-grey-line.text-center.ms-font-normal TOTAL
+            tbody
+                each ballot, i in allBallots
+                    tr.ms-font-bold.ms-font-size-20
+                        td.ms-grey-line
+                            span
+                                a(href="/marchsadness/viewsingleteam/" + ballot._id)= (i+1) + "/" + ballot.name
+                            div.ms-font-size-14.ms-text-gray.ms-font-normal= ballotOwnerIdToFirstName[ballot.owner]
+                        td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal= ballot.scores.round1
+                        td.ms-grey-line.text-center.ms-font-normal= ballot.scores.round2
+                        td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal= ballot.scores.round3
+                        td.ms-grey-line.text-center.ms-font-normal= ballot.scores.round4
+                        td.ms-grey-line.text-center.ms-background-even-lighter-gray.ms-font-normal= ballot.scores.round5
+                        td.ms-grey-line.text-center.ms-font-normal= ballot.scores.round6
+                        td.ms-grey-line.text-center.ms-font-bold= ballot.totalScore

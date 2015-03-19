@@ -409,5 +409,10 @@ router.get('/joinALeague/:message', authMain.isLoggedIn, msModel.getTeamsAndLeag
     msUserControl.getJoinALeague(req, res, req.params.message);
 });
 
+router.get('/globalRankings', authMain.isLoggedIn, msModel.getTeamsAndLeagues, function (req, res) {
+    "use strict";
+    msUserControl.getGlobalRankings(req, res);
+});
+
 module.exports = router;
 
