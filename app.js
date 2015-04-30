@@ -13,7 +13,6 @@ var flash = require('connect-flash');
 // mongo start code - mongod.exe --config C:\Users\msherry\Documents\mongodb\mongo.config
 // mongo start code - ./mongod --dbpath ~/Documents/workspace/node
 var mongoose = require('./models/db');
-//var userModel = require('./models/usermodel');
 
 //Passport
 var passport = require('passport');
@@ -35,7 +34,6 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
-//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser('2478442F-889A-F90F-66A3BCC1D3DC'));

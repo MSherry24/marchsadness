@@ -101,6 +101,22 @@ router.get('/admin', authMain.isAdmin, function (req, res) {
 });
 
 /*=================================
+ * Get the okay to email list
+ *=================================*/
+
+router.get('/admin/oktoemail', authMain.isAdmin, function (req, res) {
+    "use strict";
+    msAdminControl.getOkayToEmailList(function (emails) {
+        res.render('marchsadness/admin/getEmailList',
+            {
+                user: req.user,
+                emails: emails
+            });
+    });
+});
+
+
+/*=================================
  * Set the names of the teams in the tournament
  *=================================*/
 router.get('/admin/updateNames', authMain.isAdmin, function (req, res) {

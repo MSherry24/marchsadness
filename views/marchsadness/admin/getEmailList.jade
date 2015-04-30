@@ -1,0 +1,11 @@
+extends msAdminLayout
+block content
+   div(class="jumbotron")
+      div(class="container")
+         div(class="row")
+            div(class="col-xs-12")
+               h1.text-center Ok to Email List
+   div.container
+      div.well
+         each email in emails
+            div=email

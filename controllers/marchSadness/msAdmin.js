@@ -186,3 +186,15 @@ exports.markRoundsAsStarted = function (req, res) {
         });
     });
 };
+
+exports.getOkayToEmailList = function (callback) {
+    "use strict";
+    User.find({okToEmail: true}, function (err, usersToEmail) {
+        if (!err) {
+            var emails =  usersToEmail.map(function (user) {
+                return user.local.email;
+            });
+            callback(emails);
+        }
+    });
+};
