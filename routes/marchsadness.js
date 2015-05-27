@@ -115,6 +115,35 @@ router.get('/admin/oktoemail', authMain.isAdmin, function (req, res) {
     });
 });
 
+/*=================================
+ * View the user management page
+ *=================================*/
+router.get('/admin/usermanagement', authMain.isAdmin, function (req, res) {
+    "use strict";
+    msAdminControl.getAllUsers(function (users) {
+        res.render('marchsadness/admin/usermanagement', {
+            user: req.user,
+            "users": users
+        });
+    });
+});
+
+/*=================================
+ * convert usernames to lower case
+ *=================================*/
+router.post('/admin/toLowerCase', authMain.isAdmin, function (req, res) {
+    "use strict";
+    msAdminControl.getAllUsers(function (users) {
+        users.map(function (user) {
+            if (user && user.local && user.local.email) {
+                user.local.email = user.local.email.toLowerCase();
+                user.save();
+            }
+        });
+        res.status(200).end();
+    });
+});
+
 
 /*=================================
  * Set the names of the teams in the tournament

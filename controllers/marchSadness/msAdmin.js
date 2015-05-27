@@ -198,3 +198,14 @@ exports.getOkayToEmailList = function (callback) {
         }
     });
 };
+
+exports.getAllUsers = function (callback) {
+    "use strict";
+    User.find({}, function (err, users) {
+        if (!err) {
+            callback(users);
+        } else {
+            callback();
+        }
+    });
+};

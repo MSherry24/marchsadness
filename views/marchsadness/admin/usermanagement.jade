@@ -1,0 +1,15 @@
+extends ../../layout
+block content
+   script(src="/../../javascripts/jquery.min.js")
+   script(src="/javascripts/marchSadness/admin/userManagement.js")
+   div(class="jumbotron")
+      div(class="container")
+         div(class="row")
+            div(class="col-xs-12")
+               h1.text-center User Management
+   div.container
+      div.row
+         button#toLowerCase.ms-center.btn.btn-ms-orange Change User Names To Lowercase
+      div.row.well
+         each user in users
+            div= user.local.email
